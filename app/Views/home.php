@@ -57,8 +57,8 @@
         </div>
     </div>
     <div class="sticky-top navbar-elixir">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg"> <a class="navbar-brand" href="<?= base_url('public/frontend') ?>/index.html"><img src="<?= base_url('public/frontend') ?>/assets/img/logo-dark.png" alt="logo" /></a>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg"> <a class="navbar-brand" href="<?= base_url('public/frontend') ?>/index.html"><img src="<?= base_url('public/frontend') ?>/assets/img/unulib-dark.png" alt="logo" /></a>
                 <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger hamburger--emphatic"><span class="hamburger-box"><span class="hamburger-inner"></span></span></span></button>
                 <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
                     <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
