@@ -11,6 +11,33 @@ class Home extends MyController
 
     public function index()
     {
-        $this->view('frontend', 'home', $this->data);
+        $data = $this->data;
+
+        $data['koleksi_buku'] = $this->getBookCollection();
+        $this->view('frontend', 'home', $data);
+    }
+
+    public function getBookCollection()
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("POST", "https://unusia.perpustakaan.co.id/view/ajax", [
+            "headers" => [
+                "Accept" => "application/json, text/javascript, */*; q=0.01"
+            ],
+            "form_params" => [
+                "action" => "get_collectionbook_front"
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true)['data'] ?? null;
+        }
+
+        return $result;
+        // echo "<pre>";
+        // print_r($result);
+        // exit;
     }
 }

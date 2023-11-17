@@ -308,36 +308,27 @@
                 </div>
                 <div class="swiper theme-slider" data-swiper='{"loop":true,"slidesPerView":1,"autoplay":{"delay":5000}}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="row px-lg-8">
-                                <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public/frontend') ?>/assets/img/client1.png" alt="Member" /></div>
-                                <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                                    <p class="lead">Their work on our website and Internet marketing has made a significant different to our business. We’ve seen a 425% increase in quote requests from the website which has been pretty remarkable – but I’d always like to see more!</p>
-                                    <h6 class="fs-0 mb-1 mt-4">Michael Clarke</h6>
-                                    <p class="mb-0 text-500">CEO, A.E.T Institute</p>
+                        <?php
+                        $index = 0;
+                        foreach ($koleksi_buku as $key => $value) {
+                            if ($index == 5) {
+                                break;
+                            }
+                            $index++;
+                        ?>
+                            <div class="swiper-slide">
+                                <div class="row px-lg-8">
+                                    <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= $value['book_cover'] ?>" alt="<?= $value['book_title']; ?>" /></div>
+                                    <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
+                                        <a href="<?= $value['book_url']; ?>" target="_blank">
+                                            <p class="lead"><?= $value['book_title']; ?></p>
+                                            <h6 class="fs-0 mb-1 mt-4">Penulis</h6>
+                                            <p class="mb-0 text-500"><?= $value['penulis']; ?></p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="row px-lg-8">
-                                <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public/frontend') ?>/assets/img/client2.png" alt="Member" /></div>
-                                <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                                    <p class="lead">Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything – with almost no time or effort for me!</p>
-                                    <h6 class="fs-0 mb-1 mt-4">Maria Sharapova</h6>
-                                    <p class="mb-0 text-500">Managing Director, Themewagon Inc.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="row px-lg-8">
-                                <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public/frontend') ?>/assets/img/client3.png" alt="Member" /></div>
-                                <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                                    <p class="lead">As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign.</p>
-                                    <h6 class="fs-0 mb-1 mt-4">David Beckham</h6>
-                                    <p class="mb-0 text-500">Chairman, Harmony Corporation</p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                     <div class="swiper-nav">
                         <div class="swiper-button-prev icon-item icon-item-lg"><span class="fas fa-chevron-left fs--2"></span></div>
@@ -430,65 +421,36 @@
                     <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
                 </div>
                 <div class="row g-4">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card"><a href="<?= base_url('public/frontend') ?>/news/news.html"><img class="card-img-top" src="<?= base_url('public/frontend') ?>/assets/img/9.jpg" alt="Featured Image" /></a>
-                            <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('public/frontend') ?>/news/news.html">
-                                        <h5 data-zanim-xs='{"delay":0}'>Tax impacts of lease mean accounting change</h5>
-                                    </a></div>
-                                <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'>By Paul O'Sullivan</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="mt-3" data-zanim-xs='{"delay":0.2}'>HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'><a class="d-flex align-items-center" href="<?= base_url('public/frontend') ?>/news/news.html">Learn More
-                                            <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block fw-medium">&xrarr;</span></div>
+                    <?php
+                    $index = 0;
+                    foreach ($koleksi_buku as $key => $value) {
+                        if ($index == 3) {
+                            break;
+                        }
+                        $index++;
+                    ?>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card"><a href="<?= $value['book_url']; ?>" target="_blank"><img class="card-img-top" src="<?= $value['book_cover']; ?>" alt="<?= $value['book_title']; ?>" /></a>
+                                <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                    <div class="overflow-hidden"><a href="<?= $value['book_url']; ?>" target="_blank">
+                                            <h5 data-zanim-xs='{"delay":0}'><?= $value['book_title']; ?></h5>
                                         </a></div>
+                                    <div class="overflow-hidden">
+                                        <p class="text-500" data-zanim-xs='{"delay":0.1}'><?= $value['penulis']; ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card"><a href="<?= base_url('public/frontend') ?>/news/news.html"><img class="card-img-top" src="<?= base_url('public/frontend') ?>/assets/img/10.jpg" alt="Featured Image" /></a>
-                            <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('public/frontend') ?>/news/news.html">
-                                        <h5 data-zanim-xs='{"delay":0}'>What brexit means for data protection law</h5>
-                                    </a></div>
-                                <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'>By Enrico Ambrosi</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="mt-3" data-zanim-xs='{"delay":0.2}'>Assuming that the referendum is not ignored completely, there are two possible futures for the UK...</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'><a class="d-flex align-items-center" href="<?= base_url('public/frontend') ?>/news/news.html">Learn More
-                                            <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block fw-medium">&xrarr;</span></div>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card"><a href="<?= base_url('public/frontend') ?>/news/news.html"><img class="card-img-top" src="<?= base_url('public/frontend') ?>/assets/img/11.jpg" alt="Featured Image" /></a>
-                            <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('public/frontend') ?>/news/news.html">
-                                        <h5 data-zanim-xs='{"delay":0}'>The growing meanace of social engineering fraud</h5>
-                                    </a></div>
-                                <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'>By Robson</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="mt-3" data-zanim-xs='{"delay":0.2}'>Social engineering involves the collection of information from various sources about a target...</p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'><a class="d-flex align-items-center" href="<?= base_url('public/frontend') ?>/news/news.html">Learn More
-                                            <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'><span class="d-inline-block fw-medium">&xrarr;</span></div>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
+                    <?php }; ?>
+                </div>
+
+                <div class="row">
+                    <div class="col-auto mx-auto mt-4">
+                        <a href="" class="btn btn-warning">
+                            <span class="text-primary fw-semi-bold">
+                                Lihat Semua <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -574,7 +536,7 @@
                 <div class="col-sm-6 mt-3 mt-sm-0">
                     <p class="lh-lg mb-0 fw-semi-bold">&copy; Unusia Library <?= date('Y') ?></p>
                 </div>
-                <!-- <div class="col text-sm-end mt-3 mt-sm-0"><span class="fw-semi-bold">Designed by </span><a class="text-white" href="<?= base_url('public/frontend') ?>/https://themewagon.com/" target="_blank">Themewagon</a></div> -->
+                <div class="col text-sm-end mt-3 mt-sm-0"><span class="fw-semi-bold">Designed by </span><a class="text-white" href="<?= base_url('public/frontend') ?>/https://themewagon.com/" target="_blank">Themewagon</a></div>
             </div>
         </div>
     </footer>
