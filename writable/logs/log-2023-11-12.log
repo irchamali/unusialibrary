@@ -1,0 +1,6 @@
+CRITICAL - 2023-11-12 01:06:21 --> Call to undefined function App\Controllers\img()
+in APPPATH\Controllers\User.php on line 141.
+ 1 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\User->ajaxGetData()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

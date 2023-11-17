@@ -1,0 +1,49 @@
+    /* Menu Manager */
+    .kategori-item .toolbox {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        /* z-index: 999999; */
+        width: auto;
+    }
+
+    .kategori-item .toolbox li {
+        float: left;
+    }
+
+    .kategori-item .toolbox li a {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        line-height: 25px;
+        border: 0;
+        touch-action: none;
+    }
+
+    .icon-preview {
+        padding: 0;
+        margin-left: 10px;
+        color: #4b4b4b;
+        cursor: pointer;
+        outline: none;
+        /* font-size: 1.8rem; */
+        /* line-height: 2.2rem; */
+    }
+
+    .icon-preview:hover {
+        color: #4b4b4b;
+    }
+
+    /*-- Menu Manager*/
+    .apexcharts-svg {
+        background: none !important;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .form-horizontal .control-label {
+        text-align: left;
+    }
