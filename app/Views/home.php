@@ -536,7 +536,7 @@
                 <div class="col-sm-6 mt-3 mt-sm-0">
                     <p class="lh-lg mb-0 fw-semi-bold">&copy; Unusia Library <?= date('Y') ?></p>
                 </div>
-                <div class="col text-sm-end mt-3 mt-sm-0"><span class="fw-semi-bold">Designed by </span><a class="text-white" href="<?= base_url('public/frontend') ?>/https://themewagon.com/" target="_blank">Themewagon</a></div>
+                <div class="col text-sm-end mt-3 mt-sm-0"><span class="fw-semi-bold">Designed by </span><a class="text-white" href="<?= base_url('') ?>login" target="_blank">UnusiaLabs</a></div>
             </div>
         </div>
     </footer>

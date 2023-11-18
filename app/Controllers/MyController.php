@@ -64,8 +64,8 @@ class MyController extends BaseController
         $this->data['request'] = $this->request;
         $this->data['isLoggedIn'] = $this->isLoggedIn;
         $this->data['session'] = $this->session;
-        $this->data['title'] = 'AdminLTE 2';
-        $this->data['deskripsi'] = 'AdminLTE 2 Lengkap dengan berbagai fitur untuk memudahkan pengembangan aplikasi';
+        $this->data['title'] = 'Unulib';
+        $this->data['deskripsi'] = 'Unusia Lengkap dengan berbagai fitur untuk memudahkan pengembangan aplikasi';
         $this->data['settingAppLayout'] = $this->model->getSettingAppLayout();
         $this->data['menu_frontend'] = $this->model->getMenuFrontend($this->currentModule['nama_module']);
 
