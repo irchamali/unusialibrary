@@ -7,30 +7,38 @@ Aplikasi Perpustakaan berbasis Web menggunakan framework [CodeIgniter 4](https:/
 ### Fitur Front-end
 
 - Profil
--- Sambutan
--- Visi Misi
--- Struktur Organisasi
--- Unit Kerja
+  - [ ] Sambutan
+  - [x] Visi Misi
+  - [ ] Struktur Organisasi
+  - [ ] Unit Kerja
 
 - Layanan
--- Perpustakaan web
--- Perpustakaan apps
+  - [x] Perpustakaan web
+  - [x] Perpustakaan apps
 
 - Aktivitas
--- Berita
--- Agenda
--- Pengumuman
+  - [ ] Berita
+  - [ ] Agenda
+  - [ ] Pengumuman
 
 - Rekomendasi
--- Buku Baru
--- Koleksi Buku
+  - [ ] Buku Baru
+  - [ ] Koleksi Buku
 
-- Jurnal Penelitian
+- Jurnal
+  - [ ] Internal
+  - [ ] Eksternal
+ 
+- Layanan Buku
 
 ### Fitur Back-end
 
 - Dashboard
 
 - Menu
--- Backend
--- Frontend
+  - [x] Backend
+  - [x] Frontend
+ 
+- Modules
+
+- Setting
