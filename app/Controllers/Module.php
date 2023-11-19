@@ -12,13 +12,13 @@ class Module extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new ModuleModel;
-        $this->addStyleBackend(base_url('public/backend/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addScriptBackend(base_url('public/backend/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptBackend(base_url('public/backend/dist/js/pages/') . 'Module.js');
+        $this->addStyleBackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addScriptBackend(base_url('public/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScriptBackend(base_url('public/dist/js/pages/') . 'Module.js');
     }
 
     private function getValidate()

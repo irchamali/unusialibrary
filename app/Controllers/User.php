@@ -12,15 +12,15 @@ class User extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new UserModel;
-        $this->addStyleBackend(base_url('public/backend/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/select2/dist/css/') . 'select2.min.css');
-        $this->addScriptBackend(base_url('public/backend/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/select2/dist/js/') . 'select2.full.min.js');
-        $this->addScriptBackend(base_url('public/backend/dist/js/pages/') . 'User.js');
+        $this->addStyleBackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/select2/dist/css/') . 'select2.min.css');
+        $this->addScriptBackend(base_url('public/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/select2/dist/js/') . 'select2.full.min.js');
+        $this->addScriptBackend(base_url('public/dist/js/pages/') . 'User.js');
     }
 
     private function getValidate($method)
@@ -151,7 +151,7 @@ class User extends MyController
             $val['nama_role'] = $role;
             $val['status'] = status_user($val['is_active'], $val['user_id']);
             $val['ignore_btn'] = '
-                <button type="button" class="btn ' . $this->data['settingAppLayout']['button'] . ' btn-sm btn-edit" data-id="' . $val['user_id'] . '"><i class="fa fa-pen"></i> Ubah</button>
+                <button type="button" class="btn ' . $this->data['settingLayout']['button'] . ' btn-sm btn-edit" data-id="' . $val['user_id'] . '"><i class="fa fa-pen"></i> Ubah</button>
                 <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . $val['user_id'] . '" data-message-delete="Apakah anda yakin, Data user <b>' . $val['nama'] . '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>
             ';
         }

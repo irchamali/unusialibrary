@@ -11,24 +11,24 @@ class Menu_frontend extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new MenuModel;
-        $this->addStyleBackend(base_url('public/backend/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/select2/dist/css/') . 'select2.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/jquery-nestable/') . 'jquery.nestable.min.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/wdi/') . 'wdi-modal.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/wdi/') . 'wdi-fapicker.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/wdi/') . 'wdi-loader.css');
-        $this->addStyleBackend(base_url('public/backend/bower_components/dragula/') . 'dragula.min.css');
-        $this->addStyleBackend(base_url('public/backend/dist/css/pages/') . 'Menu.css');
+        $this->addStyleBackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/select2/dist/css/') . 'select2.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.nestable.min.css');
+        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-modal.css');
+        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-fapicker.css');
+        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-loader.css');
+        $this->addStyleBackend(base_url('public/bower_components/dragula/') . 'dragula.min.css');
+        $this->addStyleBackend(base_url('public/dist/css/pages/') . 'Menu.css');
 
-        $this->addScriptBackend(base_url('public/backend/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/select2/dist/js/') . 'select2.full.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/wdi/') . 'wdi-fapicker.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/jquery-nestable/') . 'jquery.nestable.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/jquery-nestable/') . 'jquery.wdi-menueditor.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/js-yaml/') . 'js-yaml.min.js');
-        $this->addScriptBackend(base_url('public/backend/bower_components/dragula/') . 'dragula.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/select2/dist/js/') . 'select2.full.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/wdi/') . 'wdi-fapicker.js');
+        $this->addScriptBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.nestable.js');
+        $this->addScriptBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.wdi-menueditor.js');
+        $this->addScriptBackend(base_url('public/bower_components/js-yaml/') . 'js-yaml.min.js');
+        $this->addScriptBackend(base_url('public/bower_components/dragula/') . 'dragula.min.js');
     }
 
     private function getValidate()

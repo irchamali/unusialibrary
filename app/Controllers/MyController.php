@@ -11,6 +11,7 @@ class MyController extends BaseController
     protected $data;
     protected $session;
     protected $model;
+    protected $user;
 
     protected $isLoggedIn;
     protected $baseURL;
@@ -38,92 +39,81 @@ class MyController extends BaseController
 
         if (!$module) {
             $this->data['content'] = 'Module ' . $nama_module . ' tidak ditemukan di database';
-            // $this->errorExit($this->data);
         }
 
-        // $this->isLoggedIn = $this->session->get('isLoggedIn');
+        $this->isLoggedIn = $this->session->get('isLoggedIn');
         $this->currentModule = $module;
         $this->moduleURL = $web['module_url'];
-        // $this->user = $this->session->get('user');
-        // $this->model->checkRememberme();
+        $this->user = $this->session->get('user');
 
         $this->data['currentModule'] = $this->currentModule;
         $this->data['baseURL'] = base_url();
         $this->data['currentURL'] = current_url();
         $this->data['moduleURL'] = $this->moduleURL;
         $this->data['stylesBackend'] = array(
-            base_url() . 'public/backend/bower_components/bootstrap/dist/css/bootstrap.min.css',
-            base_url() . 'public/backend/bower_components/fontawesome/css/all.css',
-            base_url() . 'public/backend/dist/css/styleLTE.css',
+            base_url() . 'public/bower_components/bootstrap/dist/css/bootstrap.min.css',
+            base_url() . 'public/bower_components/fontawesome/css/all.css',
+            base_url() . 'public/dist/css/styleLTE.css',
         );
         $this->data['scriptsBackend'] = array(
-            base_url() . 'public/backend/bower_components/bootstrap/dist/js/bootstrap.min.js',
-            base_url() . 'public/backend/dist/js/adminlte.min.js'
+            base_url() . 'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
+            base_url() . 'public/dist/js/adminlte.min.js'
         );
         $this->data['config'] = $this->config;
         $this->data['request'] = $this->request;
         $this->data['isLoggedIn'] = $this->isLoggedIn;
         $this->data['session'] = $this->session;
-        $this->data['title'] = 'Unulib';
-        $this->data['deskripsi'] = 'Unusia Lengkap dengan berbagai fitur untuk memudahkan pengembangan aplikasi';
-        $this->data['settingAppLayout'] = $this->model->getSettingAppLayout();
+        $this->data['title'] = 'Perpustakaan Mahbub Djunaidi';
+        $this->data['description'] = 'Website Resmi Perpustakaan Mahbub Djunaidi';
         $this->data['menu_frontend'] = $this->model->getMenuFrontend($this->currentModule['nama_module']);
 
-        if ($this->isLoggedIn) {
-            $user_setting = $this->model->getSettingAppLayoutUser();
+        $settingApp = $this->model->getSettingApp();
+        if ($settingApp) {
+            $this->data['settingApp'] = json_decode($settingApp['param'], true);
+        }
 
-            if ($user_setting) {
-                $this->data['settingAppLayoutUser'] = json_decode($user_setting->param, true);
-            }
-        } else {
-            $query = $this->model->getSettingAppLayoutDefault();
-            foreach ($query as $val) {
-                $settingAppLayoutUser[$val['param']] = $val['value'];
-            }
-            $this->data['settingAppLayoutUser'] = $settingAppLayoutUser;
+        $settingLayout = $this->model->getSettingLayout();
+        if ($settingLayout) {
+            $this->data['settingLayout'] = json_decode($settingLayout['param'], true);
+        }
+
+        $settingProfile = $this->model->getSettingProfile();
+        if ($settingProfile) {
+            $this->data['settingProfile'] = json_decode($settingProfile['param'], true);
+        }
+
+        $settingMediaSosial = $this->model->getSettingMediaSosial();
+        if ($settingMediaSosial) {
+            $this->data['settingMediaSosial'] = json_decode($settingMediaSosial['param'], true);
+        }
+
+        $settingLibrary = $this->model->getSettingLibrary();
+        if ($settingLibrary) {
+            $this->data['settingLibrary'] = json_decode($settingLibrary['param'], true);
         }
 
         // Login? Yes, No, Restrict
-        // if ($this->currentModule['is_login'] == 'Y' && $nama_module != 'is_login') {
-        //     $this->loginRequired();
-        // } else if ($this->currentModule['is_login'] == 'R') {
-        //     $this->loginRestricted();
-        // }
-
-        if (!$this->isLoggedIn) {
-            // $this->data['user'] = $this->user;
-
-            // List action assigned to role
-            // $this->data['action_user'] = $this->userPermission;
-            $this->data['title'] = $this->currentModule['module'];
-            $this->data['menu'] = $this->model->getMenu($this->currentModule['nama_module']);
-
-            $this->data['breadcrumb'] = ['Home' => base_url(), $this->currentModule['module'] => $this->moduleURL];
-            // $this->data['module_role'] = $this->model->getDefaultUserModule();
-
-            // $this->getModulePermission();
-            // $this->getListPermission();
-
-            // $result = $this->model->getAllModulePermission($_SESSION['user']['id_user']);
-            // $all_module_permission = [];
-            // if ($result) {
-            //     foreach ($result as $val) {
-            //         $all_module_permission[$val['id_module']][$val['nama_permission']] = $val;
-            //     }
-            // }
-            // $_SESSION['user']['all_permission'] = $all_module_permission;
-
-            // Check Global Role Action
-            // $this->checkRoleAction();
-            // if ($nama_module == 'login') {
-            //     $this->redirectOnLoggedIn();
-            // }
+        if ($this->currentModule['is_login'] == 'Y' && $nama_module != 'is_login') {
+            $this->loginRequired();
+        } else if ($this->currentModule['is_login'] == 'R') {
+            $this->loginRestricted();
         }
 
-        // if ($module['module_status_id'] != 1) {
-        //     $this->errorPage('Module ' . $module['nama_module'] . ' sedang ' . strtolower($module['module_status']));
-        //     exit();
-        // }
+        if ($this->isLoggedIn) {
+            $this->data['title'] = $this->currentModule['module'];
+            $this->data['menu'] = $this->model->getMenu($this->currentModule['nama_module']);
+            $this->data['breadcrumb'] = ['Home' => base_url(), $this->currentModule['module'] => $this->moduleURL];
+            $this->data['module_role'] = $this->model->getRoleModuleUser();
+
+            if ($nama_module == 'login') {
+                $this->redirectOnLoggedIn();
+            }
+        }
+
+        if ($module['module_status_id'] != 1) {
+            $this->errorPage('Module ' . $module['module'] . ' sedang ' . strtolower($module['module_status']));
+            exit();
+        }
 
         // echo "<pre>";
         // print_r($this->data);
@@ -172,6 +162,24 @@ class MyController extends BaseController
         }
     }
 
+    protected function redirectOnLoggedIn()
+    {
+        if ($this->isLoggedIn) {
+            header('Location: ' . base_url('dashboard'));
+        }
+    }
+
+    /* Redirect User setelah login */
+    protected function mustNotLoggedIn()
+    {
+        if ($this->isLoggedIn) {
+            if ($this->currentModule['nama_module'] == 'login') {
+                header('Location: ' . base_url('dashboard'));
+                exit();
+            }
+        }
+    }
+
     protected function view($layout, $file, $data, $fileOnly = false)
     {
         if ($layout == 'frontend') {
@@ -180,9 +188,9 @@ class MyController extends BaseController
                     echo view($fileItem, $data);
                 }
             } else {
-                // echo view('Layouts/frontend-header', $data);
+                echo view('Layouts/frontend-header', $data);
                 echo view($file, $data);
-                // echo view('Layouts/frontend-footer');
+                echo view('Layouts/frontend-footer');
             }
             // echo 'KESINI FRONTEND';
         } else {
@@ -217,7 +225,11 @@ class MyController extends BaseController
             $message = ['status' => 'error', 'message' => $message];
         }
         $this->data['msg'] = $message;
-        $this->view('backend', 'backend-error-page', $this->data);
+        if ($this->isLoggedIn) {
+            $this->view('backend', 'backend-error-page', $this->data);
+        } else {
+            $this->view('frontend', 'frontend-error-page', $this->data);
+        }
     }
 
     protected function errorExit($data)

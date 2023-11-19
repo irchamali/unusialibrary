@@ -15,9 +15,9 @@ class MyModel extends \CodeIgniter\Model
         $this->request = \Config\Services::request();
         $this->session = \Config\Services::session();
 
-        // $user = $this->session->get('user');
-        // if ($user)
-        //     $this->user = $this->getUserById($user['id_user']);
+        $user = $this->session->get('user');
+        if ($user)
+            $this->user = $this->getUserById($user['user_id']);
     }
 
     public function insertData($table, $data, $batch = false)
@@ -54,11 +54,12 @@ class MyModel extends \CodeIgniter\Model
 
     public function getMenu($current_module = '')
     {
+        $where_role = $_SESSION['user']['role'] ? join(',', array_keys($_SESSION['user']['role'])) : 'null';
         $sql = 'SELECT * FROM menu 
         			LEFT JOIN menu_role USING (menu_id) 
         			LEFT JOIN module USING (module_id)
         			LEFT JOIN menu_kategori USING(menu_kategori_id)
-        		WHERE menu_kategori.is_active = "1"
+        		WHERE menu_kategori.is_active = "1" AND role_id IN ( ' . $where_role . ')
         		ORDER BY menu_kategori.urutan, menu.urutan';
 
         $query_result = $this->db->query($sql)->getResultArray();
@@ -144,10 +145,7 @@ class MyModel extends \CodeIgniter\Model
 
     public function getSettingAppLayoutUser()
     {
-
-        $setting_user = $this->db->query('SELECT * FROM setting_user WHERE id_user = ? AND type="backend-layout"', [$this->session->get('user')['id_user']])->getRow();
-        // $setting_user = $this->db->query('SELECT * FROM setting_user WHERE id_user = ? AND type="backend-layout"', ['1'])->getRow();
-
+        $setting_user = $this->db->query('SELECT * FROM setting_user WHERE user_id = ? AND type="backend-layout"', [$this->session->get('user')['user_id']])->getRow();
         if (!$setting_user) {
             $query = $this->db->query('SELECT * FROM setting WHERE type="backend-layout"')->getResultArray();
 
@@ -176,5 +174,97 @@ class MyModel extends \CodeIgniter\Model
             $settingAppLayout[$val['param']] = $val['value'];
         }
         return $settingAppLayout;
+    }
+
+    public function getUserById($user_id = null, $array = false)
+    {
+
+        if (!$user_id) {
+            if (!$this->user) {
+                return false;
+            }
+            $user_id = $this->user['user_id'];
+        }
+
+        $query = $this->db->query('SELECT * FROM user WHERE user_id = ?', [$user_id]);
+        $user = $query->getRowArray();
+
+        if (!$user) {
+            return;
+        }
+
+        $user['role'] = [];
+        $query = $this->db->query(
+            'SELECT * FROM user_role 
+            LEFT JOIN role USING(role_id) 
+            WHERE user_id = ? 
+            ORDER BY  nama_role',
+            [$user_id]
+        );
+
+        $result = $query->getResultArray();
+        if ($result) {
+            foreach ($result as $val) {
+                $user['role'][$val['role_id']] = $val;
+            }
+        }
+
+        return $user;
+    }
+
+    public function recordLogin()
+    {
+        $username = $this->request->getPost('username');
+        $user = $this->db->query(
+            'SELECT user_id 
+            FROM user
+            WHERE username = ?',
+            [$username]
+        )->getRowArray();
+
+        $data = array(
+            'user_id' => $user['user_id'], 'time' => date('Y-m-d H:i:s')
+        );
+
+        $this->db->table('user_login_activity')->insert($data);
+    }
+
+    public function getRoleModuleUser()
+    {
+        $where_role = $_SESSION['user']['role'] ? join(',', array_keys($_SESSION['user']['role'])) : 'null';
+        $query = $this->db->query(
+            'SELECT * 
+			FROM role 
+			LEFT JOIN module USING(module_id)
+			WHERE role_id IN (' . $where_role . ')'
+        )->getRowArray();
+        return $query;
+    }
+
+
+
+    public function getSettingApp()
+    {
+        return $this->db->query('SELECT * FROM settings WHERE type="app"')->getRowArray();
+    }
+
+    public function getSettingLayout()
+    {
+        return $this->db->query('SELECT * FROM settings WHERE type="layout"')->getRowArray();
+    }
+
+    public function getSettingProfile()
+    {
+        return $this->db->query('SELECT * FROM settings WHERE type="profile"')->getRowArray();
+    }
+
+    public function getSettingMediaSosial()
+    {
+        return $this->db->query('SELECT * FROM settings WHERE type="media_sosial"')->getRowArray();
+    }
+
+    public function getSettingLibrary()
+    {
+        return $this->db->query('SELECT * FROM settings WHERE type="library"')->getRowArray();
     }
 }

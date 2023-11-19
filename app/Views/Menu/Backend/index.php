@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row mb-3">
                 <div class="col-md-4 kategori-container">
-                    <button type="button" class="btn btn-sm <?= $settingAppLayout['button']; ?> btn-add-menu-kategori mb-3"><i class="fa fa-plus"></i> Tambah Menu Kategori</button>
+                    <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add-menu-kategori mb-3"><i class="fa fa-plus"></i> Tambah Menu Kategori</button>
 
                     <div id="list-kategori">
                         <ul class="list-group menu-kategori-container" id="list-kategori-container">
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-sm <?= $settingAppLayout['button']; ?> btn-add-menu mb-3"><i class="fa fa-plus"></i> Tambah Menu</button>
+                    <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add-menu mb-3"><i class="fa fa-plus"></i> Tambah Menu</button>
                     <div class="dd" id="list-menu">
                         <?= $list_menu ?: '<div class="alert alert-danger">Data menu tidak ditemukan</div>' ?>
                     </div>

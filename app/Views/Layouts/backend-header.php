@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title><?= $settingAppLayout['judul_web'] ?> | <?= $currentModule['module'] ?></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="descrition" content="" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="<?= $settingApp['description']; ?>" />
+    <title><?= $currentModule['module']; ?> | <?= $settingApp['title']; ?></title>
     <?php
     if (@$stylesBackend) {
         foreach ($stylesBackend as $file) {
@@ -25,13 +25,13 @@
         }
     }
     ?>
-    <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/backend/dist/css/AdminLTE.min.css?r=<?= time(); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/backend/dist/css/skins/_all-skins.min.css?r=<?= time(); ?>" />
-    <link rel="stylesheet" type="text/css" id="stylesheet-font-family" href="<?= base_url('public/backend/bower_components/fonts/') . $settingAppLayoutUser['font_family'] . '.css?r=' . time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/dist/css/AdminLTE.min.css?r=<?= time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/dist/css/skins/_all-skins.min.css?r=<?= time(); ?>" />
+    <link rel="stylesheet" type="text/css" id="font-switch" href="<?= base_url('public/dist/css/fonts/') . $settingLayout['font_family'] . '.css?r=' . time(); ?>" />
     <style>
         html,
         body {
-            font-size: <?= $settingAppLayoutUser['font_size'] ?>px;
+            font-size: <?= $settingLayout['font_size'] ?>px;
         }
     </style>
 
@@ -39,18 +39,19 @@
         let baseURL = "<?= $baseURL; ?>";
         let currentURL = "<?= $currentURL ?>";
         let moduleURL = "<?= $moduleURL ?>";
-        let themeSkin = '<?= $settingAppLayoutUser['theme']; ?>';
-        let buttonAppLayout = '<?= $settingAppLayout['button']; ?>';
+        let themeSkin = '<?= $settingLayout['theme']; ?>';
+        let buttonAppLayout = '<?= $settingLayout['button']; ?>';
+        let themeURL = "<?= base_url() . '/public/dist/' ?>";
     </script>
 </head>
 
-<body class="hold-transition <?= $settingAppLayoutUser['theme']; ?>" id="theme-switch">
+<body class="hold-transition <?= $settingLayout['theme']; ?>" id="theme-switch">
     <div class="wrapper">
 
         <header class="main-header">
-            <a href="<?= base_url(); ?>" class="logo">
-                <span class="logo-mini"><b>CMS</b></span>
-                <span class="logo-lg">Admin<b>LTE</b></span>
+            <a href="<?= base_url(); ?>" class="logo" target="_blank">
+                <span class="logo-mini"><b>PMD</b></span>
+                <span class="logo-lg"><img src="<?= base_url('public') ?>/assets/img/unulib-light.png" alt="logo" /></span>
             </a>
 
             <nav class="navbar navbar-static-top">
@@ -106,8 +107,8 @@
                                 </li>
                                 <!-- <li class="user-body"></li> -->
                                 <li class="user-footer">
-                                    <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-block">
-                                        <i class="fa fa-sign-out"></i> Keluar
+                                    <a href="<?= base_url('login/logout'); ?>" class="btn btn-default btn-block">
+                                        <i class="fa fa-sign-out"></i> Logout
                                     </a>
                                 </li>
                             </ul>
@@ -147,7 +148,7 @@
         </aside>
 
         <!-- =============================================== -->
-        <script type="text/javascript" src="<?= base_url('public') ?>/backend/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= base_url('public') ?>/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- =============================================== -->
         <div class="content-wrapper">
             <section class="content-header">

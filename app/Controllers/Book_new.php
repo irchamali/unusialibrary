@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Book_collection extends MyController
+class Book_new extends MyController
 {
     public function __construct()
     {
@@ -13,7 +13,7 @@ class Book_collection extends MyController
     {
         $data = $this->data;
         $data['koleksi_buku'] = $this->getData();
-        $this->view('frontend', 'Frontend/book_collection', $data);
+        $this->view('frontend', 'Frontend/book_new', $data);
     }
 
     private function getData()

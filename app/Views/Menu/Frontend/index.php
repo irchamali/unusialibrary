@@ -15,7 +15,7 @@
         </div>
 
         <div class="box-body">
-            <button type="button" class="btn btn-sm <?= $settingAppLayout['button']; ?> btn-add-menu mb-3"><i class="fa fa-plus"></i> Tambah Menu</button>
+            <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add-menu mb-3"><i class="fa fa-plus"></i> Tambah Menu</button>
             <div class="dd" id="list-menu">
                 <?= $list_menu ?: '<div class="alert alert-danger">Data menu tidak ditemukan</div>' ?>
             </div>

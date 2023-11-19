@@ -5,7 +5,7 @@
         <b>Version</b> 2.4.18
     </div>
     <?php
-    $footer = str_replace('{{YEAR}}', date('Y'), $settingAppLayout['footer_web']);
+    $footer = str_replace('{{YEAR}}', date('Y'), $settingApp['footer']);
     echo html_entity_decode($footer);
     ?>
 </footer>
