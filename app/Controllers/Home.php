@@ -12,12 +12,32 @@ class Home extends MyController
     public function index()
     {
         $data = $this->data;
-
         $data['koleksi_buku'] = $this->getBookCollection();
-        $this->view('frontend', 'home', $data);
+        $this->view('frontend', 'Frontend/home', $data);
     }
 
-    public function getBookCollection()
+    public function profileSejarah()
+    {
+        $data = $this->data;
+        $data['title'] = 'Sejarah';
+        $this->view('frontend', 'Frontend/profile_sejarah', $data);
+    }
+
+    public function profileVisiMisi()
+    {
+        $data = $this->data;
+        $data['title'] = 'Visi & Misi';
+        $this->view('frontend', 'Frontend/profile_visi_misi', $data);
+    }
+
+    public function profileStrukturOrganisasi()
+    {
+        $data = $this->data;
+        $data['title'] = 'Struktur Organisasi';
+        $this->view('frontend', 'Frontend/profile_struktur_organisasi', $data);
+    }
+
+    private function getBookCollection()
     {
         $curl = service('curlrequest');
 
