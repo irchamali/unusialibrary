@@ -15,24 +15,24 @@
         <div class="swiper theme-slider min-vh-100" data-swiper='{"loop":true,"allowTouchMove":false,"autoplay":{"delay":5000},"effect":"fade","speed":800}'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide" data-zanim-timeline="{}">
-                    <div class="bg-holder" style="background-image:url(public/assets/img/bg.jpg);"></div>
+                    <div class="bg-holder" style="background-image:url(public/assets/img/bg1.jpg);"></div>
 
                     <div class="container">
                         <div class="row min-vh-100 py-8 align-items-center" data-inertia='{"weight":1.5}'>
                             <div class="col-sm-8 col-lg-7 px-5 px-sm-3">
                                 <div class="overflow-hidden">
-                                    <h1 class="fs-4 fs-md-5 lh-1  text-white" data-zanim-xs='{"delay":0}'>Helping Leaders</h1>
+                                    <h1 class="fs-4 fs-md-5 lh-1  text-white" data-zanim-xs='{"delay":0}'>Unusia Library</h1>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs  text-white" data-zanim-xs='{"delay":0.1}'>We look forward to help you in taking your company to new height.</p>
+                                    <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs  text-white" data-zanim-xs='{"delay":0.1}'>Selamat datang di pustaka digital sumber referensi nusantara.</p>
                                 </div>
                                 <div class="overflow-hidden">
                                     <div data-zanim-xs='{"delay":0.2}'>
-                                        <a class="btn btn-primary me-3 mt-3" href="<?= base_url('public') ?>/#!">
+                                        <a class="btn btn-primary me-3 mt-3" href="<?= base_url('') ?>/book-collection">
                                             Selengkapnya <span class="fas fa-chevron-right ms-2"></span>
                                         </a>
 
-                                        <a class="btn btn-warning mt-3" href="<?= base_url('public') ?>/contact.html">
+                                        <a class="btn btn-warning mt-3" href="<?= base_url('') ?>/contact">
                                             Kontak Kami <span class="fas fa-chevron-right ms-2"></span>
                                         </a>
                                     </div>
