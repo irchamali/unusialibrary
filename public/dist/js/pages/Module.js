@@ -76,8 +76,7 @@ $(document).ready(function () {
                 class: 'text-center',
                 render: function(response, row, type, meta) {
                     let button = '';
-                    let buttonLayout = buttonAppLayout;
-                    button += '<button type="button" class="btn ' + buttonLayout + ' btn-sm btn-edit mr-2" data-id="' + response.module_id + '"><i class="fa fa-pen"></i> Ubah</button>';
+                    button += '<button type="button" class="btn btn-primary btn-sm btn-edit mr-2" data-id="' + response.module_id + '"><i class="fa fa-pen"></i> Ubah</button>';
                     button += '<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' + response.module_id + '" data-message-delete="Apakah anda yakin, Data module : <b>' + response.module + '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>';
                     return button;
                 }
@@ -93,7 +92,7 @@ $(document).ready(function () {
             buttons: {
                 confirm: {
                     label: 'Ya, Hapus data',
-                    className: '' + buttonAppLayout
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Batal',
@@ -161,7 +160,7 @@ $(document).ready(function () {
                 },
                 success: {
                     label: type,
-                    className: buttonAppLayout + ' bootbox-submit',
+                    className: 'btn-primary bootbox-submit',
                     callback: function() {
                         $button_submit.prepend('<i class="fas fa-circle-notch fa-spin"></i>');
                         $button_submit.prop('disabled', true);

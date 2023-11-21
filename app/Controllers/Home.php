@@ -12,8 +12,15 @@ class Home extends MyController
     public function index()
     {
         $data = $this->data;
-        $data['koleksi_buku'] = $this->getBookCollection();
-        $this->view('frontend', 'Frontend/home', $data);
+        $data['koleksi_terbaru'] = $this->getBookCollection();
+        $this->view('frontend', 'frontend/home', $data);
+    }
+
+    public function contactUs()
+    {
+        $data = $this->data;
+        $data['title'] = 'Kontak Kami';
+        $this->view('frontend', 'Frontend/kontak_kami', $data);
     }
 
     public function profileSejarah()

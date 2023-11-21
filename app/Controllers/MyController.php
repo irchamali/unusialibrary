@@ -50,13 +50,13 @@ class MyController extends BaseController
         $this->data['baseURL'] = base_url();
         $this->data['currentURL'] = current_url();
         $this->data['moduleURL'] = $this->moduleURL;
-        $this->data['stylesBackend'] = array(
-            base_url() . 'public/bower_components/bootstrap/dist/css/bootstrap.min.css',
-            base_url() . 'public/bower_components/fontawesome/css/all.css',
+        $this->data['styles'] = array(
+            base_url() . 'public/plugins/bootstrap/dist/css/bootstrap.min.css',
+            base_url() . 'public/plugins/fontawesome/css/all.css',
             base_url() . 'public/dist/css/styleLTE.css',
         );
-        $this->data['scriptsBackend'] = array(
-            base_url() . 'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
+        $this->data['scripts'] = array(
+            base_url() . 'public/plugins/bootstrap/dist/js/bootstrap.min.js',
             base_url() . 'public/dist/js/adminlte.min.js'
         );
         $this->data['config'] = $this->config;
@@ -65,7 +65,26 @@ class MyController extends BaseController
         $this->data['session'] = $this->session;
         $this->data['title'] = 'Perpustakaan Mahbub Djunaidi';
         $this->data['description'] = 'Website Resmi Perpustakaan Mahbub Djunaidi';
-        $this->data['menu_frontend'] = $this->model->getMenuFrontend($this->currentModule['nama_module']);
+
+        // Login? Yes, No, Restrict
+        if ($this->currentModule['is_login'] == 'Y' && $nama_module != 'is_login') {
+            $this->loginRequired();
+        } else if ($this->currentModule['is_login'] == 'R') {
+            $this->loginRestricted();
+        }
+
+        if ($this->isLoggedIn) {
+            $this->data['title'] = $this->currentModule['module'];
+            $this->data['menu'] = $this->model->getMenu($this->currentModule['nama_module']);
+            $this->data['breadcrumb'] = ['Home' => base_url('dashboard'), $this->currentModule['module'] => $this->moduleURL];
+            $this->data['module_role'] = $this->model->getRoleModuleUser();
+
+            if ($nama_module == 'login') {
+                $this->redirectOnLoggedIn();
+            }
+        }
+
+        $this->data['setting'] = $this->model->getSetting();
 
         $settingApp = $this->model->getSettingApp();
         if ($settingApp) {
@@ -92,23 +111,9 @@ class MyController extends BaseController
             $this->data['settingLibrary'] = json_decode($settingLibrary['param'], true);
         }
 
-        // Login? Yes, No, Restrict
-        if ($this->currentModule['is_login'] == 'Y' && $nama_module != 'is_login') {
-            $this->loginRequired();
-        } else if ($this->currentModule['is_login'] == 'R') {
-            $this->loginRestricted();
-        }
+        $this->data['link_terkait'] = $this->model->getLinkTerkait();
 
-        if ($this->isLoggedIn) {
-            $this->data['title'] = $this->currentModule['module'];
-            $this->data['menu'] = $this->model->getMenu($this->currentModule['nama_module']);
-            $this->data['breadcrumb'] = ['Home' => base_url(), $this->currentModule['module'] => $this->moduleURL];
-            $this->data['module_role'] = $this->model->getRoleModuleUser();
-
-            if ($nama_module == 'login') {
-                $this->redirectOnLoggedIn();
-            }
-        }
+        $this->data['layanan'] = $this->model->getLayanan();
 
         if ($module['module_status_id'] != 1) {
             $this->errorPage('Module ' . $module['module'] . ' sedang ' . strtolower($module['module_status']));
@@ -121,17 +126,17 @@ class MyController extends BaseController
         // die;
     }
 
-    protected function addStyleBackend($file)
+    protected function addStyle($file)
     {
-        $this->data['stylesBackend'][] = $file;
+        $this->data['styles'][] = $file;
     }
 
-    protected function addScriptBackend($file, $print = false)
+    protected function addScript($file, $print = false)
     {
         if ($print) {
-            $this->data['scriptsBackend'][] = ['print' => true, 'script' => $file];
+            $this->data['scripts'][] = ['print' => true, 'script' => $file];
         } else {
-            $this->data['scriptsBackend'][] = $file;
+            $this->data['scripts'][] = $file;
         }
     }
 
@@ -188,9 +193,9 @@ class MyController extends BaseController
                     echo view($fileItem, $data);
                 }
             } else {
-                echo view('Layouts/frontend-header', $data);
+                echo view('layouts/frontend-header', $data);
                 echo view($file, $data);
-                echo view('Layouts/frontend-footer');
+                echo view('layouts/frontend-footer');
             }
             // echo 'KESINI FRONTEND';
         } else {
@@ -199,9 +204,9 @@ class MyController extends BaseController
                     echo view($fileItem, $data);
                 }
             } else {
-                echo view('Layouts/backend-header', $data);
+                echo view('layouts/backend-header', $data);
                 echo view($file, $data);
-                echo view('Layouts/backend-footer');
+                echo view('layouts/backend-footer');
             }
         }
     }

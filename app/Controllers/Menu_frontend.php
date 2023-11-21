@@ -11,24 +11,24 @@ class Menu_frontend extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new MenuModel;
-        $this->addStyleBackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStyleBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addStyleBackend(base_url('public/bower_components/select2/dist/css/') . 'select2.min.css');
-        $this->addStyleBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.nestable.min.css');
-        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-modal.css');
-        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-fapicker.css');
-        $this->addStyleBackend(base_url('public/bower_components/wdi/') . 'wdi-loader.css');
-        $this->addStyleBackend(base_url('public/bower_components/dragula/') . 'dragula.min.css');
-        $this->addStyleBackend(base_url('public/dist/css/pages/') . 'Menu.css');
+        $this->addStyle(base_url('public/plugins/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyle(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addStyle(base_url('public/plugins/select2/dist/css/') . 'select2.min.css');
+        $this->addStyle(base_url('public/plugins/jquery-nestable/') . 'jquery.nestable.min.css');
+        $this->addStyle(base_url('public/plugins/wdi/') . 'wdi-modal.css');
+        $this->addStyle(base_url('public/plugins/wdi/') . 'wdi-fapicker.css');
+        $this->addStyle(base_url('public/plugins/wdi/') . 'wdi-loader.css');
+        $this->addStyle(base_url('public/plugins/dragula/') . 'dragula.min.css');
+        $this->addStyle(base_url('public/dist/css/pages/') . 'Menu.css');
 
-        $this->addScriptBackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/select2/dist/js/') . 'select2.full.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/wdi/') . 'wdi-fapicker.js');
-        $this->addScriptBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.nestable.js');
-        $this->addScriptBackend(base_url('public/bower_components/jquery-nestable/') . 'jquery.wdi-menueditor.js');
-        $this->addScriptBackend(base_url('public/bower_components/js-yaml/') . 'js-yaml.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/dragula/') . 'dragula.min.js');
+        $this->addScript(base_url('public/plugins/bootbox/') . 'bootbox.min.js');
+        $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScript(base_url('public/plugins/select2/dist/js/') . 'select2.full.min.js');
+        $this->addScript(base_url('public/plugins/wdi/') . 'wdi-fapicker.js');
+        $this->addScript(base_url('public/plugins/jquery-nestable/') . 'jquery.nestable.js');
+        $this->addScript(base_url('public/plugins/jquery-nestable/') . 'jquery.wdi-menueditor.js');
+        $this->addScript(base_url('public/plugins/js-yaml/') . 'js-yaml.min.js');
+        $this->addScript(base_url('public/plugins/dragula/') . 'dragula.min.js');
     }
 
     private function getValidate()
@@ -81,7 +81,7 @@ class Menu_frontend extends MyController
         $list_menu = list_menu($result);
         $data['list_menu'] = $result ? $this->buildMenuList($list_menu) : '';
 
-        $this->view('backend', 'Menu/Frontend/index', $data);
+        $this->view('backend', 'menu/frontend/index', $data);
     }
 
     public function ajaxGetFormMenu()
@@ -97,7 +97,7 @@ class Menu_frontend extends MyController
         }
         $this->data['module_menu'] = $this->model->getModuleByMenu('Frontend');
 
-        echo view('Menu/Frontend/form-menu', $this->data);
+        echo view('menu/frontend/form', $this->data);
     }
 
     public function ajaxSaveMenu()

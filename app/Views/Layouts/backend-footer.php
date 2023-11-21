@@ -1,19 +1,16 @@
 </div>
 
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.18
-    </div>
     <?php
-    $footer = str_replace('{{YEAR}}', date('Y'), $settingApp['footer']);
+    $footer = str_replace('{{YEAR}}', date('Y'), $setting['footer']);
     echo html_entity_decode($footer);
     ?>
 </footer>
 </div>
 
 <?php
-if (@$scriptsBackend) {
-    foreach ($scriptsBackend as $file) {
+if (@$scripts) {
+    foreach ($scripts as $file) {
         if (is_array($file)) {
             if ($file['print']) {
                 echo '<script type="text/javascript">' . $file['script'] . '</script>' . "\n";
@@ -24,14 +21,15 @@ if (@$scriptsBackend) {
     }
 }
 ?>
+
 <script>
-    $(function() {
+    $(document).ready(function() {
         $('body').delegate('form', 'submit', function(e) {
             e.preventDefault();
             return false;
         });
 
-        $('.sidebar-menu').tree()
+        $('.sidebar-menu').tree();
 
         $('.sidebar-form').on('submit', function(e) {
             e.preventDefault();
@@ -83,22 +81,6 @@ if (@$scriptsBackend) {
             dataTables.ajax.reload(null, false);
         });
     });
-
-    // function swalSuccess(message) {
-    //     Swal.fire({
-    //         title: "Good job!",
-    //         text: message,
-    //         icon: "success"
-    //     });
-    // }
-
-    // function swalError(message) {
-    //     Swal.fire({
-    //         title: "Oops...",
-    //         text: message,
-    //         icon: "error"
-    //     });
-    // }
 
     function showAlert(type, message) {
         switch (type) {
@@ -219,7 +201,6 @@ if (@$scriptsBackend) {
         return status;
     }
 </script>
-
 </body>
 
 </html>

@@ -77,6 +77,50 @@ class SettingModel extends \App\Models\MyModel
         return $this->db->transStatus();
     }
 
+    public function saveSettingLibrary()
+    {
+        $fields = [
+            'perpustakaan_digital_unusia' => 'Perpustakaan Digital Unusia',
+            'perpustakaan_univ_nu_indonesia' => 'Perpustakaan Univ NU Indonesia',
+            'perpustakaan_unusia' => 'Perpustakaan Unusia',
+            'peminjaman_buku' => 'Peminjaman Buku'
+        ];
+
+        foreach ($fields as $field => $title) {
+            $arr[$field] = $_POST[$field];
+        }
+
+        $this->db->transStart();
+        $this->db->table('settings')->delete(['type' => 'library']);
+        $this->db->table('settings')->insert(
+            ['type' => 'library', 'param' => json_encode($arr)]
+        );
+        $this->db->transComplete();
+        return $this->db->transStatus();
+    }
+
+    public function saveSettingMediaSosial()
+    {
+        $fields = [
+            'email' => 'Email',
+            'facebook' => 'Facebook',
+            'instagram' => 'Instagram',
+            'whatsapp' => 'WhatsApp'
+        ];
+
+        foreach ($fields as $field => $title) {
+            $arr[$field] = $_POST[$field];
+        }
+
+        $this->db->transStart();
+        $this->db->table('settings')->delete(['type' => 'media_sosial']);
+        $this->db->table('settings')->insert(
+            ['type' => 'media_sosial', 'param' => json_encode($arr)]
+        );
+        $this->db->transComplete();
+        return $this->db->transStatus();
+    }
+
     public function saveSettingProfile()
     {
         $fields = [
@@ -86,6 +130,7 @@ class SettingModel extends \App\Models\MyModel
             'alamat' => 'Alamat',
             'phone' => 'Phone',
             'jam_operasional' => 'Jam Operasional',
+            'website_resmi' => 'Website Resmi',
         ];
 
         foreach ($fields as $field => $title) {

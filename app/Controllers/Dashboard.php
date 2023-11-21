@@ -12,7 +12,7 @@ class Dashboard extends MyController
     public function index()
     {
         // echo "<pre>";
-        // print_r($this->data['setting_aplikasi']);
+        // print_r($this->data);
         // echo "</pre>";
         // die;
         $this->view('backend', 'dashboard', $this->data);

@@ -14,6 +14,8 @@ $routes->set404Override();
 $routes->setAutoRoute(true);
 
 
+$routes->get('logout', 'Login::logout');
+
 $routes->get('sejarah', 'Home::profileSejarah');
 $routes->get('visi-misi', 'Home::profileVisiMisi');
 $routes->get('struktur-organisasi', 'Home::profileStrukturOrganisasi');

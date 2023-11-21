@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add"><i class="fa fa-plus"></i> Tambah Data</button>
+                    <a href="<?= base_url('user/form'); ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     <button type="button" class="btn btn-sm btn-default btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
                 </div>
                 <div class="form-group col-sm-4 text-center">
@@ -39,13 +39,13 @@
                 'status' => 'Status',
                 'ignore_btn' => 'Aksi'
             ];
-            $setting['order'] = [3, 'asc'];
+            $settings['order'] = [3, 'asc'];
             $index = 0;
             foreach ($column as $key => $val) {
                 $th .= '<th>' . $val . '</th>';
                 $column_dt[] = ['data' => $key];
                 if (strpos($key, 'ignore') !== false) {
-                    $setting['columnDefs'][] = ["targets" => $index, "orderable" => false];
+                    $settings['columnDefs'][] = ["targets" => $index, "orderable" => false];
                 }
                 $index++;
             }
@@ -58,7 +58,7 @@
                 </thead>
             </table>
             <span id="dataTables-column" style="display:none"><?= json_encode($column_dt) ?></span>
-            <span id="dataTables-setting" style="display:none"><?= json_encode($setting) ?></span>
+            <span id="dataTables-setting" style="display:none"><?= json_encode($settings) ?></span>
         </div>
     </div>
 </section>

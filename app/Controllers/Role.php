@@ -12,13 +12,13 @@ class Role extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new RoleModel;
-        $this->addStylebackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStylebackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addScriptbackend(base_url('public/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
-        $this->addScriptbackend(base_url('public/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
-        $this->addScriptbackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptbackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptbackend(base_url('public/dist/js/pages/') . 'Role.js');
+        $this->addStyle(base_url('public/plugins/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyle(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addScript(base_url('public/plugins/datatables.net/js/') . 'jquery.dataTables.min.js');
+        $this->addScript(base_url('public/plugins/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
+        $this->addScript(base_url('public/plugins/bootbox/') . 'bootbox.min.js');
+        $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScript(base_url('public/dist/js/pages/') . 'Role.js');
     }
 
     private function getValidate()
@@ -54,7 +54,7 @@ class Role extends MyController
     public function index()
     {
         $this->data['title'] = 'Daftar Role';
-        $this->view('backend', 'Role/index', $this->data);
+        $this->view('backend', 'role/index', $this->data);
     }
 
     public function ajaxGetData()
@@ -130,7 +130,7 @@ class Role extends MyController
             }
         }
 
-        echo view('Role/form', $this->data);
+        echo view('role/form', $this->data);
     }
 
     public function ajaxSaveData()

@@ -132,6 +132,11 @@ class MyModel extends \CodeIgniter\Model
         return $menu;
     }
 
+    public function getLinkTerkait()
+    {
+        return $this->db->query('SELECT * FROM link_terkait')->getResultArray();
+    }
+
     // Highlight child and parent
     private function menuCurrent(&$result, $current_id)
     {
@@ -242,6 +247,10 @@ class MyModel extends \CodeIgniter\Model
     }
 
 
+    public function getSetting()
+    {
+        return $this->db->query('SELECT * FROM setting WHERE 1=1 AND id = 1')->getRowArray();
+    }
 
     public function getSettingApp()
     {
@@ -266,5 +275,10 @@ class MyModel extends \CodeIgniter\Model
     public function getSettingLibrary()
     {
         return $this->db->query('SELECT * FROM settings WHERE type="library"')->getRowArray();
+    }
+
+    public function getLayanan()
+    {
+        return $this->db->query('SELECT * FROM layanan')->getResultArray();
     }
 }

@@ -332,3 +332,21 @@ function delete_file($path)
 
     return true;
 }
+
+function get_filename($file_name, $path)
+{
+    $file_name_path = $path . $file_name;
+    if ($file_name != "" && file_exists($file_name_path)) {
+        $file_ext = strrchr($file_name, '.');
+        $file_basename = substr($file_name, 0, strripos($file_name, '.'));
+        $num = 1;
+        while (file_exists($file_name_path)) {
+            $file_name = $file_basename . "($num)" . $file_ext;
+            $num++;
+            $file_name_path = $path . $file_name;
+        }
+
+        return $file_name;
+    }
+    return $file_name;
+}

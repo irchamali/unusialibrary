@@ -4,12 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Blank Page</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="description" content="<?= $settingApp['description']; ?>" />
-    <title><?= $currentModule['module']; ?> | <?= $settingApp['title']; ?></title>
     <?php
-    if (@$stylesBackend) {
-        foreach ($stylesBackend as $file) {
+    if (@$styles) {
+        foreach ($styles as $file) {
             if (is_array($file)) {
                 $attr = '';
                 if (key_exists('attr', $file)) {
@@ -27,35 +26,25 @@
     ?>
     <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/dist/css/AdminLTE.min.css?r=<?= time(); ?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url('public') ?>/dist/css/skins/_all-skins.min.css?r=<?= time(); ?>" />
-    <link rel="stylesheet" type="text/css" id="font-switch" href="<?= base_url('public/dist/css/fonts/') . $settingLayout['font_family'] . '.css?r=' . time(); ?>" />
-    <style>
-        html,
-        body {
-            font-size: <?= $settingLayout['font_size'] ?>px;
-        }
-    </style>
 
     <script type="text/javascript">
         let baseURL = "<?= $baseURL; ?>";
         let currentURL = "<?= $currentURL ?>";
         let moduleURL = "<?= $moduleURL ?>";
-        let themeSkin = '<?= $settingLayout['theme']; ?>';
-        let buttonAppLayout = '<?= $settingLayout['button']; ?>';
         let themeURL = "<?= base_url() . '/public/dist/' ?>";
     </script>
 </head>
 
-<body class="hold-transition <?= $settingLayout['theme']; ?>" id="theme-switch">
+<body class="hold-transition skin-blue">
     <div class="wrapper">
 
         <header class="main-header">
             <a href="<?= base_url(); ?>" class="logo" target="_blank">
-                <span class="logo-mini"><b>PMD</b></span>
                 <span class="logo-lg"><img src="<?= base_url('public') ?>/assets/img/unulib-light.png" alt="logo" /></span>
             </a>
 
             <nav class="navbar navbar-static-top">
-                <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -64,50 +53,27 @@
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="<?= base_url('public'); ?>/dist/img/image_no.png" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
+                        <li>
+                            <a href="<?= base_url(); ?>" target="_blank"><i class="fas fa-link"></i></a>
                         </li>
 
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?= base_url('public'); ?>/dist/img/image_no.png" class="user-image" alt="User Image">
+                                <img src="<?= base_url('public'); ?>/images/no_image.png" class="user-image" alt="User Image">
                                 <span class="hidden-xs">Alexander Pierce</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="<?= base_url('public'); ?>/dist/img/image_no.png" class="img-circle" alt="User Image" style="border: 0px solid;">
+                                    <img src="<?= base_url('public'); ?>/images/no_image.png" class="img-circle" alt="User Image" style="border: 0px solid;">
 
                                     <p>
                                         Web Developer
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
-                                <!-- <li class="user-body"></li> -->
+
                                 <li class="user-footer">
-                                    <a href="<?= base_url('login/logout'); ?>" class="btn btn-default btn-block">
+                                    <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-block">
                                         <i class="fa fa-sign-out"></i> Logout
                                     </a>
                                 </li>
@@ -117,8 +83,6 @@
                 </div>
             </nav>
         </header>
-
-        <!-- =============================================== -->
 
         <aside class="main-sidebar">
             <section class="sidebar">
@@ -147,9 +111,8 @@
             </section>
         </aside>
 
-        <!-- =============================================== -->
-        <script type="text/javascript" src="<?= base_url('public') ?>/bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- =============================================== -->
+        <script type="text/javascript" src="<?= base_url('public') ?>/plugins/jquery/dist/jquery.min.js"></script>
+
         <div class="content-wrapper">
             <section class="content-header">
                 <?= !empty($breadcrumb) ? breadcrumb($breadcrumb) : '' ?>

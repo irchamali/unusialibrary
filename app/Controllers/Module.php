@@ -12,13 +12,14 @@ class Module extends MyController
         parent::__construct();
         helper(['cookie', 'form']);
         $this->model = new ModuleModel;
-        $this->addStyleBackend(base_url('public/bower_components/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
-        $this->addStyleBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.css');
-        $this->addScriptBackend(base_url('public/bower_components/datatables.net/js/') . 'jquery.dataTables.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/bootbox/') . 'bootbox.min.js');
-        $this->addScriptBackend(base_url('public/bower_components/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScriptBackend(base_url('public/dist/js/pages/') . 'Module.js');
+        $this->addStyle(base_url('public/plugins/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
+        $this->addStyle(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.css');
+
+        $this->addScript(base_url('public/plugins/datatables.net/js/') . 'jquery.dataTables.min.js');
+        $this->addScript(base_url('public/plugins/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
+        $this->addScript(base_url('public/plugins/bootbox/') . 'bootbox.min.js');
+        $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScript(base_url('public/dist/js/pages/') . 'module.js');
     }
 
     private function getValidate()
@@ -67,7 +68,7 @@ class Module extends MyController
     public function index()
     {
         $this->data['title'] = 'Daftar Module';
-        $this->view('backend', 'Module/index', $this->data);
+        $this->view('backend', 'module/index', $this->data);
     }
 
     public function ajaxGetData()
@@ -147,7 +148,7 @@ class Module extends MyController
             }
         }
 
-        echo view('Module/form', $this->data);
+        echo view('module/form', $this->data);
     }
 
     public function ajaxSaveData()

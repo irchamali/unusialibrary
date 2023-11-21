@@ -13,7 +13,7 @@
 
     <section>
 
-        <div class="bg-holder overlay" style="background-image:url(../assets/img/background-2.jpg);background-position:center bottom;"></div>
+        <div class="bg-holder overlay" style="background-image:url(public/assets/img/bg.jpg);background-position:center bottom;"></div>
 
         <div class="container">
             <div class="row pt-6" data-inertia='{"weight":1.5}'>
