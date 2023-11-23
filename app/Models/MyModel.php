@@ -103,7 +103,7 @@ class MyModel extends \CodeIgniter\Model
         return $result;
     }
 
-    public function getMenuFrontend($current_module = '')
+    public function getMenuWebsite($current_module = '')
     {
         $sql = 'SELECT * FROM menu 
         			LEFT JOIN module USING (module_id)

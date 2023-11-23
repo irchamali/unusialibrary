@@ -59,66 +59,11 @@
         }
     </style>
     <script src="<?= base_url('public'); ?>/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+    <script type="text/javascript" src="http://localhost/unusialibrary/public/plugins/jquery/dist/jquery.min.js"></script>
 </head>
 
 
 <body>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .jam_layanan_content {
-            text-align: center;
-            position: relative;
-            margin: 20vh auto;
-        }
-
-        .jam_layanan img {
-            width: 360px;
-            height: 360px;
-            margin-bottom: 15px;
-            border-radius: 0.625rem;
-        }
-
-        .jam_layanan {
-            background-color: rgb(0, 0, 0, 0.625);
-            z-index: 9999;
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            transition: all .5s ease-in;
-        }
-
-        .jam_layanan_show {
-            display: inline;
-        }
-
-        .jam_layanan_hide {
-            display: none;
-            transition: all .5s ease-out;
-        }
-    </style>
-
-    <div class="jam_layanan">
-        <div class="jam_layanan_content">
-            <img src="<?= base_url('public/images/jam_layanan_perpus1.png'); ?>" alt="">
-        </div>
-    </div>
-
-    <script>
-        var jam_layanan = document.querySelector(".jam_layanan");
-        jam_layanan.classList.add("jam_layanan_hide");
-
-        window.addEventListener('click', function() {
-            jam_layanan.classList.remove("jam_layanan_show");
-            jam_layanan.classList.add("jam_layanan_hide");
-        });
-    </script>
-
     <div class="bg-primary py-3 d-none d-sm-block text-white fw-bold">
         <div class="container">
             <div class="row align-items-center gx-4">
@@ -144,7 +89,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="<?= base_url(); ?>">
-                    <img src="<?= base_url('public/images/') . $setting['image_dark']; ?>" alt="<?= $setting['nama_website']; ?>" />
+                    <img src="<?= base_url('public/images/') . $setting['logo_header']; ?>" alt="<?= $setting['nama_website']; ?>" />
                 </a>
 
                 <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,50 +102,10 @@
 
                 <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="" role="button">Home</a>
-                        </li>
-
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle dropdown-indicator" href="JavaScript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Sejarah</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Visi Misi</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Struktur Organisasi</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle dropdown-indicator" href="JavaScript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">Layanan</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Layanan Keanggotaan</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Layanan Pembaca</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Layanan Referensi</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Layanan Penelusuran Literatur</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Layanan Internet</a></li>
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle dropdown-indicator" href="JavaScript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">Layanan Sirkulasi</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?= base_url(); ?>">Peminjaman Buku</a></li>
-                                        <li><a class="dropdown-item" href="<?= base_url(); ?>">Pengembalian Buku</a></li>
-                                        <li><a class="dropdown-item" href="<?= base_url(); ?>">Perpanjangan Buku</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="" role="button">Fasilitas</a>
-                        </li>
-
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle dropdown-indicator" href="JavaScript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">Koleksi</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Buku</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Jurnal Internal</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url(); ?>">Jurnal Eksternal</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="" role="button">Galeri</a>
-                        </li>
+                        <?php
+                        $list_menu = list_menu($menu_website);
+                        echo build_menu_website($currentModule, $list_menu);
+                        ?>
                     </ul>
                 </div>
             </nav>

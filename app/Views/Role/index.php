@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add"><i class="fa fa-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-sm btn-primary btn-add"><i class="fa fa-plus"></i> Tambah Data</button>
                     <button type="button" class="btn btn-sm btn-default btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
                 </div>
                 <div class="form-group col-sm-4 text-center">

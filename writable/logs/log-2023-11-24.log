@@ -1,0 +1,309 @@
+CRITICAL - 2023-11-24 00:09:53 --> "bootstrap_pagination" is not a valid Pager template.
+in SYSTEMPATH\Pager\Pager.php on line 122.
+ 1 SYSTEMPATH\Pager\Pager.php(122): CodeIgniter\Pager\Exceptions\PagerException::forInvalidTemplate('bootstrap_pagination')
+ 2 SYSTEMPATH\Pager\Pager.php(85): CodeIgniter\Pager\Pager->displayLinks('berita', 'bootstrap_pagination')
+ 3 APPPATH\Views\news\index.php(44): CodeIgniter\Pager\Pager->links('berita', 'bootstrap_pagination')
+ 4 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\news\\index.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('news/index', [], true)
+ 7 APPPATH\Controllers\MyController.php(234): view('news/index', [...])
+ 8 APPPATH\Controllers\News.php(33): App\Controllers\MyController->view('frontend', 'news/index', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\News->index()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:13:03 --> "bootstrap_pagination" is not a valid Pager template.
+in SYSTEMPATH\Pager\Pager.php on line 122.
+ 1 SYSTEMPATH\Pager\Pager.php(122): CodeIgniter\Pager\Exceptions\PagerException::forInvalidTemplate('bootstrap_pagination')
+ 2 SYSTEMPATH\Pager\Pager.php(85): CodeIgniter\Pager\Pager->displayLinks('berita', 'bootstrap_pagination')
+ 3 APPPATH\Views\news\index.php(44): CodeIgniter\Pager\Pager->links('berita', 'bootstrap_pagination')
+ 4 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\news\\index.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('news/index', [], true)
+ 7 APPPATH\Controllers\MyController.php(234): view('news/index', [...])
+ 8 APPPATH\Controllers\News.php(33): App\Controllers\MyController->view('frontend', 'news/index', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\News->index()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:14:42 --> Invalid file: "App\Views\pagers\bootstrap_pagination.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('App\\Views\\pagers\\bootstrap_pagination.php')
+ 2 SYSTEMPATH\Pager\Pager.php(128): CodeIgniter\View\View->render('App\\Views\\pagers\\bootstrap_pagination')
+ 3 SYSTEMPATH\Pager\Pager.php(85): CodeIgniter\Pager\Pager->displayLinks('berita', 'bootstrap_pagination')
+ 4 APPPATH\Views\news\index.php(44): CodeIgniter\Pager\Pager->links('berita', 'bootstrap_pagination')
+ 5 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\news\\index.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('news/index', [], true)
+ 8 APPPATH\Controllers\MyController.php(234): view('news/index', [...])
+ 9 APPPATH\Controllers\News.php(33): App\Controllers\MyController->view('frontend', 'news/index', [...])
+10 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\News->index()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:18:47 --> mysqli_sql_exception: Not unique table/alias: 'artikel' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT COUNT(*)...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*)...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*)...')
+#3 D:\xampp\htdocs\unusialibrary\system\Database\BaseBuilder.php(1699): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 D:\xampp\htdocs\unusialibrary\system\Model.php(599): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+#5 D:\xampp\htdocs\unusialibrary\system\BaseModel.php(1203): CodeIgniter\Model->countAllResults(false)
+#6 D:\xampp\htdocs\unusialibrary\app\Models\ArtikelModel.php(239): CodeIgniter\BaseModel->paginate(2)
+#7 D:\xampp\htdocs\unusialibrary\app\Controllers\News.php(30): App\Models\ArtikelModel->paginateArtikel(2)
+#8 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\News->index()
+#9 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+#10 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-11-24 00:18:47 --> Not unique table/alias: 'artikel'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1699): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `artikel`
+JOIN `artikel` ON `artikel`.`user_id` = `user`.`user_id`', [], false)
+ 2 SYSTEMPATH\Model.php(599): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 3 SYSTEMPATH\BaseModel.php(1203): CodeIgniter\Model->countAllResults(false)
+ 4 APPPATH\Models\ArtikelModel.php(239): CodeIgniter\BaseModel->paginate(2)
+ 5 APPPATH\Controllers\News.php(30): App\Models\ArtikelModel->paginateArtikel(2)
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\News->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:21:37 --> Undefined variable: pager
+in APPPATH\Views\news\index.php on line 44.
+ 1 APPPATH\Views\news\index.php(44): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: pager', 'D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\news\\index.php', 44, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\news\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('news/index', [], true)
+ 5 APPPATH\Controllers\MyController.php(234): view('news/index', [...])
+ 6 APPPATH\Controllers\News.php(33): App\Controllers\MyController->view('frontend', 'news/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\News->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:31:36 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\MyController.php on line 75.
+ 1 APPPATH\Controllers\MyController.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'D:\\xampp\\htdocs\\unusialibrary\\app\\Controllers\\MyController.php', 75, [...])
+ 2 APPPATH\Controllers\Layanan.php(12): App\Controllers\MyController->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(914): App\Controllers\Layanan->__construct()
+ 4 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:37:25 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\MyController.php on line 75.
+ 1 APPPATH\Controllers\MyController.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'D:\\xampp\\htdocs\\unusialibrary\\app\\Controllers\\MyController.php', 75, [...])
+ 2 APPPATH\Controllers\Admin\Setting.php(14): App\Controllers\MyController->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(914): App\Controllers\Admin\Setting->__construct()
+ 4 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 00:41:01 --> Undefined variable: settingLayout
+in APPPATH\Views\layanan\index.php on line 16.
+ 1 APPPATH\Views\layanan\index.php(16): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: settingLayout', 'D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\layanan\\index.php', 16, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('D:\\xampp\\htdocs\\unusialibrary\\app\\Views\\layanan\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('Layanan/index', [], true)
+ 5 APPPATH\Controllers\MyController.php(245): view('Layanan/index', [...])
+ 6 APPPATH\Controllers\Admin\Layanan.php(76): App\Controllers\MyController->view('backend', 'Layanan/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:41:23 --> mysqli_sql_exception: Unknown column 'id' in 'field list' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `n...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 D:\xampp\htdocs\unusialibrary\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 D:\xampp\htdocs\unusialibrary\app\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, false)
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#8 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-11-24 00:41:23 --> Unknown column 'id' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nama_layanan`, `url`, `icon`, `keterangan`
+FROM `layanan`
+WHERE `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+ORDER BY `id` ASC
+ LIMIT 10', [], false)
+ 2 APPPATH\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', [...], [...], [...], [], [], [], [], [], [], [], [], [], [], [], [...], false)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:41:45 --> mysqli_sql_exception: Unknown column 'id' in 'field list' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `n...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 D:\xampp\htdocs\unusialibrary\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 D:\xampp\htdocs\unusialibrary\app\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, false)
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#8 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-11-24 00:41:45 --> Unknown column 'id' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nama_layanan`, `url`, `icon`, `keterangan`
+FROM `layanan`
+WHERE `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+ORDER BY `id` ASC
+ LIMIT 10', [], false)
+ 2 APPPATH\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', [...], [...], [...], [], [], [], [], [], [], [], [], [], [], [], [...], false)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:41:59 --> mysqli_sql_exception: Unknown column 'id' in 'field list' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `n...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 D:\xampp\htdocs\unusialibrary\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 D:\xampp\htdocs\unusialibrary\app\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, false)
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#8 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-11-24 00:41:59 --> Unknown column 'id' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nama_layanan`, `url`, `icon`, `keterangan`
+FROM `layanan`
+WHERE `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+ORDER BY `id` ASC
+ LIMIT 10', [], false)
+ 2 APPPATH\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', [...], [...], [...], [], [], [], [], [], [], [], [], [], [], [], [...], false)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:42:27 --> mysqli_sql_exception: Unknown column 'id' in 'field list' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `id`, `n...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `n...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `n...')
+#3 D:\xampp\htdocs\unusialibrary\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `n...', Array, false)
+#4 D:\xampp\htdocs\unusialibrary\app\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, Array, false)
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#8 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-11-24 00:42:27 --> Unknown column 'id' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `nama_layanan`, `url`, `icon`, `keterangan`
+FROM `layanan`
+WHERE `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+AND `layanan`.`deleted_at` IS NULL
+ORDER BY `id` ASC
+ LIMIT 10', [], false)
+ 2 APPPATH\Models\DataTableModel.php(209): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Layanan.php(114): App\Models\DataTableModel->getGenerateServerSide('layanan', [...], [...], [...], [], [], [], [], [], [], [], [], [], [], [], [...], false)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetData()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:44:24 --> mysqli_sql_exception: Unknown column 'id' in 'where clause' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM l...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM l...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM l...')
+#3 D:\xampp\htdocs\unusialibrary\app\Models\LayananModel.php(9): CodeIgniter\Database\BaseConnection->query('SELECT * FROM l...', '1')
+#4 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(143): App\Models\LayananModel->getLayananById('1')
+#5 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetForm()
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-11-24 00:44:24 --> Unknown column 'id' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LayananModel.php(9): CodeIgniter\Database\BaseConnection->query('SELECT * FROM layanan WHERE id = ?', '1')
+ 2 APPPATH\Controllers\Admin\Layanan.php(143): App\Models\LayananModel->getLayananById('1')
+ 3 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetForm()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-24 00:44:27 --> mysqli_sql_exception: Unknown column 'id' in 'where clause' in D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 D:\xampp\htdocs\unusialibrary\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT * FROM l...', 0)
+#1 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM l...')
+#2 D:\xampp\htdocs\unusialibrary\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM l...')
+#3 D:\xampp\htdocs\unusialibrary\app\Models\LayananModel.php(9): CodeIgniter\Database\BaseConnection->query('SELECT * FROM l...', '1')
+#4 D:\xampp\htdocs\unusialibrary\app\Controllers\Admin\Layanan.php(143): App\Models\LayananModel->getLayananById('1')
+#5 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetForm()
+#6 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+#7 D:\xampp\htdocs\unusialibrary\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\xampp\htdocs\unusialibrary\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-11-24 00:44:27 --> Unknown column 'id' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LayananModel.php(9): CodeIgniter\Database\BaseConnection->query('SELECT * FROM layanan WHERE id = ?', '1')
+ 2 APPPATH\Controllers\Admin\Layanan.php(143): App\Models\LayananModel->getLayananById('1')
+ 3 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetForm()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 01:10:13 --> syntax error, unexpected '}', expecting ';'
+in APPPATH\Models\LayananModel.php on line 15.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(291): CodeIgniter\Autoloader\Autoloader->includeFile('D:\\xampp\\htdocs\\unusialibrary\\app\\Models\\LayananModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(269): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\LayananModel')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\LayananModel')
+ 4 APPPATH\Controllers\Admin\Layanan.php(15): spl_autoload_call('App\\Models\\LayananModel')
+ 5 SYSTEMPATH\CodeIgniter.php(914): App\Controllers\Admin\Layanan->__construct()
+ 6 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 01:10:24 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 884.
+ 1 SYSTEMPATH\Model.php(635): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\Admin\Layanan.php(132): CodeIgniter\Model->__call('getLayananById', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Layanan->ajaxGetForm()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 01:22:36 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 884.
+ 1 SYSTEMPATH\Model.php(635): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\Layanan.php(19): CodeIgniter\Model->__call('getLayananBySlug', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Layanan->index('layanan-keanggotaan')
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Layanan))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 01:23:12 --> Invalid file: "website/layanan/view.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('website/layanan/view.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('website/layanan/view', [], true)
+ 3 APPPATH\Controllers\MyController.php(234): view('website/layanan/view', [...])
+ 4 APPPATH\Controllers\Layanan.php(25): App\Controllers\MyController->view('frontend', 'website/layanan/view', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Layanan->index('layanan-keanggotaan')
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Layanan))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-24 01:35:49 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\MyController.php on line 75.
+ 1 APPPATH\Controllers\MyController.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'D:\\xampp\\htdocs\\unusialibrary\\app\\Controllers\\MyController.php', 75, [...])
+ 2 APPPATH\Controllers\Admin\Setting.php(14): App\Controllers\MyController->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(914): App\Controllers\Admin\Setting->__construct()
+ 4 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

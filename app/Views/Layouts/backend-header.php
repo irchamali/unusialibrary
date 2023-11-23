@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title><?= $setting['nama_website']; ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php
     if (@$styles) {
@@ -58,16 +58,23 @@
                         </li>
 
                         <li class="dropdown user user-menu">
+                            <?php if ($userLogin['image'] != NULL) {
+                                $image = base_url('public/images/users/') . $userLogin['image'];
+                            } else {
+                                $image = base_url('public/images/no_image.png');
+                            }; ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?= base_url('public'); ?>/images/no_image.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <img src="<?= $image; ?>" class="user-image" alt="User Image">
+                                <span class="hidden-xs"><?= $userLogin['nama']; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="<?= base_url('public'); ?>/images/no_image.png" class="img-circle" alt="User Image" style="border: 0px solid;">
+                                    <img src="<?= $image; ?>" class="img-circle" alt="User Image" style="border: 0px solid;">
 
                                     <p>
-                                        Web Developer
+                                        <?php foreach ($userLogin['role'] as $key => $value) {
+                                            echo '<span class="label label-default mr-1">' . $value['nama_role'] . '</span>';
+                                        }; ?>
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>

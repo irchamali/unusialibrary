@@ -155,7 +155,9 @@ $(document).ready(function() {
 
                                     $bootbox.modal('hide');
                                     $('.menu-kategori-container').find('.list-group-item-primary').click();
-
+                                    // setTimeout(function() {
+                                    //     window.location.href = moduleURL;
+                                    // }, 1000);
                                 } else {
                                     for (let i = 0; i < response.error_input.length; i++) {
                                         $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');

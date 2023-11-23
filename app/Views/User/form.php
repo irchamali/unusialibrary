@@ -64,16 +64,16 @@
             </div>
         </div>
         <div class="box-body">
-            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            <form id="form-user" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Gambar</label>
                     <div class="col-sm-10 col-md-4">
                         <?php
                         $image = @$_FILES['file']['name'] ?: @$user['image'];
-                        if (!empty($image) && file_exists(ROOTPATH . 'public/images/' . $image)) {
+                        if (!empty($image) && file_exists(ROOTPATH . 'public/images/users/' . $image)) {
                             echo '<div class="img-choose" style="margin:inherit;margin-bottom:10px">
                                 <div class="img-choose-container">
-                                    <img src="' . base_url('/public/images/') . $image . '?r=' . time() . '"/>
+                                    <img src="' . base_url('/public/images/users/') . $image . '?r=' . time() . '"/>
                                     <a href="javascript:void(0)" class="btn-remove-img btn btn-danger"><i class="fas fa-times"></i></a>
                                 </div>
                             </div>';
@@ -140,8 +140,8 @@
                             $option_role[$val['role_id']] = $val['nama_role'];
                         }
 
-                        if (!empty($user['role_user'])) {
-                            foreach ($user['role_user'] as $val) {
+                        if (!empty($user['role'])) {
+                            foreach ($user['role'] as $val) {
                                 $role_id_selected[] = $val['role_id'];
                             }
                         }
@@ -157,8 +157,9 @@
                 </div>
 
                 <input type="hidden" name="id" id="id" value="<?= @$user['user_id']; ?>">
+                <input type="hidden" name="method" value="<?= @$user['user_id'] ? 'ubah' : 'simpan'; ?>">
                 <button type="submit" class="btn btn-primary"><?= @$user['user_id'] ? 'Ubah' : 'Simpan'; ?></button>
-                <a href="<?= base_url('user'); ?>" class="btn btn-default">Batal</a>
+                <a href="<?= base_url('admin/user'); ?>" class="btn btn-default">Batal</a>
             </form>
         </div>
     </div>
@@ -169,10 +170,45 @@
 <script>
     $(function() {
         $('form#form-user input,select').on('change', function() {
-            $(this).parent('.form-group').removeClass('has-error');
+            $(this).parent('.col-sm-10').removeClass('has-error');
             $(this).next('.help-block').text('');
         });
 
         $('.select2').select2();
+
+        $('#form-user').on('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const type = $('[name="method"]').val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('admin/user/ajaxSaveData'); ?>",
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        if (response.status) {
+                            showAlert('success', response.message);
+                            setTimeout(function() {
+                                window.location.href = moduleURL;
+                            }, 1000);
+                        } else {
+                            showAlert('error', response.message);
+                        }
+                    } else {
+                        for (let i = 0; i < response.error_input.length; i++) {
+                            $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');
+                            $('[name="' + response.error_input[i] + '"]').next('.help-block').text(response.error_string[i]);
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        });
     });
 </script>

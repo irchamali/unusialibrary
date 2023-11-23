@@ -95,7 +95,7 @@
         <div class="row align-items-center opacity-85 text-white">
             <div class="col-sm-3 text-sm-start d-none d-sm-block">
                 <a href="<?= base_url(); ?>">
-                    <img src="<?= base_url('public/images/') . $setting['image_light']; ?>" alt="<?= $setting['nama_website']; ?>" />
+                    <img src="<?= base_url('public/images/') . $setting['logo_footer']; ?>" alt="<?= $setting['nama_website']; ?>" />
                 </a>
             </div>
             <div class="col text-sm-end mt-3 mt-sm-0">

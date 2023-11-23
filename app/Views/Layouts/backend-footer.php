@@ -24,10 +24,10 @@ if (@$scripts) {
 
 <script>
     $(document).ready(function() {
-        $('body').delegate('form', 'submit', function(e) {
-            e.preventDefault();
-            return false;
-        });
+        // $('body').delegate('form', 'submit', function(e) {
+        //     e.preventDefault();
+        //     return false;
+        // });
 
         $('.sidebar-menu').tree();
 

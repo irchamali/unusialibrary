@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    $('.modal-body').css({"height": "70vh", "overflow-y": "auto"});
     if ($('#table-result').length) {
         dataTables_column = $.parseJSON($('#dataTables-column').html());
         dataTables_setting = $('#dataTables-setting');

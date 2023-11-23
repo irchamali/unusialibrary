@@ -26,7 +26,7 @@ class UserModel extends \App\Models\MyModel
             return;
         }
 
-        $user['role_user'] = [];
+        $user['role'] = [];
         $query = $this->db->query(
             'SELECT * FROM user_role 
             LEFT JOIN role USING(role_id) 
@@ -39,7 +39,7 @@ class UserModel extends \App\Models\MyModel
         $result = $query->getResultArray();
         if ($result) {
             foreach ($result as $val) {
-                $user['role_user'][$val['role_id']] = $val;
+                $user['role'][$val['role_id']] = $val;
             }
         }
 
@@ -57,6 +57,7 @@ class UserModel extends \App\Models\MyModel
 
     public function saveDataUser()
     {
+        $method = $this->request->getPost('method');
         $fields = ['username', 'nama', 'email', 'is_active'];
 
         foreach ($fields as $field) {
@@ -69,7 +70,7 @@ class UserModel extends \App\Models\MyModel
 
         $this->db->transStart();
 
-        if ($this->request->getPost('id')) {
+        if (!empty($this->request->getPost('id'))) {
             $user_id = $this->request->getPost('id');
             $this->db->table('user')->update($data_db, ['user_id' => $user_id]);
         } else {
@@ -90,17 +91,18 @@ class UserModel extends \App\Models\MyModel
         if ($result) {
 
             $file = $this->request->getFile('image');
-            $path = ROOTPATH . 'public/images/user/';
+            $path = ROOTPATH . 'public/images/users/';
 
             $img_db = $this->db->query('SELECT image FROM user WHERE user_id = ?', $user_id)->getRowArray();
             $new_name = $img_db['image'];
 
             if (!empty($_POST['image_remove'])) {
-                $del = delete_file($path . $img_db['image']);
-                $new_name = '';
-                if (!$del) {
-                    $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
-                    $error = true;
+                if ($img_db['image'] != NULL) {
+                    $del = delete_file($path . $img_db['image']);
+                    $new_name = NULL;
+                    if (!$del) {
+                        $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
+                    }
                 }
             }
 
@@ -115,7 +117,6 @@ class UserModel extends \App\Models\MyModel
                     }
                 }
 
-                helper('upload_file');
                 $new_name =  get_filename($file->getName(), $path);
                 $file->move($path, $new_name);
 
@@ -132,7 +133,7 @@ class UserModel extends \App\Models\MyModel
         }
 
         if ($save) {
-            $response = ['status' => true, 'message' => 'Data berhasil disimpan', 'user_id' => $user_id];
+            $response = ['status' => true, 'message' => 'Data berhasil di' . $method, 'user_id' => $user_id];
 
             if ($this->session->get('user')['user_id'] == $user_id) {
                 $this->session->set('user', $this->getUserById($this->session->get('user')['user_id']));
@@ -159,8 +160,8 @@ class UserModel extends \App\Models\MyModel
         $response = $this->db->transStatus();
 
         if ($response) {
-            if (!empty($user['image'])) {
-                delete_file(ROOTPATH . 'public/images/user/' . $user['image']);
+            if ($user['image'] != NULL) {
+                delete_file(ROOTPATH . 'public/images/users/' . $user['image']);
             }
         } else {
             return false;

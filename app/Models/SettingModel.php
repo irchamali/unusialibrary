@@ -145,4 +145,107 @@ class SettingModel extends \App\Models\MyModel
         $this->db->transComplete();
         return $this->db->transStatus();
     }
+
+    public function getSliderById($slider_id)
+    {
+        return $this->db->query('SELECT * FROM slider WHERE slider_id = ?', [$slider_id])->getRowArray();
+    }
+
+    public function saveDataSlider()
+    {
+        $method = $this->request->getPost('method');
+        $fields = ['title', 'sub_title', 'url'];
+
+        foreach ($fields as $field) {
+            $data_db[$field] = $this->request->getPost($field);
+        }
+
+        $this->db->transStart();
+
+        if (!empty($this->request->getPost('id'))) {
+            $slider_id = $this->request->getPost('id');
+            $this->db->table('slider')->update($data_db, ['slider_id' => $slider_id]);
+        } else {
+            $this->db->table('slider')->insert($data_db);
+            $slider_id = $this->db->insertID();
+        }
+
+        $this->db->transComplete();
+        $result = $this->db->transStatus();
+        if ($result) {
+
+            $file = $this->request->getFile('image');
+            $path = ROOTPATH . 'public/images/slider/';
+
+            $img_db = $this->db->query('SELECT image FROM slider WHERE slider_id = ?', $slider_id)->getRowArray();
+            $new_name = $img_db['image'];
+
+            if (!empty($_POST['image_remove'])) {
+                if ($img_db['image'] != NULL) {
+                    $del = delete_file($path . $img_db['image']);
+                    $new_name = NULL;
+                    if (!$del) {
+                        $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
+                    }
+                }
+            }
+
+            if ($file && $file->getName()) {
+                //old file
+                if ($img_db['image']) {
+                    if (file_exists($path . $img_db['image'])) {
+                        $unlink = delete_file($path . $img_db['image']);
+                        if (!$unlink) {
+                            $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
+                        }
+                    }
+                }
+
+                $new_name =  get_filename($file->getName(), $path);
+                $file->move($path, $new_name);
+
+                if (!$file->hasMoved()) {
+                    $response = ['status' => false, 'message' => 'Error saat memperoses gambar'];
+                    return $response;
+                }
+            }
+
+            // Update image
+            $data_db = [];
+            $data_db['image'] = $new_name;
+            $save = $this->db->table('slider')->update($data_db, ['slider_id' => $slider_id]);
+        }
+
+        if ($save) {
+            $response = ['status' => true, 'message' => 'Data berhasil di' . $method, 'slider_id' => $slider_id];
+        } else {
+            $response = ['status' => false, 'message' => 'Data gagal disimpan'];
+        }
+
+        return $response;
+    }
+
+    public function deleteDataSlider()
+    {
+        $slider = $this->db->query('SELECT * FROM slider WHERE slider_id = ?', $this->request->getPost('id'))->getRowArray();
+        if (!$slider) {
+            return false;
+        }
+
+        $this->db->transStart();
+        $this->db->table('slider')->delete(['slider_id' => $this->request->getPost('id')]);
+        $this->db->affectedRows();
+        $this->db->transComplete();
+        $response = $this->db->transStatus();
+
+        if ($response) {
+            if ($slider['image'] != NULL) {
+                delete_file(ROOTPATH . 'public/images/slider/' . $slider['image']);
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+    }
 }

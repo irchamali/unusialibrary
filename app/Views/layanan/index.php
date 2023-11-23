@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-sm <?= $settingLayout['button']; ?> btn-add"><i class="fa fa-plus"></i> Tambah Data</button>
+                    <button type="button" class="btn btn-sm btn-primary btn-add"><i class="fa fa-plus"></i> Tambah Data</button>
                     <button type="button" class="btn btn-sm btn-default btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
                 </div>
                 <div class="form-group col-sm-4 text-center">
@@ -54,7 +54,7 @@
             },
             "filter": true,
             "order": [
-                [1, "asc"]
+                [2, "asc"]
             ],
             fnRowCallback: function(row, response, iDisplayIndex, iDisplayIndexFull) {
                 // if (data.active == 0) {
@@ -71,32 +71,26 @@
                 },
                 {
                     mData: null,
-                    title: 'Nama Layanan',
-                    render: function(response, row, type, meta) {
-                        return response.nama_layanan;
-                    }
-                },
-                {
-                    mData: null,
-                    title: 'URL',
-                    render: function(response, row, type, meta) {
-                        return response.url;
-                    }
-                },
-                {
-                    mData: null,
                     title: 'Icon',
+                    orderable: false,
                     render: function(response, row, type, meta) {
                         return response.icon;
                     }
                 },
                 {
                     mData: null,
-                    title: 'Keterangan',
+                    title: 'Nama Layanan',
                     render: function(response, row, type, meta) {
-                        return response.keterangan;
+                        return response.nama_layanan;
                     }
                 },
+                // {
+                //     mData: null,
+                //     title: 'Keterangan',
+                //     render: function(response, row, type, meta) {
+                //         return response.keterangan;
+                //     }
+                // },
                 {
                     mData: null,
                     title: 'Aksi',
@@ -104,9 +98,8 @@
                     class: 'text-center',
                     render: function(response, row, type, meta) {
                         let button = '';
-                        let buttonLayout = buttonAppLayout;
-                        button += '<button type="button" class="btn ' + buttonLayout + ' btn-sm btn-edit mr-2" data-id="' + response.id + '"><i class="fa fa-pen"></i> Ubah</button>';
-                        button += '<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' + response.id + '" data-message-delete="Apakah anda yakin, Data : <b>' + response.nama_layanan + '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>';
+                        button += '<button type="button" class="btn btn-primary btn-sm btn-edit mr-2" data-id="' + response.layanan_id + '"><i class="fa fa-pen"></i> Ubah</button>';
+                        button += '<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' + response.layanan_id + '" data-message-delete="Apakah anda yakin, Data : <b>' + response.nama_layanan + '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>';
                         return button;
                     }
                 }
@@ -121,7 +114,7 @@
                 buttons: {
                     confirm: {
                         label: 'Ya, Hapus data',
-                        className: '' + buttonAppLayout
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'Batal',
@@ -180,7 +173,7 @@
             var $button_submit = '';
 
             $bootbox = bootbox.dialog({
-                title: type == 'Ubah' ? 'Ubah module' : 'Tambah module',
+                title: type == 'Ubah' ? 'Ubah Layanan' : 'Tambah Layanan',
                 message: '<div class="text-center"><i class="fas fa-circle-notch fa-spin fa-2x"></i></div>',
                 buttons: {
                     cancel: {
@@ -189,7 +182,7 @@
                     },
                     success: {
                         label: type,
-                        className: buttonAppLayout + ' bootbox-submit',
+                        className: 'btn-primary bootbox-submit',
                         callback: function() {
                             $button_submit.prepend('<i class="fas fa-circle-notch fa-spin"></i>');
                             $button_submit.prop('disabled', true);
@@ -234,7 +227,7 @@
             $button = $bootbox.find('button').prop('disabled', true);
             $button_submit = $bootbox.find('button.bootbox-submit');
             $button.prop('disabled', true);
-
+            $bootbox.find('.modal-dialog').addClass('modal-lg');
             $.ajax({
                 type: "GET",
                 url: currentURL + '/ajaxGetForm',
@@ -268,7 +261,7 @@
         $bootbox.hide();
         $this = $(this);
         fapicker({
-            iconUrl: baseURL + '/public/bower_components/fontawesome/metadata/icons.yml',
+            iconUrl: baseURL + '/public/plugins/fontawesome/metadata/icons.yml',
             onSelect: function(elm) {
                 $bootbox.show();
                 var icon_class = $(elm).data('icon');

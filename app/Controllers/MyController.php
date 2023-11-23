@@ -11,7 +11,9 @@ class MyController extends BaseController
     protected $data;
     protected $session;
     protected $model;
-    protected $user;
+    protected $userLogin;
+    protected $userPermission;
+    protected $modulePermission;
 
     protected $isLoggedIn;
     protected $baseURL;
@@ -44,7 +46,7 @@ class MyController extends BaseController
         $this->isLoggedIn = $this->session->get('isLoggedIn');
         $this->currentModule = $module;
         $this->moduleURL = $web['module_url'];
-        $this->user = $this->session->get('user');
+        $this->userLogin = $this->session->get('user');
 
         $this->data['currentModule'] = $this->currentModule;
         $this->data['baseURL'] = base_url();
@@ -65,6 +67,9 @@ class MyController extends BaseController
         $this->data['session'] = $this->session;
         $this->data['title'] = 'Perpustakaan Mahbub Djunaidi';
         $this->data['description'] = 'Website Resmi Perpustakaan Mahbub Djunaidi';
+        $this->data['userLogin'] = [];
+
+        $this->data['setting'] = $this->model->getSetting();
 
         // Login? Yes, No, Restrict
         if ($this->currentModule['is_login'] == 'Y' && $nama_module != 'is_login') {
@@ -78,52 +83,84 @@ class MyController extends BaseController
             $this->data['menu'] = $this->model->getMenu($this->currentModule['nama_module']);
             $this->data['breadcrumb'] = ['Home' => base_url('dashboard'), $this->currentModule['module'] => $this->moduleURL];
             $this->data['module_role'] = $this->model->getRoleModuleUser();
+            $this->data['userLogin'] = $this->userLogin;
+
+            $this->getListPermission();
 
             if ($nama_module == 'login') {
                 $this->redirectOnLoggedIn();
             }
         }
 
-        $this->data['setting'] = $this->model->getSetting();
-
-        $settingApp = $this->model->getSettingApp();
-        if ($settingApp) {
-            $this->data['settingApp'] = json_decode($settingApp['param'], true);
-        }
-
-        $settingLayout = $this->model->getSettingLayout();
-        if ($settingLayout) {
-            $this->data['settingLayout'] = json_decode($settingLayout['param'], true);
-        }
-
-        $settingProfile = $this->model->getSettingProfile();
-        if ($settingProfile) {
-            $this->data['settingProfile'] = json_decode($settingProfile['param'], true);
-        }
-
-        $settingMediaSosial = $this->model->getSettingMediaSosial();
-        if ($settingMediaSosial) {
-            $this->data['settingMediaSosial'] = json_decode($settingMediaSosial['param'], true);
-        }
-
-        $settingLibrary = $this->model->getSettingLibrary();
-        if ($settingLibrary) {
-            $this->data['settingLibrary'] = json_decode($settingLibrary['param'], true);
-        }
-
-        $this->data['link_terkait'] = $this->model->getLinkTerkait();
-
-        $this->data['layanan'] = $this->model->getLayanan();
+        $this->data['menu_website'] = $this->model->getMenuWebsite($this->currentModule['nama_module']);
 
         if ($module['module_status_id'] != 1) {
             $this->errorPage('Module ' . $module['module'] . ' sedang ' . strtolower($module['module_status']));
             exit();
         }
 
+
         // echo "<pre>";
         // print_r($this->data);
         // echo "</pre>";
         // die;
+    }
+
+    private function getListPermission()
+    {
+        $user_role = $this->session->get('user')['role'];
+
+        if ($this->isLoggedIn && $this->currentModule['nama_module'] != 'login') {
+            $current_user = $this->model->getUserById($this->userLogin['user_id']);
+            if ($current_user['is_active'] != '1') {
+                $this->data['content'] = 'Status akun Anda ' . ucfirst($current_user['is_active']);
+                $this->errorExit($this->data);
+            }
+
+            if (!$user_role) {
+                $this->errorPage('User belum memiliki role');
+                // print_r('Kesini');
+                exit;
+            }
+
+            // if ($this->modulePermission) {
+            //     $error = false;
+            //     if ($this->currentModule['nama_module'] != 'login') {
+
+            //         $role_exists = false;
+            //         foreach ($user_role as $id_role => $val) {
+            //             if (key_exists($id_role, $this->modulePermission)) {
+            //                 $this->userPermission = $this->modulePermission[$id_role];
+            //                 unset($this->userPermission['null']);
+            //                 $role_exists = true;
+            //                 break;
+            //             }
+            //         }
+
+            //         if ($this->userPermission) {
+            //             $session_user = $this->session->get('user');
+            //             $session_user['permission'] = $this->userPermission;
+            //             $this->session->set('user', $session_user);
+            //         }
+
+            //         if ($role_exists) {
+            //             if (!$this->userPermission) {
+            //                 $error = 'Role Anda tidak memiliki permission pada module ' . $this->currentModule['judul_module'];
+            //             }
+            //         } else {
+            //             $error = 'Anda tidak berhak mengakses halaman ini';
+            //         }
+
+            //         if ($error) {
+            //             $this->errorPage($error);
+            //             exit();
+            //         }
+            //     }
+            // } else {
+            //     $this->errorPage('Role untuk module ini belum diatur');
+            //     exit();
+            // }
+        }
     }
 
     protected function addStyle($file)
@@ -211,34 +248,36 @@ class MyController extends BaseController
         }
     }
 
-    protected function errorDataNotFound($dataNotFound = null)
+    protected function errorDataNotFound($addData = null)
     {
         $data = $this->data;
         $data['title'] = 'Error';
         $data['msg']['status'] = 'error';
         $data['msg']['content'] = 'Data tidak ditemukan';
 
-        if ($dataNotFound) {
-            $data = array_merge($data, $dataNotFound);
+        if ($addData) {
+            $data = array_merge($data, $addData);
         }
-        $this->view('backend', 'backend-error-data-notfound', $data);
+        $this->view('backend', 'errors/backend-data-notfound', $data);
     }
 
     protected function errorPage($message)
     {
+        $this->data['title'] = 'Error';
         if (is_string($message)) {
             $message = ['status' => 'error', 'message' => $message];
         }
         $this->data['msg'] = $message;
         if ($this->isLoggedIn) {
-            $this->view('backend', 'backend-error-page', $this->data);
+            $this->view('backend', 'errors/backend-error-page', $this->data);
         } else {
-            $this->view('frontend', 'frontend-error-page', $this->data);
+            $this->view('frontend', 'errors/frontend-error-page', $this->data);
         }
     }
 
     protected function errorExit($data)
     {
+        $data = $this->data;
         echo view('backend-error-exit', $data);
         exit;
     }

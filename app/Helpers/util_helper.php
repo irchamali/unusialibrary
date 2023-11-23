@@ -216,7 +216,7 @@ function build_menu($current_module, $arr_menu, $submenu = false)
     return $menu;
 }
 
-function build_menu_frontend($current_module, $arr_menu, $submenu = false)
+function build_menu_website($current_module, $arr_menu, $submenu = false)
 {
     $menu = "";
     foreach ($arr_menu as $key => $val) {
@@ -242,7 +242,7 @@ function build_menu_frontend($current_module, $arr_menu, $submenu = false)
 
         if (key_exists('children', $val)) {
             $menu .= '<ul class="dropdown-menu">';
-            $menu .= build_menu_frontend($current_module, $val['children'], '');
+            $menu .= build_menu_website($current_module, $val['children'], '');
             $menu .= "</ul>\n";
         }
 

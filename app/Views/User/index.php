@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <a href="<?= base_url('user/form'); ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                    <a href="<?= base_url('admin/user/form'); ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     <button type="button" class="btn btn-sm btn-default btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
                 </div>
                 <div class="form-group col-sm-4 text-center">

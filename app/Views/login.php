@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="description" content="<?= $settingApp['description']; ?>" />
-    <title></title>
+    <meta name="description" content="<?= $setting['meta_deskripsi']; ?>" />
+    <title><?= $setting['nama_website']; ?></title>
     <link rel="stylesheet" href="<?= base_url('public') ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('public') ?>/bower_components/fontawesome/css/all.css">
     <link rel="stylesheet" href="<?= base_url('public') ?>/dist/css/AdminLTE.min.css">
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-xs-8"></div>
                     <div class="col-xs-4">
-                        <button type="submit" class="btn <?= $settingLayout['button']; ?> btn-block btn-login">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-login">Login</button>
                     </div>
                 </div>
             </form>
@@ -94,16 +94,6 @@
                                 $message.prepend('<div class="alert alert-danger">' + response.message + '</div>');
                             }
                         }
-
-                        // $message.find('.alert').remove();
-                        // if (response.status) {
-                        //     $message.prepend('<div class="alert alert-success">' + response.message + '</div>');
-                        //     setTimeout(function() {
-                        //         window.location.href = "<?= base_url('dashboard'); ?>";
-                        //     }, 1000);
-                        // } else {
-
-                        // }
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
