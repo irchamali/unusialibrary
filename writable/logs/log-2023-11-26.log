@@ -1,0 +1,48 @@
+CRITICAL - 2023-11-26 00:24:29 --> Undefined variable: setting
+in APPPATH\Views\Layouts\frontend-header.php on line 11.
+ 1 APPPATH\Views\Layouts\frontend-header.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: setting', 'C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\Layouts\\frontend-header.php', 11, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\Layouts\\frontend-header.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('layouts/frontend-header', [], true)
+ 5 APPPATH\Controllers\MyController.php(227): view('layouts/frontend-header', [...])
+ 6 APPPATH\Controllers\Home.php(25): App\Controllers\MyController->view('frontend', 'website/home', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 00:26:21 --> Undefined variable: setting
+in APPPATH\Views\Layouts\frontend-header.php on line 11.
+ 1 APPPATH\Views\Layouts\frontend-header.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: setting', 'C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\Layouts\\frontend-header.php', 11, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\Layouts\\frontend-header.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('layouts/frontend-header', [], true)
+ 5 APPPATH\Controllers\MyController.php(227): view('layouts/frontend-header', [...])
+ 6 APPPATH\Controllers\Home.php(25): App\Controllers\MyController->view('frontend', 'website/home', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 00:29:06 --> Undefined index: subtitle
+in APPPATH\Views\website\home.php on line 72.
+ 1 APPPATH\Views\website\home.php(72): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: subtitle', 'C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\website\\home.php', 72, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\website\\home.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('website/home', [], true)
+ 5 APPPATH\Controllers\MyController.php(228): view('website/home', [...])
+ 6 APPPATH\Controllers\Home.php(25): App\Controllers\MyController->view('frontend', 'website/home', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 00:29:44 --> Undefined index: subtitle
+in APPPATH\Views\website\home.php on line 72.
+ 1 APPPATH\Views\website\home.php(72): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: subtitle', 'C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\website\\home.php', 72, [...])
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\unusialibrary\\app\\Views\\website\\home.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('website/home', [], true)
+ 5 APPPATH\Controllers\MyController.php(228): view('website/home', [...])
+ 6 APPPATH\Controllers\Home.php(25): App\Controllers\MyController->view('frontend', 'website/home', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

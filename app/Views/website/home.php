@@ -57,21 +57,23 @@
 <section class="py-0">
     <div class="swiper theme-slider min-vh-100" data-swiper='{"loop":true,"allowTouchMove":false,"autoplay":{"delay":5000},"effect":"fade","speed":800}'>
         <div class="swiper-wrapper">
+            <?php foreach ($sliders as $slider) : ?>
             <div class="swiper-slide" data-zanim-timeline="{}">
-                <div class="bg-holder" style="background-image:url(public/assets/img/header-1.jpg);"></div>
+            <div class="bg-holder" style="background-image:url(<?= 'public/images/slider/' . $slider['image']; ?>);">
+            </div>
 
                 <div class="container">
                     <div class="row min-vh-100 py-8 align-items-center" data-inertia='{"weight":1.5}'>
                         <div class="col-sm-8 col-lg-7 px-5 px-sm-3">
                             <div class="overflow-hidden">
-                                <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'>Growth Partners</h1>
+                                <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'><?= $slider['title']; ?></h1>
                             </div>
                             <div class="overflow-hidden">
-                                <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'>Connect with top consultants hand-picked by Elixir consulting and finance.</p>
+                                <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'><?= $slider['sub_title']; ?></p>
                             </div>
                             <div class="overflow-hidden">
                                 <div data-zanim-xs='{"delay":0.2}'>
-                                    <a class="btn btn-primary me-3 mt-3" href="#!">
+                                    <a class="btn btn-primary me-3 mt-3" href="<?= $slider['url']; ?>">
                                         Selengkapnya <span class="fas fa-chevron-right ms-2"></span>
                                     </a>
                                 </div>
@@ -80,7 +82,7 @@
                     </div>
                 </div>
             </div>
-
+            <?php endforeach; ?>
             <div class="swiper-nav">
                 <div class="swiper-button-prev"><span class="fas fa-chevron-left"></span></div>
                 <div class="swiper-button-next"><span class="fas fa-chevron-right"></span></div>
@@ -89,33 +91,12 @@
 </section>
 
 
-<!-- PROFILE -->
-<!-- <section class="bg-white text-center">
-
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-10 col-md-6">
-                <h3 class="fs-2 fs-lg-3">PROFILE PERPUSTAKAAN</h3>
-                <h5 class="px-lg-4 mt-3">UNUSIA GRHA MAHBUB DJUNAEDI</h5>
-            </div>
-            <div class="col-12">
-                <div class="position-relative mt-4 py-5 py-md-11">
-                    <div class="bg-holder rounded-3" style="background-image:url(public/assets/img/sejarah_visi_misi_struktur_organisasi.jpg);">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section> -->
-<!-- END PROFILE -->
-
 <!-- KOLEKSI TERBARU -->
 <section class="bg-100 text-center">
 
     <div class="container">
         <div class="text-center mb-6">
-            <h3 class="fs-2">KOLEKSI TERBARU</h3>
+            <h3 class="fs-2 fs-md-3">Koleksi Terbaru</h3>
             <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
         </div>
 
@@ -167,7 +148,7 @@
     <div class="container">
         <!-- BERITA -->
         <div class="mb-4">
-            <h3 class="fs-2 line-short text-white">BERITA TERBARU</h3>
+            <h3 class="fs-2 fs-md-3 line-short text-white">Berita Terbaru</h3>
         </div>
 
         <?php if (count($berita) > 0) { ?>
@@ -218,7 +199,7 @@
 
         <!-- PENGUMUMAN -->
         <div class="mb-4">
-            <h3 class="fs-2 line-short text-white">PENGUMUMAN</h3>
+            <h3 class="fs-2 fs-md-3 line-short text-white">Pengumuman</h3>
         </div>
 
         <?php if (count($pengumuman) > 0) { ?>
@@ -269,7 +250,7 @@
 
         <!-- AGENDA -->
         <div class="mb-4">
-            <h3 class="fs-2 line-short text-white">AGENDA</h3>
+            <h3 class="fs-2 fs-md-3 line-short text-white">Agenda Perpus</h3>
         </div>
 
         <?php if (count($agenda) > 0) { ?>
@@ -359,7 +340,7 @@
 
     <div class="container">
         <div class="text-center mb-6">
-            <h3 class="fs-2">TESTIMONI</h3>
+            <h3 class="fs-2 fs-md-3">Testimoni</h3>
             <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
         </div>
 
