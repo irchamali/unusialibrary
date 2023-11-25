@@ -60,7 +60,16 @@ class ArtikelModel extends \App\Models\MyModel
         u.image as image_pembuat, ac.nama_kategori FROM artikel a 
         LEFT JOIN user u ON u.user_id = a.user_id 
         LEFT JOIN artikel_category ac ON ac.artikel_category_id = a.artikel_category_id 
-        WHERE ac.nama_kategori = '$nama_kategori' AND a.status = 'published'
+        WHERE ac.nama_kategori = ? AND a.status = 'published'
+        ORDER BY a.created_at", [$nama_kategori])->getResultArray();
+    }
+
+    public function getArtikelByTag()
+    {
+        return $this->db->query("SELECT alt.artikel_tag_id,a_t.nama_tag,a_t.slug_tag, a.*, a.image as image_artikel,u.nama as nama_pembuat,u.image as image_pembuat FROM artikel_list_tag alt
+        LEFT JOIN artikel_tag a_t ON a_t.artikel_tag_id = alt.artikel_tag_id
+        LEFT JOIN artikel a ON a.artikel_id = alt.artikel_id 
+        LEFT JOIN user u ON u.user_id = a.user_id
         ORDER BY a.created_at")->getResultArray();
     }
 
@@ -225,17 +234,17 @@ class ArtikelModel extends \App\Models\MyModel
         return $artikel;
     }
 
-    public function getArtikelByLoad($nama_kategori, $artikel_id)
-    {
-        return $this->db->query("SELECT a.artikel_id, a.judul_artikel, a.slug_artikel, a.image as image_artikel, a.isi_artikel, u.nama as nama_pembuat,
-        u.image as image_pembuat, ac.nama_kategori FROM artikel a 
-        LEFT JOIN user u ON u.user_id = a.user_id 
-        LEFT JOIN artikel_category ac ON ac.artikel_category_id = a.artikel_category_id 
-        WHERE ac.nama_kategori = '$nama_kategori' AND a.status = 'published' AND a.artikel_id > '$artikel_id' LIMIT 2")->getResultArray();
-    }
+    // public function getArtikelByLoad($nama_kategori, $artikel_id)
+    // {
+    //     return $this->db->query("SELECT a.artikel_id, a.judul_artikel, a.slug_artikel, a.image as image_artikel, a.isi_artikel, u.nama as nama_pembuat,
+    //     u.image as image_pembuat, ac.nama_kategori FROM artikel a 
+    //     LEFT JOIN user u ON u.user_id = a.user_id 
+    //     LEFT JOIN artikel_category ac ON ac.artikel_category_id = a.artikel_category_id 
+    //     WHERE ac.nama_kategori = '$nama_kategori' AND a.status = 'published' AND a.artikel_id > '$artikel_id' LIMIT 2")->getResultArray();
+    // }
 
-    public function paginateArtikel(int $page)
-    {
-        return $this->select('*')->join('user', 'artikel.user_id = user.user_id')->paginate($page);
-    }
+    // public function paginateArtikel(int $page)
+    // {
+    //     return $this->select('*')->join('user', 'artikel.user_id = user.user_id')->paginate($page);
+    // }
 }

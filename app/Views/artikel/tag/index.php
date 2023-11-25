@@ -83,6 +83,13 @@
                 },
                 {
                     mData: null,
+                    title: 'Slug Tag',
+                    render: function(response, row, type, meta) {
+                        return response.slug_tag;
+                    }
+                },
+                {
+                    mData: null,
                     title: 'Aksi',
                     sortable: false,
                     class: 'text-center',

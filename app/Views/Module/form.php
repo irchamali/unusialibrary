@@ -51,6 +51,30 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="role_id" class="col-sm-3 control-label">Role</label>
+        <div class="col-sm-9">
+            <?php
+            foreach ($role as $key => $val) {
+                $option_role[$val['role_id']] = $val['nama_role'];
+            }
+
+            if (!empty($module['role'])) {
+                foreach ($module['role'] as $val) {
+                    $role_id_selected[] = $val['role_id'];
+                }
+            }
+            ?>
+
+            <?= form_dropdown(
+                ['name' => 'role_id[]', 'id' => 'role_id', 'multiple' => 'multiple', 'class' => 'form-control select2'],
+                $option_role,
+                @$role_id_selected
+            ) ?>
+            <span class="help-block"></span>
+        </div>
+    </div>
+
     <input type="hidden" name="id" id="id" value="<?= @$module['module_id']; ?>">
 </form>
 
@@ -60,5 +84,7 @@
             $(this).parent('.form-group').removeClass('has-error');
             $(this).next('.help-block').text('');
         });
+
+        $('.select2').select2();
     });
 </script>

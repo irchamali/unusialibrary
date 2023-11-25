@@ -281,4 +281,9 @@ class MyModel extends \CodeIgniter\Model
     {
         return $this->db->query('SELECT * FROM layanan')->getResultArray();
     }
+
+    public function getModuleRole($module_id)
+    {
+        return $this->db->query('SELECT * FROM module_role WHERE module_id = ?', [$module_id])->getResultArray();
+    }
 }

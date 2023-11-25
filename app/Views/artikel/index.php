@@ -33,7 +33,7 @@
             $column = [
                 'ignore_image' => 'Gambar',
                 'judul_artikel' => 'Judul',
-                'created_at' => 'Tanggal Publish',
+                // 'created_at' => 'Tanggal Publish',
                 'nama_kategori' => 'Kategori',
                 'nama_tag' => 'Tag',
                 'status' => 'Status',

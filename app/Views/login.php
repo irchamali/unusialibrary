@@ -76,6 +76,7 @@
                     success: function(response) {
                         $button.prop('disabled', false);
                         $spinner.remove();
+                        $('.alert').remove();
 
                         if (response.status) {
                             $message.prepend('<div class="alert alert-success">' + response.message + '</div>');

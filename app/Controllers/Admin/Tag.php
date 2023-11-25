@@ -68,6 +68,7 @@ class Tag extends MyController
         $table = 'artikel_tag';
         $fields = array(
             'nama_tag',
+            'slug_tag',
             'artikel_tag_id',
         );
         $get = $req;
@@ -140,6 +141,7 @@ class Tag extends MyController
 
         $fields = [
             'nama_tag' => $this->request->getPost('nama_tag'),
+            'slug_tag' => url_title($_POST['nama_tag'], '-', true),
         ];
 
         if ($id) {

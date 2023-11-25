@@ -75,6 +75,7 @@ class Layanan extends MyController
             'layanan_id',
             'icon',
             'nama_layanan',
+            'slug_layanan',
             'keterangan',
         );
         $get = $req;

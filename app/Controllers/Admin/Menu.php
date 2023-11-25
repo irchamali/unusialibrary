@@ -206,12 +206,7 @@ class Menu extends MyController
     {
         $this->getValidate('menu');
 
-        $response = $this->model->saveMenu();
-        if ($response) {
-            echo json_encode(['status' => true, 'message' => 'Data berhasil']);
-        } else {
-            echo json_encode(['status' => false, 'message' => 'Gagal menyimpan data']);
-        }
+        echo json_encode($this->model->saveMenu());
     }
 
     public function ajaxUpdateUrutanMenu()

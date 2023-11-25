@@ -14,6 +14,7 @@ class MyController extends BaseController
     protected $userLogin;
     protected $userPermission;
     protected $modulePermission;
+    protected $listAction;
 
     protected $isLoggedIn;
     protected $baseURL;
@@ -85,7 +86,8 @@ class MyController extends BaseController
             $this->data['module_role'] = $this->model->getRoleModuleUser();
             $this->data['userLogin'] = $this->userLogin;
 
-            $this->getListPermission();
+            $this->getListRole();
+            $this->getModuleRole();
 
             if ($nama_module == 'login') {
                 $this->redirectOnLoggedIn();
@@ -106,60 +108,52 @@ class MyController extends BaseController
         // die;
     }
 
-    private function getListPermission()
+    public function getModuleRole()
+    {
+        $query = $this->model->getModuleRole($this->currentModule['module_id']);
+        $module_role = [];
+        foreach ($query as $val) {
+            $module_role[$val['role_id']] = $val;
+        }
+
+        $this->listAction = [];
+        $module_exception = ['login', 'home', 'post'];
+        if ($this->isLoggedIn && !in_array($this->currentModule['nama_module'], $module_exception)) {
+            if ($module_role) {
+                foreach ($this->session->get('user')['role'] as $role_id => $arr) {
+                    if (key_exists($role_id, $module_role)) {
+                        $this->listAction = $module_role[$role_id];
+                    }
+                }
+
+                if ($this->currentModule['nama_module'] != 'login') {
+                    if (!$this->listAction) {
+                        $this->errorPage('Anda tidak berhak mengakses halaman <b>' . $this->currentModule['module'] . '</b>');
+                        exit;
+                    }
+                }
+            } else {
+                $this->errorPage('Anda tidak berhak mengakses halaman <b>' . $this->currentModule['module'] . '</b>, Role untuk module tersebut belum diatur');
+                exit;
+            }
+        }
+    }
+
+    private function getListRole()
     {
         $user_role = $this->session->get('user')['role'];
 
         if ($this->isLoggedIn && $this->currentModule['nama_module'] != 'login') {
             $current_user = $this->model->getUserById($this->userLogin['user_id']);
-            if ($current_user['is_active'] != '1') {
+            if ($current_user['is_active'] != 'aktif') {
                 $this->data['content'] = 'Status akun Anda ' . ucfirst($current_user['is_active']);
                 $this->errorExit($this->data);
             }
 
             if (!$user_role) {
                 $this->errorPage('User belum memiliki role');
-                // print_r('Kesini');
                 exit;
             }
-
-            // if ($this->modulePermission) {
-            //     $error = false;
-            //     if ($this->currentModule['nama_module'] != 'login') {
-
-            //         $role_exists = false;
-            //         foreach ($user_role as $id_role => $val) {
-            //             if (key_exists($id_role, $this->modulePermission)) {
-            //                 $this->userPermission = $this->modulePermission[$id_role];
-            //                 unset($this->userPermission['null']);
-            //                 $role_exists = true;
-            //                 break;
-            //             }
-            //         }
-
-            //         if ($this->userPermission) {
-            //             $session_user = $this->session->get('user');
-            //             $session_user['permission'] = $this->userPermission;
-            //             $this->session->set('user', $session_user);
-            //         }
-
-            //         if ($role_exists) {
-            //             if (!$this->userPermission) {
-            //                 $error = 'Role Anda tidak memiliki permission pada module ' . $this->currentModule['judul_module'];
-            //             }
-            //         } else {
-            //             $error = 'Anda tidak berhak mengakses halaman ini';
-            //         }
-
-            //         if ($error) {
-            //             $this->errorPage($error);
-            //             exit();
-            //         }
-            //     }
-            // } else {
-            //     $this->errorPage('Role untuk module ini belum diatur');
-            //     exit();
-            // }
         }
     }
 
@@ -268,11 +262,17 @@ class MyController extends BaseController
             $message = ['status' => 'error', 'message' => $message];
         }
         $this->data['msg'] = $message;
-        if ($this->isLoggedIn) {
-            $this->view('backend', 'errors/backend-error-page', $this->data);
-        } else {
-            $this->view('frontend', 'errors/frontend-error-page', $this->data);
+        $this->view('backend', 'errors/backend-error-page', $this->data);
+    }
+
+    protected function errorPageFrontend($message)
+    {
+        $this->data['title'] = 'Error';
+        if (is_string($message)) {
+            $message = ['status' => 'error', 'message' => $message];
         }
+        $this->data['msg'] = $message;
+        $this->view('frontend', 'errors/frontend-error-page', $this->data);
     }
 
     protected function errorExit($data)

@@ -69,7 +69,7 @@ class Login extends MyController
         $user = $this->model->checkUser($this->request->getPost('username'));
 
         if ($user) {
-            if ($user['is_active'] == 1) {
+            if ($user['is_active'] == 'aktif') {
                 if (password_verify($_POST['password'], $user['password'])) {
                     $this->session->set('user', $user);
                     $this->session->set('isLoggedIn', true);

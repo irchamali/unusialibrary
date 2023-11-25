@@ -255,14 +255,14 @@ function build_menu_website($current_module, $arr_menu, $submenu = false)
 function status_user($type, $id)
 {
     switch ($type) {
-        case '1':
-            $status = '<span class="label label-success change-status" data-id="' . $id . '" data-type="0" title="Non Aktifkan" style="cursor:pointer;">Aktif</span>';
+        case 'aktif':
+            $status = '<span class="label label-success change-status" data-id="' . $id . '" data-type="tidak aktif" title="Non Aktifkan" style="cursor:pointer;">Aktif</span>';
             break;
-        case '0':
-            $status = '<span class="label label-danger change-status" data-id="' . $id . '" data-type="1" title="Aktifkan" style="cursor:pointer;">Tidak Aktif</span>';
+        case 'tidak aktif':
+            $status = '<span class="label label-danger change-status" data-id="' . $id . '" data-type="aktif" title="Aktifkan" style="cursor:pointer;">Tidak Aktif</span>';
             break;
         default:
-            $status = '<span class="label label-success change-status" data-id="' . $id . '" data-type="0" title="Non Aktifkan" style="cursor:pointer;">Aktif</span>';
+            $status = '<span class="label label-success change-status" data-id="' . $id . '" data-type="tidak aktif" title="Non Aktifkan" style="cursor:pointer;">Aktif</span>';
             break;
     }
     return $status;

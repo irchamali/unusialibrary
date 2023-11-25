@@ -185,12 +185,12 @@
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
-                            <a href="<?= base_url('news/') . $berita['slug_artikel']; ?>">
+                            <a href="<?= base_url('post/') . $berita['slug_artikel']; ?>">
                                 <?php $image_artikel = @$berita['image_artikel'] ?  @$berita['image_artikel'] : 'no_image.png'; ?>
                                 <img class="card-img-top" src="<?= base_url('public/images/artikel/') . $image_artikel; ?>" alt="<?= $berita['judul_artikel']; ?>" />
                             </a>
                             <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('news/') . $berita['slug_artikel']; ?>">
+                                <div class="overflow-hidden"><a href="<?= base_url('post/') . $berita['slug_artikel']; ?>">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $berita['judul_artikel']; ?></h5>
                                     </a></div>
                                 <div class="overflow-hidden">
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
-                                        <a class="d-flex align-items-center" href="<?= base_url('news/') . $berita['slug_artikel']; ?>">
+                                        <a class="d-flex align-items-center" href="<?= base_url('post/') . $berita['slug_artikel']; ?>">
                                             Selengkapnya
                                             <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
                                                 <span class="d-inline-block fw-medium">&xrarr;</span>
@@ -233,12 +233,12 @@
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
-                            <a href="<?= base_url('news/') . $pengumuman['slug_artikel']; ?>">
+                            <a href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                 <?php $image_artikel = @$pengumuman['image_artikel'] ?  @$pengumuman['image_artikel'] : 'no_image.png'; ?>
                                 <img class="card-img-top" src="<?= base_url('public/images/artikel/') . $image_artikel; ?>" alt="<?= $pengumuman['judul_artikel']; ?>" />
                             </a>
                             <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('news/') . $pengumuman['slug_artikel']; ?>">
+                                <div class="overflow-hidden"><a href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $pengumuman['judul_artikel']; ?></h5>
                                     </a></div>
                                 <div class="overflow-hidden">
@@ -249,7 +249,7 @@
                                 </div>
                                 <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
-                                        <a class="d-flex align-items-center" href="<?= base_url('news/') . $pengumuman['slug_artikel']; ?>">
+                                        <a class="d-flex align-items-center" href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                             Selengkapnya
                                             <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
                                                 <span class="d-inline-block fw-medium">&xrarr;</span>
@@ -284,12 +284,12 @@
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
-                            <a href="<?= base_url('news/') . $agenda['slug_artikel']; ?>">
+                            <a href="<?= base_url('post/') . $agenda['slug_artikel']; ?>">
                                 <?php $image_artikel = @$agenda['image_artikel'] ?  @$agenda['image_artikel'] : 'no_image.png'; ?>
                                 <img class="card-img-top" src="<?= base_url('public/images/artikel/') . $image_artikel; ?>" alt="<?= $agenda['judul_artikel']; ?>" />
                             </a>
                             <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= base_url('news/') . $agenda['slug_artikel']; ?>">
+                                <div class="overflow-hidden"><a href="<?= base_url('post/') . $agenda['slug_artikel']; ?>">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $agenda['judul_artikel']; ?></h5>
                                     </a></div>
                                 <div class="overflow-hidden">
@@ -300,7 +300,7 @@
                                 </div>
                                 <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
-                                        <a class="d-flex align-items-center" href="<?= base_url('news/') . $agenda['slug_artikel']; ?>">
+                                        <a class="d-flex align-items-center" href="<?= base_url('post/') . $agenda['slug_artikel']; ?>">
                                             Selengkapnya
                                             <div class="overflow-hidden ms-2" data-zanim-xs='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
                                                 <span class="d-inline-block fw-medium">&xrarr;</span>

@@ -84,13 +84,13 @@
                         return response.nama_layanan;
                     }
                 },
-                // {
-                //     mData: null,
-                //     title: 'Keterangan',
-                //     render: function(response, row, type, meta) {
-                //         return response.keterangan;
-                //     }
-                // },
+                {
+                    mData: null,
+                    title: 'Slug',
+                    render: function(response, row, type, meta) {
+                        return response.slug_layanan;
+                    }
+                },
                 {
                     mData: null,
                     title: 'Aksi',

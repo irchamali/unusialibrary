@@ -189,19 +189,21 @@
                 processData: false,
                 dataType: "json",
                 success: function(response) {
-                    if (response.status) {
-                        if (response.status) {
-                            showAlert('success', response.message);
-                            setTimeout(function() {
-                                window.location.href = moduleURL;
-                            }, 1000);
-                        } else {
-                            showAlert('error', response.message);
-                        }
+                    if (response.status == true) {
+                        showAlert('success', response.message);
+                        setTimeout(function() {
+                            window.location.href = moduleURL;
+                        }, 1000);
                     } else {
-                        for (let i = 0; i < response.error_input.length; i++) {
-                            $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');
-                            $('[name="' + response.error_input[i] + '"]').next('.help-block').text(response.error_string[i]);
+                        if (response.error_input) {
+                            for (let i = 0; i < response.error_input.length; i++) {
+                                $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');
+                                $('[name="' + response.error_input[i] + '"]').next('.help-block').text(response.error_string[i]);
+                            }
+                        }
+
+                        if (response.status == 'required') {
+                            showAlert('error', response.message);
                         }
                     }
                 },

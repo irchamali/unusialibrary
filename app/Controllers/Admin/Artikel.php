@@ -24,7 +24,6 @@ class Artikel extends MyController
         $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
         $this->addScript(base_url('public/plugins/select2/dist/js/') . 'select2.full.min.js');
         $this->addScript(base_url('public/plugins/summernote/') . 'summernote.min.js');
-        // $this->addScript(base_url('public/dist/js/pages/') . 'user.js');
     }
 
     private function getValidate($method)
@@ -128,7 +127,7 @@ class Artikel extends MyController
                 $image = base_url('public/images/') . 'no_image.png';
             }
             $val['ignore_image'] = '<img src="' . $image . '" style="width:80px;height:80px;">';
-
+            $val['nama_kategori'] = '<a href="' . base_url('category/') . $val['slug_kategori'] . '" target="_blank">' . $val['nama_kategori'] . '</a>';
             $tag = '';
             if ($val['nama_tag']) {
                 $split = explode(',', $val['nama_tag']);
@@ -146,6 +145,7 @@ class Artikel extends MyController
             $val['nama_tag'] = $tag;
             $val['status'] = $status;
             $val['ignore_btn'] = '
+                <a href="' . base_url('post/') . $val['slug_artikel'] . '" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-eye"></i> Lihat</a>
                 <a href="' . base_url('admin/artikel/form?id=') . $val['artikel_id'] . '" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i> Ubah</a>
                 <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . $val['artikel_id'] . '" data-message-delete="Apakah anda yakin, Data user <b>' . $val['judul_artikel'] . '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>
             ';

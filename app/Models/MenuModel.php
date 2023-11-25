@@ -160,15 +160,22 @@ class MenuModel extends \App\Models\MyModel
                 $this->db->table('menu')->update(['menu_kategori_id' => $menu_kategori_id], ['menu_id' => $val]);
             }
 
-            $fields = [];
-            foreach ($_POST['role_id'] as $val) {
-                $fields[] = ['menu_id' => $id, 'role_id' => $val];
-            }
-            $this->db->table('menu_role')->delete(['menu_id' => $id]);
-            $this->db->table('menu_role')->insertBatch($fields);
+            if (!empty($_POST['role_id'])) {
+                $fields = [];
+                foreach ($_POST['role_id'] as $val) {
+                    $fields[] = ['menu_id' => $id, 'role_id' => $val];
+                }
+                $this->db->table('menu_role')->delete(['menu_id' => $id]);
+                $this->db->table('menu_role')->insertBatch($fields);
 
-            $this->db->transComplete();
-            return $this->db->transStatus();
+                $this->db->transComplete();
+                $result = $this->db->transStatus();
+                if ($result) {
+                    $response = ['status' => true, 'message' => 'Data berhasil diubah'];
+                }
+            } else {
+                $response = ['status' => 'required', 'message' => 'Role harus diisi.'];
+            }
         } else {
             $last_urutan = $this->db->query('SELECT MAX(urutan) AS urutan FROM menu WHERE menu_kategori_id = ?', [$menu_kategori_id])->getRowArray();
             $fields['urutan'] = $last_urutan['urutan'] + 1;
@@ -180,9 +187,13 @@ class MenuModel extends \App\Models\MyModel
                     $fields[] = ['menu_id' => $insertID, 'role_id' => $val];
                 }
                 $this->db->table('menu_role')->insertBatch($fields);
+                $response = ['status' => true, 'message' => 'Data berhasil disimpan'];
+            } else {
+                $response = ['status' => false, 'message' => 'Role harus diisi.'];
             }
-            return $insertID;
         }
+
+        return $response;
     }
 
     public function updateUrutanMenu()

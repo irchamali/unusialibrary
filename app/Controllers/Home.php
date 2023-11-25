@@ -2,52 +2,45 @@
 
 namespace App\Controllers;
 
-use App\Models\ArtikelModel;
+use App\Models\HomeModel;
 
 class Home extends MyController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->model = new ArtikelModel;
+        $this->model = new HomeModel;
     }
 
     public function index()
     {
         $data = $this->data;
-        $data['koleksi_terbaru'] = $this->getBookCollection();
-        $data['berita'] = $this->model->getArtikel('Berita');
-        $data['pengumuman'] = $this->model->getArtikel('Pengumuman');
-        $data['agenda'] = $this->model->getArtikel('Agenda');
+        $data['koleksi_terbaru'] = $this->model->getHomeBook();
+        $data['berita'] = $this->model->getHomeArtikel('berita');
+        $data['pengumuman'] = $this->model->getHomeArtikel('pengumuman');
+        $data['agenda'] = $this->model->getHomeArtikel('agenda');
         $this->view('frontend', 'website/home', $data);
     }
 
-    public function contactUs()
-    {
-        $data = $this->data;
-        $data['title'] = 'Kontak Kami';
-        $this->view('frontend', 'website/kontak_kami', $data);
-    }
-
-    public function profileSejarah()
+    public function sejarah()
     {
         $data = $this->data;
         $data['title'] = 'Sejarah';
-        $this->view('frontend', 'website/profile_sejarah', $data);
+        $this->view('frontend', 'website/sejarah', $data);
     }
 
-    public function profileVisiMisi()
+    public function visi_misi()
     {
         $data = $this->data;
         $data['title'] = 'Visi & Misi';
-        $this->view('frontend', 'website/profile_visi_misi', $data);
+        $this->view('frontend', 'website/visi_misi', $data);
     }
 
-    public function profileStrukturOrganisasi()
+    public function struktur_organisasi()
     {
         $data = $this->data;
         $data['title'] = 'Struktur Organisasi';
-        $this->view('frontend', 'website/profile_struktur_organisasi', $data);
+        $this->view('frontend', 'website/struktur_organisasi', $data);
     }
 
     public function fasilitas()
@@ -61,35 +54,41 @@ class Home extends MyController
     {
         $data = $this->data;
         $data['title'] = 'Buku';
-        $data['koleksi_buku'] = $this->getBookCollection();
-        // echo "<pre>";
-        // print_r($this->data);
-        // echo "</pre>";
-        // die;
+        $data['koleksi_buku'] = $this->model->getHomeBook();
         $this->view('frontend', 'website/book', $data);
     }
 
-    private function getBookCollection()
+    public function layanan($slug = null)
     {
-        $curl = service('curlrequest');
-
-        $response = $curl->request("POST", "https://unusia.perpustakaan.co.id/view/ajax", [
-            "headers" => [
-                "Accept" => "application/json, text/javascript, */*; q=0.01"
-            ],
-            "form_params" => [
-                "action" => "get_collectionbook_front"
-            ]
-        ]);
-
-        $result = [];
-        if (200 == $response->getStatusCode()) {
-            $result = json_decode($response->getBody(), true)['data'] ?? null;
+        if ($slug) {
+            $getLayananBySlug = $this->model->getHomeLayananBySlug($slug);
+            if (!$getLayananBySlug) {
+                $this->errorPageFrontend('Layanan tidak ditemukan');
+                exit;
+            }
+            $this->data['layanan'] = $getLayananBySlug;
+            $this->view('frontend', 'website/layanan/view', $this->data);
+        } else {
+            $data = $this->data;
+            $data['title'] = 'Layanan';
+            $data['layanan'] = $this->model->getHomeLayanan();
+            $this->view('frontend', 'website/layanan/index', $data);
         }
+    }
 
-        return $result;
-        // echo "<pre>";
-        // print_r($result);
-        // exit;
+    public function jurnal_nasional()
+    {
+        $data = $this->data;
+        $data['title'] = 'Jurnal Nasional';
+        $data['jurnal'] = $this->model->getHomeJurnal('nasional');
+        $this->view('frontend', 'website/jurnal', $data);
+    }
+
+    public function jurnal_internasional()
+    {
+        $data = $this->data;
+        $data['title'] = 'Jurnal Internasional';
+        $data['jurnal'] = $this->model->getHomeJurnal('internasional');
+        $this->view('frontend', 'website/jurnal', $data);
     }
 }

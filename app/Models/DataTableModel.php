@@ -308,16 +308,16 @@ class DataTableModel extends \App\Models\MyModel
             $order = ' ORDER BY ' . $order_by . ' LIMIT ' . $start . ', ' . $length;
         }
 
-        $queryData = 'SELECT artikel.*, artikel_category.nama_kategori, GROUP_CONCAT(nama_tag) AS nama_tag FROM artikel 
+        $queryData = 'SELECT artikel.artikel_id, artikel.judul_artikel, artikel.slug_artikel, artikel.image, artikel.status, artikel_category.nama_kategori,artikel_category.slug_kategori, GROUP_CONCAT(nama_tag) AS nama_tag FROM artikel 
             LEFT JOIN artikel_list_tag USING(artikel_id) 
             LEFT JOIN artikel_tag ON artikel_list_tag.artikel_tag_id = artikel_tag.artikel_tag_id
             LEFT JOIN artikel_category ON artikel.artikel_category_id = artikel_category.artikel_category_id
             ' . $where . '
-            GROUP BY artikel_id
+            GROUP BY artikel.artikel_id
             ' . $order;
 
         $queryFiltered = 'SELECT COUNT(*) as jml FROM
-            (SELECT artikel.*, GROUP_CONCAT(nama_tag) AS nama_tag FROM artikel 
+            (SELECT artikel.artikel_id, artikel.judul_artikel, artikel.slug_artikel, artikel.image, artikel.status, artikel_category.nama_kategori,artikel_category.slug_kategori, GROUP_CONCAT(nama_tag) AS nama_tag FROM artikel 
             LEFT JOIN artikel_list_tag USING(artikel_id) 
             LEFT JOIN artikel_tag ON artikel_list_tag.artikel_tag_id = artikel_tag.artikel_tag_id
             LEFT JOIN artikel_category ON artikel.artikel_category_id = artikel_category.artikel_category_id

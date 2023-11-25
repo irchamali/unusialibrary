@@ -18,8 +18,6 @@
                 show_message($msg);
             }
             ?>
-
-            <a href="<?= $moduleURL; ?>" class="btn btn-default">Kembali</a>
         </div>
     </div>
 </section>

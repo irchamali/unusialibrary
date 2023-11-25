@@ -15,11 +15,13 @@ class Module extends MyController
         $this->model = new ModuleModel;
         $this->addStyle(base_url('public/plugins/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
         $this->addStyle(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addStyle(base_url('public/plugins/select2/dist/css/') . 'select2.min.css');
 
         $this->addScript(base_url('public/plugins/datatables.net/js/') . 'jquery.dataTables.min.js');
         $this->addScript(base_url('public/plugins/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
         $this->addScript(base_url('public/plugins/bootbox/') . 'bootbox.min.js');
         $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
+        $this->addScript(base_url('public/plugins/select2/dist/js/') . 'select2.full.min.js');
         $this->addScript(base_url('public/dist/js/pages/') . 'module.js');
     }
 
@@ -149,6 +151,7 @@ class Module extends MyController
             }
         }
 
+        $this->data['role'] = $this->model->getRoleByModule();
         echo view('module/form', $this->data);
     }
 
@@ -156,29 +159,7 @@ class Module extends MyController
     {
         $this->getValidate();
 
-        $id = $this->request->getPost('id');
-
-        $fields = [
-            'module' => $this->request->getPost('module'),
-            'nama_module' => strtolower($_POST['module_url']),
-            'module_url' => strtolower($_POST['module_url']),
-            'module_type' => $this->request->getPost('module_type'),
-            'is_login' => $this->request->getPost('is_login'),
-            'module_status_id' => $this->request->getPost('module_status_id'),
-        ];
-
-        if ($id) {
-            $result = $this->model->updateData('module', $fields, 'module_id', $id);
-        } else {
-            $result = $this->model->insertData('module', $fields);
-        }
-
-
-        if ($result) {
-            echo json_encode(['status' => true, 'message' => 'Data berhasil']);
-        } else {
-            echo json_encode(['status' => false, 'message' => 'Gagal menyimpan data']);
-        }
+        echo json_encode($this->model->saveDataModule());
     }
 
     public function ajaxDeleteData()

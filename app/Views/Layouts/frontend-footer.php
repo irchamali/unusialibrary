@@ -117,7 +117,6 @@
 <script src="<?= base_url('public'); ?>/vendors/bigpicture/BigPicture.js"> </script>
 <script src="<?= base_url('public'); ?>/vendors/countup/countUp.umd.js"> </script>
 <script src="<?= base_url('public'); ?>/vendors/swiper/swiper-bundle.min.js"></script>
-<script src="<?= base_url('public'); ?>/vendors/fontawesome/all.min.js"></script>
 <script src="<?= base_url('public'); ?>/vendors/lodash/lodash.min.js"></script>
 <script src="<?= base_url('public'); ?>/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="<?= base_url('public'); ?>/vendors/gsap/gsap.js"></script>

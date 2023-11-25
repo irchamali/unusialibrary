@@ -67,13 +67,13 @@ class User extends MyController
                     'required' => '{field} harus diisi.'
                 ],
             ],
-            'role_id' => [
-                'label' => 'Role',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi.'
-                ],
-            ],
+            // 'role_id' => [
+            //     'label' => 'Role',
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => '{field} harus diisi.'
+            //     ],
+            // ],
         ]);
 
         if ($validation->hasError('nama')) {
@@ -100,11 +100,11 @@ class User extends MyController
             $data['status'] = false;
         }
 
-        if ($validation->hasError('role_id')) {
-            $data['error_input'][] = 'role_id[]';
-            $data['error_string'][] = $validation->getError('role_id');
-            $data['status'] = false;
-        }
+        // if ($validation->hasError('role_id')) {
+        //     $data['error_input'][] = 'role_id[]';
+        //     $data['error_string'][] = $validation->getError('role_id');
+        //     $data['status'] = false;
+        // }
 
         if ($data['status'] == false) {
             echo json_encode($data);
@@ -170,7 +170,7 @@ class User extends MyController
             }
 
             $val['nama_role'] = $role;
-            $val['status'] = status_user($val['is_active'], $val['user_id']);
+            $val['is_active'] = status_user($val['is_active'], $val['user_id']);
             $val['ignore_btn'] = '
                 <a href="' . base_url('admin/user/form?id=') . $val['user_id'] . '" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i> Ubah</a>
                 <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . $val['user_id'] . '" data-message-delete="Apakah anda yakin, Data user <b>' . $val['nama'] . '</b> akan dihapus?"><i class="fa fa-trash-alt"></i> Hapus</button>

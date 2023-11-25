@@ -82,7 +82,7 @@ class Menu_website extends MyController
         $list_menu = list_menu($result);
         $data['list_menu'] = $result ? $this->buildMenuList($list_menu) : '';
 
-        $this->view('backend', 'menu_website/index', $data);
+        $this->view('backend', 'website/menu/index', $data);
     }
 
     public function ajaxGetFormMenu()
@@ -98,7 +98,7 @@ class Menu_website extends MyController
         }
         $this->data['module_menu'] = $this->model->getModuleByMenu('Frontend');
 
-        echo view('menu_website/form', $this->data);
+        echo view('website/menu/form', $this->data);
     }
 
     public function ajaxSaveMenu()

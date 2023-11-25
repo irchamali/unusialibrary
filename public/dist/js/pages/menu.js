@@ -123,7 +123,7 @@ $(document).ready(function() {
                                 $button_submit.find('i').remove();
                                 $button.prop('disabled', false);
 
-                                if (response.status) {
+                                if (response.status == true) {
                                     var nama_menu = $form_filled.find('input[name="nama_menu"]').val();
                                     var id = $form_filled.find('input[name="id"]').val();
                                     var use_icon = $form_filled.find('select[name="use_icon"]').val();
@@ -159,9 +159,15 @@ $(document).ready(function() {
                                     //     window.location.href = moduleURL;
                                     // }, 1000);
                                 } else {
-                                    for (let i = 0; i < response.error_input.length; i++) {
-                                        $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');
-                                        $('[name="' + response.error_input[i] + '"]').next('.help-block').text(response.error_string[i]);
+                                    if (response.error_input) {
+                                        for (let i = 0; i < response.error_input.length; i++) {
+                                            $('[name="' + response.error_input[i] + '"]').parent().addClass('has-error');
+                                            $('[name="' + response.error_input[i] + '"]').next('.help-block').text(response.error_string[i]);
+                                        }
+                                    }
+            
+                                    if (response.status == 'required') {
+                                        showAlert('error', response.message);
                                     }
                                 }
                             },

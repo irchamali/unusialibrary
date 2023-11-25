@@ -78,68 +78,72 @@ class UserModel extends \App\Models\MyModel
             $user_id = $this->db->insertID();
         }
 
-        $data_db = [];
-        foreach ($_POST['role_id'] as $role_id) {
-            $data_db[] = ['user_id' => $user_id, 'role_id' => $role_id];
-        }
-
-        $this->db->table('user_role')->delete(['user_id' => $user_id]);
-        $this->db->table('user_role')->insertBatch($data_db);
-
-        $this->db->transComplete();
-        $result = $this->db->transStatus();
-        if ($result) {
-
-            $file = $this->request->getFile('image');
-            $path = ROOTPATH . 'public/images/users/';
-
-            $img_db = $this->db->query('SELECT image FROM user WHERE user_id = ?', $user_id)->getRowArray();
-            $new_name = $img_db['image'];
-
-            if (!empty($_POST['image_remove'])) {
-                if ($img_db['image'] != NULL) {
-                    $del = delete_file($path . $img_db['image']);
-                    $new_name = NULL;
-                    if (!$del) {
-                        $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
-                    }
-                }
+        if (!empty(@$_POST['role_id'])) {
+            $data_db = [];
+            foreach ($_POST['role_id'] as $role_id) {
+                $data_db[] = ['user_id' => $user_id, 'role_id' => $role_id];
             }
 
-            if ($file && $file->getName()) {
-                //old file
-                if ($img_db['image']) {
-                    if (file_exists($path . $img_db['image'])) {
-                        $unlink = delete_file($path . $img_db['image']);
-                        if (!$unlink) {
+            $this->db->table('user_role')->delete(['user_id' => $user_id]);
+            $this->db->table('user_role')->insertBatch($data_db);
+
+            $this->db->transComplete();
+            $result = $this->db->transStatus();
+            if ($result) {
+
+                $file = $this->request->getFile('image');
+                $path = ROOTPATH . 'public/images/users/';
+
+                $img_db = $this->db->query('SELECT image FROM user WHERE user_id = ?', $user_id)->getRowArray();
+                $new_name = $img_db['image'];
+
+                if (!empty($_POST['image_remove'])) {
+                    if ($img_db['image'] != NULL) {
+                        $del = delete_file($path . $img_db['image']);
+                        $new_name = NULL;
+                        if (!$del) {
                             $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
                         }
                     }
                 }
 
-                $new_name =  get_filename($file->getName(), $path);
-                $file->move($path, $new_name);
+                if ($file && $file->getName()) {
+                    //old file
+                    if ($img_db['image']) {
+                        if (file_exists($path . $img_db['image'])) {
+                            $unlink = delete_file($path . $img_db['image']);
+                            if (!$unlink) {
+                                $response = ['status' => false, 'message' => 'Gagal menghapus gambar lama'];
+                            }
+                        }
+                    }
 
-                if (!$file->hasMoved()) {
-                    $response = ['status' => false, 'message' => 'Error saat memperoses gambar'];
-                    return $response;
+                    $new_name =  get_filename($file->getName(), $path);
+                    $file->move($path, $new_name);
+
+                    if (!$file->hasMoved()) {
+                        $response = ['status' => false, 'message' => 'Error saat memperoses gambar'];
+                        return $response;
+                    }
                 }
+
+                // Update image
+                $data_db = [];
+                $data_db['image'] = $new_name;
+                $save = $this->db->table('user')->update($data_db, ['user_id' => $user_id]);
             }
 
-            // Update image
-            $data_db = [];
-            $data_db['image'] = $new_name;
-            $save = $this->db->table('user')->update($data_db, ['user_id' => $user_id]);
-        }
+            if ($save) {
+                $response = ['status' => true, 'message' => 'Data berhasil di' . $method, 'user_id' => $user_id];
 
-        if ($save) {
-            $response = ['status' => true, 'message' => 'Data berhasil di' . $method, 'user_id' => $user_id];
-
-            if ($this->session->get('user')['user_id'] == $user_id) {
-                $this->session->set('user', $this->getUserById($this->session->get('user')['user_id']));
+                if ($this->session->get('user')['user_id'] == $user_id) {
+                    $this->session->set('user', $this->getUserById($this->session->get('user')['user_id']));
+                }
+            } else {
+                $response = ['status' => false, 'message' => 'Data gagal disimpan'];
             }
         } else {
-            $response = ['status' => false, 'message' => 'Data gagal disimpan'];
+            $response = ['status' => 'required', 'message' => 'Role harus diisi.'];
         }
 
         return $response;

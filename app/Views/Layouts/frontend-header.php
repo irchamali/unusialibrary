@@ -38,6 +38,7 @@
     <link href="<?= base_url('public'); ?>/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="<?= base_url('public'); ?>/vendors/hamburgers/hamburgers.min.css" rel="stylesheet">
     <link href="<?= base_url('public'); ?>/vendors/loaders.css/loaders.min.css" rel="stylesheet">
+    <link href="<?= base_url('public'); ?>/vendors/fontawesome/css/all.css" rel="stylesheet" />
     <link href="<?= base_url('public'); ?>/assets/css/theme.css" rel="stylesheet" />
     <link href="<?= base_url('public'); ?>/assets/css/user.css" rel="stylesheet" />
 
@@ -56,6 +57,13 @@
         .ml-auto,
         .mx-auto {
             margin-left: auto !important;
+        }
+    </style>
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
         }
     </style>
     <script src="<?= base_url('public'); ?>/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>

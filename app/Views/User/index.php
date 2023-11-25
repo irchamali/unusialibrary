@@ -36,7 +36,7 @@
                 'email' => 'Email',
                 'nama' => 'Nama',
                 'nama_role' => 'Role',
-                'status' => 'Status',
+                'is_active' => 'Status',
                 'ignore_btn' => 'Aksi'
             ];
             $settings['order'] = [3, 'asc'];
