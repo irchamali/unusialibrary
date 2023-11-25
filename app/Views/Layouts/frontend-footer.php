@@ -30,17 +30,17 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <?= $setting['google_maps']; ?>
+            <iframe src="<?= $setting['google_maps']; ?>" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <div class="col-lg-5">
                 <div class="text-white">
-                    <h4 class="text-white fs-1 fs-lg-2 mt-3 mb-1">KONTAK KAMI</h4> <br>
+                    <!-- <h4 class="text-white fs-1 fs-lg-2 mt-3 mb-1">Follow Sosmed</h4> <br> -->
                     <ul class="list-unstyled">
                         <li class="mb-2">
                             <span class="text-decoration-none d-flex align-items-center">
                                 <p class="fs-0 text-white mb-0 d-inline-block">
-                                    Alamat : <?= $setting['alamat']; ?>
+                                    <?= $setting['alamat']; ?>
                                 </p>
                             </span>
                         </li>
@@ -48,7 +48,7 @@
                         <li class="mb-2">
                             <span class="text-decoration-none d-flex align-items-center">
                                 <p class="fs-0 text-white mb-0 d-inline-block">
-                                    Email : <a href="mailto:<?= $setting['email']; ?>" class="text-white"><?= $setting['email']; ?></a>
+                                    <a href="mailto:<?= $setting['email']; ?>" class="text-white"><?= $setting['email']; ?></a>
                                 </p>
                             </span>
                         </li>
@@ -56,7 +56,7 @@
                         <li class="mb-2">
                             <span class="text-decoration-none d-flex align-items-center">
                                 <p class="fs-0 text-white mb-0 d-inline-block">
-                                    Telepon : <?= $setting['no_telp']; ?>
+                                    <?= $setting['no_telp']; ?>
                                 </p>
                             </span>
                         </li>
@@ -76,12 +76,12 @@
                         <h5 class="fs-0 text-white mb-0 d-inline-block">Instagram</h5>
                     </a>
 
-                    <a class="text-decoration-none me-3" href="<?= $setting['whatsapp'] ? $setting['whatsapp'] : 'Javascript:void(0);'; ?>" target="_blank">
+                    <!-- <a class="text-decoration-none me-3" href="<?= $setting['whatsapp'] ? $setting['whatsapp'] : 'Javascript:void(0);'; ?>" target="_blank">
                         <span class="brand-icon">
                             <span class="fab fa-whatsapp"></span>
                         </span>
                         <h5 class="fs-0 text-white mb-0 d-inline-block">WhatsApp</h5>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

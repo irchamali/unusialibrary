@@ -124,20 +124,20 @@
                 <?php
                 $index = 0;
                 foreach ($koleksi_terbaru as $key => $value) {
-                    if ($index == 6) {
+                    if ($index == 4) {
                         break;
                     }
                     $index++;
                 ?>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-3 col-lg-3">
                         <div class="card"><a href="<?= $value['book_url']; ?>" target="_blank"><img class="card-img-top" src="<?= $value['book_cover']; ?>" alt="<?= $value['book_title']; ?>" /></a>
                             <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden"><a href="<?= $value['book_url']; ?>" target="_blank">
-                                        <h5 data-zanim-xs='{"delay":0}'><?= $value['book_title']; ?></h5>
+                                        <h6 data-zanim-xs='{"delay":0}'><?= $value['book_title']; ?></h6>
                                     </a></div>
-                                <div class="overflow-hidden">
+                                <!-- <div class="overflow-hidden">
                                     <p class="text-500" data-zanim-xs='{"delay":0.1}'><?= $value['penulis']; ?></p>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

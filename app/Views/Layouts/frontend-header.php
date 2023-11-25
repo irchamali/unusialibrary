@@ -78,16 +78,16 @@
                 <div class="col-auto d-none d-lg-block">
                     <marquee scrollamount="3" scrolldelay="5" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
                         <a href="JavaScript:void(0)" role="button">
-                            <span class="text-white">SELAMAT DATANG DI WEBSITE RESMI PERPUSTAKAAN UNUSIA GRHA MAHBUB DJUNAEDI</span>
+                            <span class="text-white">SELAMAT DATANG DI WEBSITE RESMI PERPUSTAKAAN UNUSIA "GRHA MAHBUB DJUNAEDI"</span>
                         </a>
                     </marquee>
                 </div>
 
                 <div class="col-auto ms-md-auto order-md-2 d-none d-sm-flex align-items-center">
-                    <span class="me-3"><?= strftime('%d %B, %Y', $hariIni->getTimestamp()); ?></span>
+                    <span class="me-3"><?= strftime('%d %B %Y', $hariIni->getTimestamp()); ?></span>
                     <a href="<?= $setting['facebook'] ? $setting['facebook'] : 'Javascript:void(0);'; ?>" target="_blank"><span class="fab fa-facebook text-warning me-3" data-fa-transform="grow-3"></span></a>
                     <a href="<?= $setting['instagram'] ? $setting['instagram'] : 'Javascript:void(0);'; ?>" target="_blank"><span class="fab fa-instagram text-warning me-3" data-fa-transform="grow-3"></span></a>
-                    <a href="<?= $setting['whatsapp'] ? $setting['whatsapp'] : 'Javascript:void(0);'; ?>" target="_blank"><span class="fab fa-whatsapp text-warning me-3" data-fa-transform="grow-3"></span></a>
+                    
                 </div>
             </div>
         </div>
@@ -115,6 +115,7 @@
                         echo build_menu_website($currentModule, $list_menu);
                         ?>
                     </ul>
+                    </ul><a class="btn btn-outline-primary rounded-pill btn-sm border-2 d-block d-lg-inline-block ms-auto my-3 my-lg-0" href="<?= $setting['whatsapp'] ? $setting['whatsapp'] : 'Javascript:void(0);'; ?>" target="_blank">Live Chat</a>
                 </div>
             </nav>
         </div>
