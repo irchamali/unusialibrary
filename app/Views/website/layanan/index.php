@@ -11,6 +11,7 @@
                     <a href="<?= base_url('layanan/') . $layanan['slug_layanan']; ?>">
                         <div class="border rounded p-3 mb-4 text-center">
                             <span class="fs-3 <?= $layanan['icon']; ?>"></span>
+                            <!-- <h6 data-zanim-xs='{"delay":0}'><?= $layanan['nama_layanan']; ?></h6> -->
                             <input class="form-control form-control-sm mt-3 text-center" value="<?= $layanan['nama_layanan']; ?>" />
                         </div>
                     </a>

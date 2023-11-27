@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="card mb-6">
                     <div class="card-body p-5">
-                        <h4><?= $title . ' ' . $setting['nama_website']; ?></h4>
+                        <!-- <h4><?= $title . ' ' . $setting['nama_website']; ?></h4> -->
                         <?= $setting['sejarah']; ?>
                     </div>
                 </div>

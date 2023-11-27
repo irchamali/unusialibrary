@@ -12,7 +12,7 @@
 
     .jam_layanan img {
         width: 500px;
-        height: 500px;
+        height: 600px;
         margin-bottom: 15px;
         border-radius: 0.625rem;
     }
@@ -154,6 +154,10 @@
         <?php if (count($berita) > 0) { ?>
             <div class="row g-4 mb-6">
                 <?php
+                usort($berita, function($a, $b) {
+                    return strtotime($b['created_at']) - strtotime($a['created_at']);
+                });
+                
                 $index = 0;
                 foreach ($berita as $key => $berita) {
                     if ($index == 3) {
@@ -222,13 +226,13 @@
                                 <div class="overflow-hidden"><a href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $pengumuman['judul_artikel']; ?></h5>
                                     </a></div>
-                                <div class="overflow-hidden">
+                                <!-- <div class="overflow-hidden">
                                     <p class="text-500" data-zanim-xs='{"delay":0.1}'>By <?= $pengumuman['nama_pembuat']; ?></p>
                                 </div>
                                 <div class="overflow-hidden">
                                     <p class="mt-3" data-zanim-xs='{"delay":0.2}'><?= $pengumuman['isi_artikel']; ?></p>
-                                </div>
-                                <div class="overflow-hidden">
+                                </div> -->
+                                <!-- <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
                                         <a class="d-flex align-items-center" href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                             Selengkapnya
@@ -237,7 +241,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

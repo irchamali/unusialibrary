@@ -39,7 +39,7 @@
                 'status' => 'Status',
                 'ignore_btn' => 'Aksi'
             ];
-            $settings['order'] = [1, 'asc'];
+            $settings['order'] = [1, 'desc'];
             $index = 0;
             foreach ($column as $key => $val) {
                 $th .= '<th>' . $val . '</th>';

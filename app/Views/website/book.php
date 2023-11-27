@@ -8,14 +8,14 @@
         <?php if (count($koleksi_buku) > 0) { ?>
             <div class="row g-4">
                 <?php foreach ($koleksi_buku as $key => $value) { ?>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="card"><a href="<?= $value['book_url']; ?>" target="_blank"><img class="card-img-top" src="<?= $value['book_cover']; ?>" alt="<?= $value['book_title']; ?>" /></a>
                             <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                                 <div class="overflow-hidden"><a href="<?= $value['book_url']; ?>" target="_blank">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $value['book_title']; ?></h5>
                                     </a></div>
                                 <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'><?= $value['penulis']; ?></p>
+                                    <h6 class="text-500" data-zanim-xs='{"delay":0.1}'><?= $value['penulis']; ?></h6>
                                 </div>
                             </div>
                         </div>
