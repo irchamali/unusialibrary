@@ -315,7 +315,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="https://www.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://www.unusia.ac.id/assets/frontend/images/logo-basic.png" alt="Universitas Nahdlatul Ulama Indonesia" />
+                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="Universitas Nahdlatul Ulama Indonesia" />
                     </a>
                 </div>
                 <div class="swiper-slide">
@@ -325,12 +325,12 @@
                 </div>
                 <div class="swiper-slide">
                     <a href="https://lp2m.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://lp2m.unusia.ac.id/assets/images/logo-lppm-unusia.png" alt="LP2M Unusia" />
+                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="LP2M Unusia" />
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="https://lppmi.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://lppmi.unusia.ac.id/assets/elixir/assets/img/logo-dark1.png" alt="LPPMI Unusia" />
+                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="LPPMI Unusia" />
                     </a>
                 </div>
             </div>
@@ -352,25 +352,25 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="row px-lg-8">
-                        <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public'); ?>/assets/img/client1.png" alt="Member" /></div>
+                        <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public'); ?>/images/testi/test1.jpg" alt="Member" /></div>
                         <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                            <p class="lead">Their work on our website and Internet marketing has made a significant different to our business. We’ve seen a 425% increase in quote requests from the website which has been pretty remarkable – but I’d always like to see more!</p>
-                            <h6 class="fs-0 mb-1 mt-4">Michael Clarke</h6>
-                            <p class="mb-0 text-500">CEO, A.E.T Institute</p>
+                            <p class="lead">Perpustakaan Unusia adalah tempat yang perlu anda kunjungi tanpa ragu untuk mengetahui rahasia alam semesta, masa lalu, dan masa depan!</p>
+                            <h6 class="fs-0 mb-1 mt-4">dr. Syahrizal Syarif, MPH., PhD</h6>
+                            <p class="mb-0 text-500">Plh. Rektor Unusia</p>
                         </div>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="row px-lg-8">
-                        <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public'); ?>/assets/img/client2.png" alt="Member" /></div>
+                        <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public'); ?>/images/testi/test2.jpg" alt="Member" /></div>
                         <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                            <p class="lead">Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything – with almost no time or effort for me!</p>
-                            <h6 class="fs-0 mb-1 mt-4">Maria Sharapova</h6>
-                            <p class="mb-0 text-500">Managing Director, Themewagon Inc.</p>
+                            <p class="lead">Jika Anda ingin jadi pribadi yang bijak bestari sekaligus jenaka, sering-seringlah berkunjung ke Perpustakaan Unusia "Grha Mahbub Djunaidi". Sampai jumpa..</p>
+                            <h6 class="fs-0 mb-1 mt-4">Fatkhu Yasik, M.Pd</h6>
+                            <p class="mb-0 text-500">Wakil Rektor I Unusia</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <!-- <div class="swiper-slide">
                     <div class="row px-lg-8">
                         <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= base_url('public'); ?>/assets/img/client3.png" alt="Member" /></div>
                         <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
@@ -379,7 +379,7 @@
                             <p class="mb-0 text-500">Chairman, Harmony Corporation</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="swiper-nav">
                 <div class="swiper-button-prev icon-item icon-item-lg"><span class="fas fa-chevron-left fs--2"></span></div>
