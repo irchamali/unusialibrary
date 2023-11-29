@@ -20,6 +20,7 @@ $routes->get('logout', 'Login::logout');
 $routes->get('sejarah', 'Home::sejarah');
 $routes->get('visi-misi', 'Home::visi_misi');
 $routes->get('struktur-organisasi', 'Home::struktur_organisasi');
+$routes->get('bio-mahbub', 'Home::bio-mahbub');
 $routes->get('layanan', 'Home::layanan');
 $routes->get('layanan/(:segment)', 'Home::layanan/$1');
 $routes->get('fasilitas', 'Home::fasilitas');

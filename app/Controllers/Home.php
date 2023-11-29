@@ -46,6 +46,13 @@ class Home extends MyController
         $this->view('frontend', 'website/struktur_organisasi', $data);
     }
 
+    public function bio_mahbub()
+    {
+        $data = $this->data;
+        $data['title'] = 'Biografi';
+        $this->view('frontend', 'website/bio_mahbub', $data);
+    }
+
     public function fasilitas()
     {
         $data = $this->data;
