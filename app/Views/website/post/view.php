@@ -1,6 +1,6 @@
 <?php
 setlocale(LC_TIME, 'id_ID.utf8');
-$tanggal = new DateTime(@$artikel['created_at']);
+$tanggal = new DateTime($artikel['tanggal_terbit']);
 $artikel_image = $artikel['image_artikel'] ? base_url('public/images/artikel/') . $artikel['image_artikel'] : base_url('public/images/no_image.png');
 ?>
 

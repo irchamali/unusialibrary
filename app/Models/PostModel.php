@@ -7,7 +7,7 @@ class PostModel extends \App\Models\MyModel
     public function getArtikel($slug = null)
     {
         if ($slug != NULL) {
-            $response = $this->db->query('SELECT *,a.image as image_artikel FROM artikel a 
+            $response = $this->db->query('SELECT *,a.image as image_artikel, a.created_at as tanggal_terbit FROM artikel a 
             LEFT JOIN artikel_category b ON b.artikel_category_id = a.artikel_category_id
             LEFT JOIN user c ON c.user_id = a.user_id
             WHERE a.slug_artikel = ? ORDER BY a.created_at DESC', [$slug])->getRowArray();
