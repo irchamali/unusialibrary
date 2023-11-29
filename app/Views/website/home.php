@@ -58,30 +58,30 @@
     <div class="swiper theme-slider min-vh-100" data-swiper='{"loop":true,"allowTouchMove":false,"autoplay":{"delay":5000},"effect":"fade","speed":800}'>
         <div class="swiper-wrapper">
             <?php foreach ($sliders as $slider) : ?>
-            <div class="swiper-slide" data-zanim-timeline="{}">
-            <div class="bg-holder" style="background-image:url(<?= 'public/images/slider/' . $slider['image']; ?>);">
-            </div>
+                <div class="swiper-slide" data-zanim-timeline="{}">
+                    <div class="bg-holder" style="background-image:url(<?= 'public/images/slider/' . $slider['image']; ?>);">
+                    </div>
 
-                <div class="container">
-                    <div class="row min-vh-100 py-8 align-items-center" data-inertia='{"weight":1.5}'>
-                        <div class="col-sm-8 col-lg-7 px-5 px-sm-3">
-                            <div class="overflow-hidden">
-                                <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'><?= $slider['title']; ?></h1>
-                            </div>
-                            <div class="overflow-hidden">
-                                <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'><?= $slider['sub_title']; ?></p>
-                            </div>
-                            <div class="overflow-hidden">
-                                <div data-zanim-xs='{"delay":0.2}'>
-                                    <a class="btn btn-primary me-3 mt-3" href="<?= $slider['url']; ?>">
-                                        Selengkapnya <span class="fas fa-chevron-right ms-2"></span>
-                                    </a>
+                    <div class="container">
+                        <div class="row min-vh-100 py-8 align-items-center" data-inertia='{"weight":1.5}'>
+                            <div class="col-sm-8 col-lg-7 px-5 px-sm-3">
+                                <div class="overflow-hidden">
+                                    <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'><?= $slider['title']; ?></h1>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'><?= $slider['sub_title']; ?></p>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <div data-zanim-xs='{"delay":0.2}'>
+                                        <a class="btn btn-primary me-3 mt-3" href="<?= $slider['url']; ?>">
+                                            Selengkapnya <span class="fas fa-chevron-right ms-2"></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <?php endforeach; ?>
             <div class="swiper-nav">
                 <div class="swiper-button-prev"><span class="fas fa-chevron-left"></span></div>
@@ -154,10 +154,6 @@
         <?php if (count($berita) > 0) { ?>
             <div class="row g-4 mb-6">
                 <?php
-                usort($berita, function($a, $b) {
-                    return strtotime($b['created_at']) - strtotime($a['created_at']);
-                });
-                
                 $index = 0;
                 foreach ($berita as $key => $berita) {
                     if ($index == 3) {
@@ -166,7 +162,7 @@
                     $index++;
 
                     setlocale(LC_TIME, 'id_ID.utf8');
-                    $tanggal = new DateTime(@$berita['created_at']);
+                    $tanggal = new DateTime(@$berita['tanggal_terbit']);
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
@@ -215,6 +211,9 @@
                         break;
                     }
                     $index++;
+
+                    setlocale(LC_TIME, 'id_ID.utf8');
+                    $tanggal = new DateTime(@$pengumuman['tanggal_terbit']);
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
@@ -226,13 +225,10 @@
                                 <div class="overflow-hidden"><a href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                         <h5 data-zanim-xs='{"delay":0}'><?= $pengumuman['judul_artikel']; ?></h5>
                                     </a></div>
-                                <!-- <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'>By <?= $pengumuman['nama_pembuat']; ?></p>
+                                <div class="overflow-hidden">
+                                    <p class="text-500 small" data-zanim-xs='{"delay":0.1}'>By <?= $pengumuman['nama_pembuat']; ?> | <?= strftime('%d %B, %Y', $tanggal->getTimestamp()); ?></p>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="mt-3" data-zanim-xs='{"delay":0.2}'><?= $pengumuman['isi_artikel']; ?></p>
-                                </div> -->
-                                <!-- <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
                                         <a class="d-flex align-items-center" href="<?= base_url('post/') . $pengumuman['slug_artikel']; ?>">
                                             Selengkapnya
@@ -241,7 +237,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -266,6 +262,9 @@
                         break;
                     }
                     $index++;
+
+                    setlocale(LC_TIME, 'id_ID.utf8');
+                    $tanggal = new DateTime(@$agenda['tanggal_terbit']);
                 ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
@@ -278,10 +277,7 @@
                                         <h5 data-zanim-xs='{"delay":0}'><?= $agenda['judul_artikel']; ?></h5>
                                     </a></div>
                                 <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'>By <?= $agenda['nama_pembuat']; ?></p>
-                                </div>
-                                <div class="overflow-hidden">
-                                    <p class="mt-3" data-zanim-xs='{"delay":0.2}'><?= $agenda['isi_artikel']; ?></p>
+                                    <p class="text-500 small" data-zanim-xs='{"delay":0.1}'>By <?= $agenda['nama_pembuat']; ?> | <?= strftime('%d %B, %Y', $tanggal->getTimestamp()); ?></p>
                                 </div>
                                 <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>

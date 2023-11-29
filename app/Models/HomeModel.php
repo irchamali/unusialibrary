@@ -51,7 +51,7 @@ class HomeModel extends \App\Models\MyModel
     // ARTIKEL
     public function getHomeArtikel($slug = null)
     {
-        return $this->db->query('SELECT *,a.image as image_artikel, a.created_at as tanggal, b.nama as nama_pembuat FROM artikel a 
+        return $this->db->query('SELECT *,a.image as image_artikel, a.created_at as tanggal_terbit, b.nama as nama_pembuat FROM artikel a 
         LEFT JOIN user b ON b.user_id = a.user_id
         LEFT JOIN artikel_category c ON c.artikel_category_id = a.artikel_category_id WHERE c.slug_kategori = ? ORDER BY a.created_at DESC', [$slug])->getResultArray();
     }
