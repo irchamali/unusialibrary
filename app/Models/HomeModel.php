@@ -26,6 +26,28 @@ class HomeModel extends \App\Models\MyModel
         return $result;
     }
 
+    public function getHomeBookPage($page)
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("POST", "https://unusia.perpustakaan.co.id/view/ajax", [
+            "headers" => [
+                "Accept" => "application/json, text/javascript, */*; q=0.01"
+            ],
+            "form_params" => [
+                "action" => "get_collectionbook2",
+                "page" => $page
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true)['data'] ?? null;
+        }
+
+        return $result;
+    }
+
     // ARTIKEL
     public function getHomeArtikel($slug = null)
     {
