@@ -61,7 +61,7 @@ class ArtikelModel extends \App\Models\MyModel
         LEFT JOIN user u ON u.user_id = a.user_id 
         LEFT JOIN artikel_category ac ON ac.artikel_category_id = a.artikel_category_id 
         WHERE ac.nama_kategori = ? AND a.status = 'published'
-        ORDER BY a.created_at", [$nama_kategori])->getResultArray();
+        ORDER BY a.created_at DESC", [$nama_kategori])->getResultArray();
     }
 
     public function getArtikelByTag()
@@ -70,7 +70,7 @@ class ArtikelModel extends \App\Models\MyModel
         LEFT JOIN artikel_tag a_t ON a_t.artikel_tag_id = alt.artikel_tag_id
         LEFT JOIN artikel a ON a.artikel_id = alt.artikel_id 
         LEFT JOIN user u ON u.user_id = a.user_id
-        ORDER BY a.created_at")->getResultArray();
+        ORDER BY a.created_at DESC")->getResultArray();
     }
 
     // public function getPengumuman()

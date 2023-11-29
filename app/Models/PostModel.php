@@ -10,7 +10,7 @@ class PostModel extends \App\Models\MyModel
             $response = $this->db->query('SELECT *,a.image as image_artikel FROM artikel a 
             LEFT JOIN artikel_category b ON b.artikel_category_id = a.artikel_category_id
             LEFT JOIN user c ON c.user_id = a.user_id
-            WHERE a.slug_artikel = ? ORDER BY a.created_at', [$slug])->getRowArray();
+            WHERE a.slug_artikel = ? ORDER BY a.created_at DESC', [$slug])->getRowArray();
             if (!$response)
                 return;
             $response['tag'] = [];
@@ -22,7 +22,7 @@ class PostModel extends \App\Models\MyModel
             }
             return $response;
         } else {
-            return $this->db->query('SELECT *,a.image as image_artikel FROM artikel a LEFT JOIN user c ON c.user_id = a.user_id ORDER BY a.created_at');
+            return $this->db->query('SELECT *,a.image as image_artikel FROM artikel a LEFT JOIN user c ON c.user_id = a.user_id ORDER BY a.created_at DESC');
         }
     }
 
