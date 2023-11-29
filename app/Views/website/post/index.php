@@ -7,7 +7,9 @@
 
         <?php if (count($artikel) > 0) { ?>
             <div class="row g-4">
-                <?php foreach ($artikel as $key => $value) {
+                <?php
+                $num_char = 200;
+                foreach ($artikel as $key => $value) {
                     $artikel_image = $value['image_artikel'] ? base_url('public/images/artikel/') . $value['image_artikel'] : base_url('public/images/no_image.png');
                 ?>
                     <div class="col-md-6 col-lg-4">
@@ -26,9 +28,9 @@
                                     <p class="text-500" data-zanim-xs='{"delay":0.1}'>By <?= $value['nama']; ?></p>
                                 </div>
 
-                                <div class="overflow-hidden">
-                                    <p class="" data-zanim-xs='{"delay":0.2}'><?= 'ISI BERITA'; ?></p>
-                                </div>
+                                <!-- <div class="overflow-hidden">
+                                    <p class="" data-zanim-xs='{"delay":0.2}'><?= substr($value['isi_artikel'], 0, $num_char) . '...'; ?></p>
+                                </div> -->
 
                                 <div class="overflow-hidden">
                                     <div class="d-inline-block" data-zanim-xs='{"delay":0.3}'>
