@@ -17,7 +17,7 @@
                                     <th>Fakultas</th>
                                     <th>Nama Jurnal</th>
                                     <th>Kategori</th>
-                                    <th>Link</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +27,11 @@
                                         <td><?= $value['nama_fakultas']; ?></td>
                                         <td><a href="<?= $value['link']; ?>" target="_blank"><?= $value['nama_jurnal']; ?></a></td>
                                         <td><?= ucwords($value['kategori']); ?></td>
-                                        <td><a href="<?= $value['link']; ?>" target="_blank"><?= $value['link']; ?></a></td>
+                                        <td style="vertical-align: middle;">
+                                            <div class="btn-group">
+                                                <a class="btn-sm btn btn-outline-primary" href="<?= $value['link']; ?>" target="_blank"><i class="fas fa-eye"></i></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
