@@ -7,11 +7,13 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-8 mb-3">
                 <img class="card" width="100%" src="<?= base_url('public/images/') . $setting['struktur_organisasi']; ?>" alt="<?= $setting['nama_website']; ?>" />
             </div>
-            <div class="col-lg-6">
-                <h4>Mahbub Djunaidi</h4>
+            <div class="col-lg-4">
+                <h5>Rektor : Juri Ardiantoro, PhD</h5>
+                <h6>Wakil Rektor I : Fatkhu Yasik, M.Pd</h6>
+                <h6>Kepala Perpustakaan : Siti Rozinah, M.Hum</h6>
             </div>
         </div>
     </div>
