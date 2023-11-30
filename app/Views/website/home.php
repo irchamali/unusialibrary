@@ -307,26 +307,26 @@
 <!-- TAUTAN -->
 <div class="bg-200 py-6">
     <div class="container">
-        <div class="swiper theme-slider" data-swiper='{"autoplay":true,"spaceBetween":30,"loop":true,"slidesPerView":1,"breakpoints":{"670":{"slidesPerView":2},"1200":{"slidesPerView":4}}}'>
+        <div class="swiper theme-slider" data-swiper='{"autoplay":true,"spaceBetween":30,"loop":true,"slidesPerView":2,"breakpoints":{"670":{"slidesPerView":2},"1200":{"slidesPerView":4}}}'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <a href="https://www.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="Universitas Nahdlatul Ulama Indonesia" />
+                    <a href="#" target="">
+                        <img class="w-100" src="<?= base_url('public/images/partner/log1.png'); ?>" alt="Kubuku E-resources" />
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="https://www.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="Perpustakaan Universitas Nahdlatul Ulama Indonesia" />
+                    <a href="#" target="">
+                        <img class="w-100" src="<?= base_url('public/images/partner/log2.png'); ?>" alt="" />
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="https://lp2m.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="LP2M Unusia" />
+                    <a href="#" target="">
+                        <img class="w-100" src="<?= base_url('public/images/partner/log3.png'); ?>" alt="" />
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="https://lppmi.unusia.ac.id/" target="_blank">
-                        <img class="w-100" src="https://kubuku.id/prod/img/logo/KBK755360d_head.png?=221811103346?img=232011094216" alt="LPPMI Unusia" />
+                    <a href="#" target="">
+                        <img class="w-100" src="<?= base_url('public/images/partner/log4.png'); ?>" alt="" />
                     </a>
                 </div>
             </div>
