@@ -2,14 +2,16 @@
 
     <div class="container">
         <div class="text-center mb-3 mt-3">
-            <h3 class="fs-2 fs-md-3"><?= strtoupper($title); ?></h3>
+            <h3 class="fs-2 fs-md-3"><?= $title; ?></h3>
+            <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
         </div>
 
-        <div class="card mb-6">
-            <div class="card-body">
+        <div class="card mb-6 col-md-6 mx-auto">
+            <div class="card-body text-center">
                 <input class="form-control" type="text" id="keyword" name="keyword" placeholder="Cari Buku">
             </div>
         </div>
+
 
         <?php if (count($koleksi_buku) > 0) { ?>
             <div class="row g-4 result-book">

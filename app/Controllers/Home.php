@@ -63,7 +63,7 @@ class Home extends MyController
     public function book()
     {
         $data = $this->data;
-        $data['title'] = 'Buku';
+        $data['title'] = 'Koleksi Buku';
         $data['koleksi_buku'] = $this->model->getHomeBook();
         $this->view('frontend', 'website/book', $data);
     }
