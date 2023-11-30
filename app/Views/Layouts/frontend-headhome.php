@@ -8,7 +8,7 @@
     ?>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?= $title; ?> | <?= $setting['nama_website']; ?></title>
+    <title><?= $setting['nama_website']; ?></title>
     <meta name="description" content="<?= $setting['meta_deskripsi']; ?>">
     <meta name="keyword" content="<?= $setting['meta_keyword']; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">

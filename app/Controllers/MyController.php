@@ -66,8 +66,8 @@ class MyController extends BaseController
         $this->data['request'] = $this->request;
         $this->data['isLoggedIn'] = $this->isLoggedIn;
         $this->data['session'] = $this->session;
-        $this->data['title'] = 'Perpustakaan Mahbub Djunaidi';
-        $this->data['description'] = 'Website Resmi Perpustakaan Mahbub Djunaidi';
+        $this->data['title'] = 'Mahbub Djunaidi';
+        $this->data['description'] = 'Official Website of Unusia Library';
         $this->data['userLogin'] = [];
 
         $this->data['setting'] = $this->model->getSetting();
