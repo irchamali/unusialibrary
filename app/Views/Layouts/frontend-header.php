@@ -5,6 +5,7 @@
     <?php
     setlocale(LC_TIME, 'id_ID.utf8');
     $hariIni = new DateTime();
+    // $image = ;
     ?>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,21 +14,21 @@
     <meta name="keyword" content="<?= $setting['meta_keyword']; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="canonical" href="<?= base_url(); ?>" />
+    <link rel="canonical" href="<?= $currentURL; ?>" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="<?= $setting['nama_website']; ?>" />
+    <meta property="og:title" content="<?= $title; ?> | <?= $setting['nama_website']; ?>" />
     <meta property="og:description" content="<?= $setting['meta_deskripsi']; ?>" />
-    <meta property="og:url" content="<?= base_url(); ?>" />
-    <!-- <meta property="og:image" content="https://www.unusia.ac.id/assets/images/logobig.jpg" /> -->
-    <!-- <meta property="og:image:secure_url" content="https://www.unusia.ac.id/assets/images/logobig.jpg" /> -->
-    <!-- <meta property="og:image:width" content="560" /> -->
-    <!-- <meta property="og:image:height" content="315" /> -->
+    <meta property="og:url" content="<?= $currentURL; ?>" />
+    <meta property="og:image" content="<?= $image; ?>" />
+    <meta property="og:image:secure_url" content="<?= $image; ?>" />
+    <meta property="og:image:width" content="560" />
+    <meta property="og:image:height" content="315" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="<?= $setting['meta_deskripsi']; ?>" />
-    <meta name="twitter:title" content="<?= $setting['nama_website']; ?>" />
-    <!-- <meta name="twitter:site" content="https://twitter.com/unuindonesia" /> -->
-    <!-- <meta name="twitter:image" content="https://www.unusia.ac.id/assets/images/logobig.jpg" /> -->
+    <meta name="twitter:title" content="<?= $title; ?> | <?= $setting['nama_website']; ?>" />
+    <meta name="twitter:site" content="https://twitter.com/unuindonesia" />
+    <meta name="twitter:image" content="<?= $image; ?>" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('public'); ?>/assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('public'); ?>/assets/img/favicons/favicon-32x32.png">
@@ -87,7 +88,7 @@
                     <span class="me-3"><?= strftime('%d %B %Y', $hariIni->getTimestamp()); ?></span>
                     <a href="<?= $setting['facebook'] ? $setting['facebook'] : 'Javascript:void(0);'; ?>" target="_blank"><span class="fab fa-facebook text-warning me-3" data-fa-transform="grow-3"></span></a>
                     <a href="<?= $setting['instagram'] ? $setting['instagram'] : 'Javascript:void(0);'; ?>" target="_blank"><span class="fab fa-instagram text-warning me-3" data-fa-transform="grow-3"></span></a>
-                    
+
                 </div>
             </div>
         </div>

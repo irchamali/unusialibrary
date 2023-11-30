@@ -17,6 +17,9 @@ class Post extends MyController
         $this->data['artikel_category'] = $this->model->getArtikelCategory()->getResultArray();
         if ($slug) {
             $this->data['artikel'] = $this->model->getArtikel($slug);
+            $this->data['image'] = base_url('public/images/artikel/') . $this->data['artikel']['image_artikel'];
+            $this->data['setting']['meta_deskripsi'] = $this->data['artikel']['meta_deskripsi'];
+            $this->data['setting']['meta_keyword'] = $this->data['artikel']['meta_keyword'];
             if (!$this->data['artikel']) {
                 $this->errorPageFrontend('Data tidak ditemukan');
                 exit;

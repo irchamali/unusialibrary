@@ -68,6 +68,7 @@ class MyController extends BaseController
         $this->data['session'] = $this->session;
         $this->data['title'] = 'Mahbub Djunaidi';
         $this->data['description'] = 'Official Website of Unusia Library';
+        $this->data['image'] = base_url('public/images/mahbub-djunaidi.jpg');
         $this->data['userLogin'] = [];
 
         $this->data['setting'] = $this->model->getSetting();
