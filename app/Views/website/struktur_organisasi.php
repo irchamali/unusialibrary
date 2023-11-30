@@ -7,8 +7,11 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <img class="card" width="100%" src="<?= base_url('public/images/') . $setting['struktur_organisasi']; ?>" alt="<?= $setting['nama_website']; ?>" />
+            </div>
+            <div class="col-lg-6">
+                <h4>Mahbub Djunaidi</h4>
             </div>
         </div>
     </div>
