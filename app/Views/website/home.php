@@ -11,8 +11,8 @@
     }
 
     .jam_layanan img {
-        width: 500px;
-        height: 600px;
+        width: 310px;
+        height: 410px;
         margin-bottom: 15px;
         border-radius: 0.625rem;
     }
