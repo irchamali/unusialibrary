@@ -65,7 +65,7 @@
 
 <script>
     $(function() {
-
+        
         $(document).ready(function() {
             $('.modal-body').css({
                 "height": "70vh",
@@ -81,7 +81,7 @@
                     "serverSide": true,
                     "scrollX": true,
                     "ajax": {
-                        "url": moduleURL + '/ajaxGetData',
+                        "url": '<?= base_url('admin/artikel/ajaxGetData'); ?>',
                         "type": "POST",
                         /* "dataSrc": function (json) {
                             console.log(json)
