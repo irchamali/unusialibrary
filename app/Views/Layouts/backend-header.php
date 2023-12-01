@@ -31,7 +31,7 @@
     <script type="text/javascript">
         let baseURL = "<?= $baseURL; ?>";
         let currentURL = "<?= $currentURL ?>";
-        let moduleURL = "<?= '/' . $moduleURL ?>";
+        let moduleURL = "<?= $moduleURL ?>";
         let themeURL = "<?= base_url() . '/public/dist/' ?>";
     </script>
 </head>
