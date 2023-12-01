@@ -183,7 +183,7 @@
                                         $bootbox.modal('hide');
                                         // $('.menu-kategori-container').find('.list-group-item-primary').click();
                                         setTimeout(function() {
-                                            window.location.href = moduleURL;
+                                            window.location.href = "<?= base_url('admin/menu-website/') ?>";
                                         }, 1000);
                                     } else {
                                         if (response.error_query != undefined) {
