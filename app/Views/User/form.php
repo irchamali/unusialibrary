@@ -192,7 +192,7 @@
                     if (response.status == true) {
                         showAlert('success', response.message);
                         setTimeout(function() {
-                            window.location.href = moduleURL;
+                            window.location.href = '<?= base_url('admin/user/'); ?>';
                         }, 1000);
                     } else {
                         if (response.error_input) {

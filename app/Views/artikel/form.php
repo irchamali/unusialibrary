@@ -203,7 +203,7 @@
                     if (response.status) {
                         showAlert('success', response.message);
                         setTimeout(function() {
-                            window.location.href = moduleURL;
+                            window.location.href = '<?= base_url('admin/artikel/'); ?>';
                         }, 1000);
                     } else {
                         if (response.error_input) {
