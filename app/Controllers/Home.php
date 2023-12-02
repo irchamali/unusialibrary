@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\HomeModel;
 use App\Models\SliderModel;
+use App\Models\TestiModel;
 
 class Home extends MyController
 {
@@ -12,6 +13,7 @@ class Home extends MyController
         parent::__construct();
         $this->model = new HomeModel;
         $this->sliderModel = new SliderModel();
+        $this->testiModel = new TestiModel();
     }
 
     public function index()
@@ -22,6 +24,7 @@ class Home extends MyController
         $data['pengumuman'] = $this->model->getHomeArtikel('pengumuman');
         $data['agenda'] = $this->model->getHomeArtikel('agenda');
         $data['sliders'] = $this->sliderModel->findAll();
+        $data['testimonials'] = $this->testiModel->findAll();
         $this->view('frontend', 'website/home', $data);
     }
 
