@@ -309,26 +309,13 @@
     <div class="container">
         <div class="swiper theme-slider" data-swiper='{"autoplay":true,"spaceBetween":30,"loop":true,"slidesPerView":2,"breakpoints":{"670":{"slidesPerView":2},"1200":{"slidesPerView":4}}}'>
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#" target="">
-                        <img class="w-100" src="<?= base_url('public/images/partner/log1.png'); ?>" alt="Kubuku E-resources" />
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" target="">
-                        <img class="w-100" src="<?= base_url('public/images/partner/log2.png'); ?>" alt="" />
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" target="">
-                        <img class="w-100" src="<?= base_url('public/images/partner/log3.png'); ?>" alt="" />
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" target="">
-                        <img class="w-100" src="<?= base_url('public/images/partner/log4.png'); ?>" alt="" />
-                    </a>
-                </div>
+                <?php foreach ($partners as $partner) : ?>
+                    <div class="swiper-slide">
+                        <a href="<?= $partner['link']; ?>" target="_blank">
+                            <img class="w-100" src="<?= 'public/images/partnership/' . $partner['logo']; ?>" alt="Partnership Logo" />
+                        </a>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -346,18 +333,18 @@
 
         <div class="swiper theme-slider" data-swiper='{"loop":true,"slidesPerView":1,"autoplay":{"delay":5000}}'>
             <div class="swiper-wrapper">
-            <?php foreach ($testimonials as $testi) : ?>
-                <div class="swiper-slide">
-                    <div class="row px-lg-8">
-                        <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= 'public/images/testimoni/' . $testi['image']; ?>" alt="Member" /></div>
-                        <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                            <p class="lead"><?= $testi['deskripsi']; ?></p>
-                            <h6 class="fs-0 mb-1 mt-4"><?= $testi['nama']; ?></h6>
-                            <p class="mb-0 text-500"><?= $testi['title']; ?></p>
+                <?php foreach ($testimonials as $testi) : ?>
+                    <div class="swiper-slide">
+                        <div class="row px-lg-8">
+                            <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= 'public/images/testimoni/' . $testi['image']; ?>" alt="Testimonials" /></div>
+                            <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
+                                <p class="lead"><?= $testi['deskripsi']; ?></p>
+                                <h6 class="fs-0 mb-1 mt-4"><?= $testi['nama']; ?></h6>
+                                <p class="mb-0 text-500"><?= $testi['title']; ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
             <div class="swiper-nav">
                 <div class="swiper-button-prev icon-item icon-item-lg"><span class="fas fa-chevron-left fs--2"></span></div>

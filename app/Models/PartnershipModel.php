@@ -2,8 +2,17 @@
 
 namespace App\Models;
 
+use CodeIgniter\Model;
+
 class PartnershipModel extends \App\Models\MyModel
 {
+    protected $table         = 'partnership';
+    protected $primaryKey    = 'id';
+    protected $allowedFields = ['logo', 'nama','link'];
+    protected $useTimestamps = true;
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+
     public function getPartnershipById($id)
     {
         return $this->db->query('SELECT * FROM partnership WHERE id = ?', [$id])->getRowArray();
