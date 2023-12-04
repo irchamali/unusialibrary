@@ -64,8 +64,34 @@ class Home extends MyController
     {
         $data = $this->data;
         $data['title'] = 'Koleksi Buku';
-        $data['koleksi_buku'] = $this->model->getHomeBook();
         $this->view('frontend', 'website/book', $data);
+    }
+
+    public function book_fetch()
+    {
+        $output = '';
+        $buku = $this->model->getHomeBook();
+        foreach ($buku as $key => $value) {
+            $output .= '<div class="col-md-4 col-lg-3 card-book">
+                            <div class="card">
+                                <a href="' . $value['book_url'] . '" target="_blank">
+                                    <img class="card-img-top" src="' . $value['book_cover'] . '" alt="' . $value['book_title'] . '" />
+                                </a>
+                                <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                                    <div class="overflow-hidden">
+                                        <a href="' . $value['book_url'] . '" target="_blank">
+                                            <h5 data-zanim-xs="{"delay":0}">' . $value['book_title'] . '</h5>
+                                        </a>
+                                    </div>
+                                    <div class="overflow-hidden">
+                                        <h6 class="text-500" data-zanim-xs="{"delay":0.1}>' . $value['penulis'] . '</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        }
+        echo json_encode($output);
+        exit();
     }
 
     public function layanan($slug = null)
