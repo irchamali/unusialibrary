@@ -70,16 +70,17 @@ class Home extends MyController
 
     public function layanan($slug = null)
     {
+        $data = $this->data;
         if ($slug) {
             $getLayananBySlug = $this->model->getHomeLayananBySlug($slug);
+            $data['title'] = $getLayananBySlug['nama_layanan'];
             if (!$getLayananBySlug) {
                 $this->errorPageFrontend('Layanan tidak ditemukan');
                 exit;
             }
-            $this->data['layanan'] = $getLayananBySlug;
-            $this->view('frontend', 'website/layanan/view', $this->data);
+            $data['layanan'] = $getLayananBySlug;
+            $this->view('frontend', 'website/layanan/view', $data);
         } else {
-            $data = $this->data;
             $data['title'] = 'Layanan';
             $data['layanan'] = $this->model->getHomeLayanan();
             $this->view('frontend', 'website/layanan/index', $data);
