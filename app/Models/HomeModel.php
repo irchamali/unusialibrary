@@ -79,4 +79,22 @@ class HomeModel extends \App\Models\MyModel
         return $this->db->query('SELECT * FROM jurnal j 
         LEFT JOIN fakultas f ON f.fakultas_id = j.fakultas_id WHERE j.kategori = ?', [$kategori])->getResultArray();
     }
+
+    // SLIDER
+    public function getHomeSlider()
+    {
+        return $this->db->query('SELECT * FROM slider')->getResultArray();
+    }
+
+    // TESTIMONI
+    public function getHomeTestimoni()
+    {
+        return $this->db->query('SELECT * FROM testimoni')->getResultArray();
+    }
+
+    // PARTNERSHIP
+    public function getHomePartnership()
+    {
+        return $this->db->query('SELECT * FROM partnership')->getResultArray();
+    }
 }
