@@ -57,23 +57,22 @@
 <section class="py-0">
     <div class="swiper theme-slider min-vh-100" data-swiper='{"loop":true,"allowTouchMove":false,"autoplay":{"delay":5000},"effect":"fade","speed":800}'>
         <div class="swiper-wrapper">
-            <?php foreach ($sliders as $slider) : ?>
+            <?php foreach ($slider as $value) : ?>
                 <div class="swiper-slide" data-zanim-timeline="{}">
-                    <div class="bg-holder" style="background-image:url(<?= 'public/images/slider/' . $slider['image']; ?>);">
-                    </div>
+                    <div class="bg-holder" style="background-image:url(<?= 'public/images/slider/' . $value['image']; ?>);"></div>
 
                     <div class="container">
                         <div class="row min-vh-100 py-8 align-items-center" data-inertia='{"weight":1.5}'>
                             <div class="col-sm-8 col-lg-7 px-5 px-sm-3">
                                 <div class="overflow-hidden">
-                                    <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'><?= $slider['title']; ?></h1>
+                                    <h1 class="fs-4 fs-md-5 lh-1" data-zanim-xs='{"delay":0}'><?= $value['title']; ?></h1>
                                 </div>
                                 <div class="overflow-hidden">
-                                    <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'><?= $slider['sub_title']; ?></p>
+                                    <p class="text-primary pt-4 mb-5 fs-1 fs-md-2 lh-xs" data-zanim-xs='{"delay":0.1}'><?= $value['sub_title']; ?></p>
                                 </div>
                                 <div class="overflow-hidden">
                                     <div data-zanim-xs='{"delay":0.2}'>
-                                        <a class="btn btn-primary me-3 mt-3" href="<?= $slider['url']; ?>">
+                                        <a class="btn btn-primary me-3 mt-3" href="<?= $value['url']; ?>">
                                             Selengkapnya <span class="fas fa-chevron-right ms-2"></span>
                                         </a>
                                     </div>
@@ -305,53 +304,59 @@
 <!-- END BERITA & AGENDA SERTA PENGUMUMAN -->
 
 <!-- TAUTAN -->
-<div class="bg-200 py-6">
-    <div class="container">
-        <div class="swiper theme-slider" data-swiper='{"autoplay":true,"spaceBetween":30,"loop":true,"slidesPerView":2,"breakpoints":{"670":{"slidesPerView":2},"1200":{"slidesPerView":4}}}'>
-            <div class="swiper-wrapper">
-                <?php foreach ($partners as $partner) : ?>
-                    <div class="swiper-slide">
-                        <a href="<?= $partner['link']; ?>" target="_blank">
-                            <img class="w-100" src="<?= 'public/images/partnership/' . $partner['logo']; ?>" alt="Partnership Logo" />
-                        </a>
-                    </div>
-                <?php endforeach; ?>
+<?php if (count($partnership) > 0) { ?>
+    <div class="bg-200 py-6">
+        <div class="container">
+            <div class="swiper theme-slider" data-swiper='{"autoplay":true,"spaceBetween":30,"loop":true,"slidesPerView":1,"breakpoints":{"670":{"slidesPerView":2},"1200":{"slidesPerView":4}}}'>
+                <div class="swiper-wrapper">
+                    <?php foreach ($partnership as $value) {
+                        $image_partnership = @$value['logo'] ?  @base_url('public/images/partnership/') . $value['logo'] : base_url('public/images/no_image.png');
+                    ?>
+                        <div class="swiper-slide"><img class="w-100" src="<?= $image_partnership; ?>" alt="image" /></div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php } ?>
 <!-- END TAUTAN -->
 
 <!-- TESTIMONI -->
-<section class="bg-white">
+<?php if (count($testimoni) > 0) { ?>
+    <section class="bg-white">
 
-    <div class="container">
-        <div class="text-center mb-6">
-            <h3 class="fs-2 fs-md-3">Testimoni</h3>
-            <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
-        </div>
+        <div class="container">
+            <div class="text-center mb-6">
+                <h3 class="fs-2 fs-md-3">Testimoni</h3>
+                <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
+            </div>
 
-        <div class="swiper theme-slider" data-swiper='{"loop":true,"slidesPerView":1,"autoplay":{"delay":5000}}'>
-            <div class="swiper-wrapper">
-                <?php foreach ($testimonials as $testi) : ?>
-                    <div class="swiper-slide">
-                        <div class="row px-lg-8">
-                            <div class="col-4 col-md-3 mx-auto"><img class="rounded-3 mx-auto img-fluid" src="<?= 'public/images/testimoni/' . $testi['image']; ?>" alt="Testimonials" /></div>
-                            <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
-                                <p class="lead"><?= $testi['deskripsi']; ?></p>
-                                <h6 class="fs-0 mb-1 mt-4"><?= $testi['nama']; ?></h6>
-                                <p class="mb-0 text-500"><?= $testi['title']; ?></p>
+            <div class="swiper theme-slider" data-swiper='{"loop":true,"slidesPerView":1,"autoplay":{"delay":5000}}'>
+                <div class="swiper-wrapper">
+                    <?php foreach ($testimoni as $value) {
+                        $image_testimoni = @$value['image'] ?  @base_url('public/images/testimoni/') . $value['image'] : base_url('public/images/no_image.png');
+                    ?>
+                        <div class="swiper-slide">
+                            <div class="row px-lg-8">
+                                <div class="col-4 col-md-3 mx-auto">
+                                    <img class="rounded-3 mx-auto img-fluid" src="<?= $image_testimoni; ?>" alt="<?= $value['nama']; ?>" />
+                                </div>
+                                <div class="col-md-9 mt-4 mt-md-0 px-4 px-sm-3">
+                                    <p class="lead"><?= $value['deskripsi']; ?></p>
+                                    <h6 class="fs-0 mb-1 mt-4"><?= $value['nama']; ?></h6>
+                                    <p class="mb-0 text-500"><?= $value['title']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="swiper-nav">
-                <div class="swiper-button-prev icon-item icon-item-lg"><span class="fas fa-chevron-left fs--2"></span></div>
-                <div class="swiper-button-next icon-item icon-item-lg"><span class="fas fa-chevron-right fs--2"></span></div>
+                    <?php } ?>
+                </div>
+                <div class="swiper-nav">
+                    <div class="swiper-button-prev icon-item icon-item-lg"><span class="fas fa-chevron-left fs--2"></span></div>
+                    <div class="swiper-button-next icon-item icon-item-lg"><span class="fas fa-chevron-right fs--2"></span></div>
+                </div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
+<?php } ?>
 <!-- END TESTIMONI -->
