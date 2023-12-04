@@ -68,7 +68,7 @@
         }
     </style>
     <script src="<?= base_url('public'); ?>/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
-    <script type="text/javascript" src="http://localhost/unusialibrary/public/plugins/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= base_url('public'); ?>/plugins/jquery/dist/jquery.min.js"></script>
 </head>
 
 
