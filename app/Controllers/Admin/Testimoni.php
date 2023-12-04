@@ -68,7 +68,7 @@ class Testimoni extends MyController
 
     public function index()
     {
-        $this->data['title'] = 'Daftar Partnership';
+        $this->data['title'] = 'Daftar Testimoni';
         $this->view('backend', 'testimoni/index', $this->data);
     }
 
