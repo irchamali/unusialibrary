@@ -325,13 +325,20 @@
                 cache: false,
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
-                    // if (response.status == false) {
-                    //     if (response.error) {
-                    //         $('[name="file_excel"]').parent().addClass('has-error');
-                    //         $('[name="file_excel"]').next('.help-block').text(response.error);
-                    //     }
-                    // }
+                    $('#modal-import').modal('hide');
+
+                    if (response.status == true) {
+                        showAlert('success', response.message);
+                    }
+
+                    $('.btn-refresh').click();
+
+                    if (response.status == false) {
+                        if (response.error) {
+                            $('[name="file_excel"]').parent().addClass('has-error');
+                            $('[name="file_excel"]').next('.help-block').text(response.error);
+                        }
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert(jqXHR.responseText);

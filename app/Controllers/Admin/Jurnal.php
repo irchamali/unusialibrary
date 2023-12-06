@@ -87,15 +87,15 @@ class Jurnal extends MyController
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'fakultas_id');
         $sheet->setCellValue('B1', 'nama_jurnal');
-        $sheet->setCellValue('C1', 'link');
-        $sheet->setCellValue('D1', 'kategori');
+        $sheet->setCellValue('C1', 'kategori');
+        $sheet->setCellValue('D1', 'link');
 
         $fakultas = $this->fakultas->getFakultasById($this->request->getGet('id'));
 
         $sheet->setCellValue('A2', $fakultas['fakultas_id']);
-        $sheet->setCellValue('B2', '');
-        $sheet->setCellValue('C2', '');
-        $sheet->setCellValue('D2', '');
+        $sheet->setCellValue('B2', null);
+        $sheet->setCellValue('C2', null);
+        $sheet->setCellValue('D2', null);
 
         $sheet->getStyle('G2')->getFont()->setBold(true);
         $sheet->setCellValue('G2', 'fakultas_id tidak boleh di hapus.');
@@ -249,42 +249,44 @@ class Jurnal extends MyController
 
     public function ajaxSaveImportData()
     {
-
-        $file = $this->request->getFile('file_excel');
-        $ext = $file->getClientExtension();
-        // $result = false;
+        $file_excel = $this->request->getFile('file_excel');
+        $ext = $file_excel->getClientExtension();
         if ($ext == 'xls' || $ext == 'xlsx') {
             if ($ext == 'xls') {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
             } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             }
 
-            $spreadsheet = $reader->load($file);
+            $spreadsheet = $render->load($file_excel);
             $jurnal = $spreadsheet->getActiveSheet()->toArray();
-            foreach ($jurnal as $key => $value) {
+            $count = 0;
+            foreach ($jurnal as $key => $row) {
                 if ($key == 0) {
                     continue;
                 }
 
-                $check = $this->jurnal->checkJurnal($value[0], $value[1]);
+                $db = \Config\Database::connect();
+                $checkJurnal = $db->table('jurnal')->getWhere(['fakultas_id' => $row[0], 'nama_jurnal' => $row[1], 'kategori' => $row[2]])->getRowArray();
 
-                if ($value[0] == !empty($check['fakultas_id'])) {
+                if ($row[0] == !empty($checkJurnal['fakultas_id'])) {
                     continue;
                 }
 
                 $fields = [
-                    'fakultas_id' => $value[0],
-                    'nama_jurnal' => $value[1],
-                    'link' => $value[2],
-                    'kategori' => $value[3],
+                    'fakultas_id' => $row[0],
+                    'nama_jurnal' => $row[1],
+                    'kategori' => $row[2],
+                    'link' => $row[3],
                 ];
 
-                $this->model->insertData('jurnal', $fields);
+                $result = $this->model->insertData('jurnal', $fields);
+                if ($result) {
+                    $count++;
+                }
             }
-
-            echo json_encode(['status' => true, 'message' => 'Data berhasil diimport']);
-        } else if ($file == '') {
+            echo json_encode(['status' => true, 'message' => $count . ' Data berhasil diimport']);
+        } else if ($file_excel == '') {
             echo json_encode(['status' => false, 'message' => 'File upload harus diisi']);
         } else {
             echo json_encode(['status' => false, 'message' => 'Format file tidak sesuai']);
