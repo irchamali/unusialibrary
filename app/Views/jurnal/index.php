@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="pull-right">
-                        <!--  -->
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-import"><i class="fa fa-file-import"></i> Import Data</button>
                     </div>
                 </div>
             </div>
@@ -31,10 +31,58 @@
             <table id="table-result" class="w-100 table table-striped table-bordered table-hover"></table>
         </div>
     </div>
+
+
+    <div class="modal fade" id="modal-import" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close btn-import-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Import Jurnal</h4>
+                </div>
+                <form class="form-horizontal" id="form-jurnal-import" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="fakultas_id" class="col-sm-12 control-label">Silahkan pilih fakultas untuk mendapatkan Contoh Format Jurnal</label>
+                            <div class="col-sm-12">
+                                <?php
+                                $option_fakultas[null] = 'Pilih Fakultas';
+                                foreach ($fakultas as $key => $value) {
+                                    $option_fakultas[$value['fakultas_id']] = $value['nama_fakultas'];
+                                }
+                                echo form_dropdown(
+                                    ['name' => 'fakultas_id', 'id' => 'fakultas_id', 'class' => 'form-control select2'],
+                                    $option_fakultas
+                                );
+                                ?>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file_excel" class="col-sm-3 control-label">Upload File</label>
+                            <div class="col-sm-9">
+                                <input type="file" name="file_excel" id="file_excel" class="form-control">
+                                <span class="help-block">Ekstensi file harus .xlsx</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-import-close" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary btn-import">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
     $(document).ready(function() {
+        $('.select2').select2();
+
         dataTables = $('#table-result').DataTable({
             "processing": true,
             "responsive": true,
@@ -180,7 +228,7 @@
             var $button_submit = '';
 
             $bootbox = bootbox.dialog({
-                title: type == 'Ubah' ? 'Ubah Fakultas' : 'Tambah Fakultas',
+                title: type == 'Ubah' ? 'Ubah Jurnal' : 'Tambah Jurnal',
                 message: '<div class="text-center"><i class="fas fa-circle-notch fa-spin fa-2x"></i></div>',
                 buttons: {
                     cancel: {
@@ -250,5 +298,45 @@
             });
             return $bootbox;
         }
+
+        $('#modal-import').on('hidden.bs.modal', function(e) {
+            $('[name="file_excel"]').val('');
+            $('[name="file_excel"]').parent('.col-sm-9').removeClass('has-error');
+            $('[name="file_excel"]').next('.help-block').text('Ekstensi file harus .xlsx');
+        });
+
+        $('form#form-jurnal-import input').on('change', function() {
+            $(this).parent('.col-sm-9').removeClass('has-error');
+            $(this).next('.help-block').text('Ekstensi file harus .xlsx');
+        });
+
+        $('#fakultas_id').on('change', function() {
+            window.open('<?= base_url('admin/jurnal/exportData?id='); ?>' + $(this).val(), '_blank');
+        });
+
+        $('#form-jurnal-import').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('admin/jurnal/ajaxSaveImportData'); ?>",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    // if (response.status == false) {
+                    //     if (response.error) {
+                    //         $('[name="file_excel"]').parent().addClass('has-error');
+                    //         $('[name="file_excel"]').next('.help-block').text(response.error);
+                    //     }
+                    // }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        });
     });
 </script>

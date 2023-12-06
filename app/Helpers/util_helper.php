@@ -350,3 +350,13 @@ function get_filename($file_name, $path)
     }
     return $file_name;
 }
+
+function upload_file($path, $file)
+{
+    $new_name =  get_filename(stripslashes($file['name']), $path);;
+    $move = move_uploaded_file($file['tmp_name'], $path . $new_name);
+    if ($move)
+        return $new_name;
+    else
+        return false;
+}

@@ -6,6 +6,8 @@ use App\Controllers\MyController;
 use App\Models\DataTableModel;
 use App\Models\FakultasModel;
 use App\Models\JurnalModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Jurnal extends MyController
 {
@@ -75,7 +77,36 @@ class Jurnal extends MyController
     public function index()
     {
         $this->data['title'] = 'Daftar Jurnal';
+        $this->data['fakultas'] = $this->fakultas->getFakultas();
         $this->view('backend', 'jurnal/index', $this->data);
+    }
+
+    public function exportData()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'fakultas_id');
+        $sheet->setCellValue('B1', 'nama_jurnal');
+        $sheet->setCellValue('C1', 'link');
+        $sheet->setCellValue('D1', 'kategori');
+
+        $fakultas = $this->fakultas->getFakultasById($this->request->getGet('id'));
+
+        $sheet->setCellValue('A2', $fakultas['fakultas_id']);
+        $sheet->setCellValue('B2', '');
+        $sheet->setCellValue('C2', '');
+        $sheet->setCellValue('D2', '');
+
+        $sheet->getStyle('G2')->getFont()->setBold(true);
+        $sheet->setCellValue('G2', 'fakultas_id tidak boleh di hapus.');
+
+        $writer = new Xlsx($spreadsheet);
+        $file = "Format Data Jurnal.xlsx";
+        header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-disposition: attachment; filename=' . $file);
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit;
     }
 
     public function ajaxGetData()
@@ -190,6 +221,73 @@ class Jurnal extends MyController
             echo json_encode(['status' => true, 'message' => 'Data berhasil dihapus']);
         } else {
             echo json_encode(['status' => false, 'message' => 'Gagal menghapus data']);
+        }
+    }
+
+    // private function getValidateImport()
+    // {
+    //     $data = [];
+    //     $data['status'] = true;
+
+    //     if ($_FILES['file_excel']['name']) {
+    //         $data['status'] = false;
+    //         $file_type = $_FILES['file_excel']['type'];
+    //         $allowed = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+    //         if (!in_array($file_type, $allowed)) {
+    //             $data['error'] = 'Tipe file harus ' . join(', ', $allowed);
+    //         }
+    //     } else {
+    //         $data['status'] = false;
+    //         $data['error'] = 'File excel harus diisi.';
+    //     }
+
+    //     if ($data['status'] == false) {
+    //         echo json_encode($data);
+    //         exit;
+    //     }
+    // }
+
+    public function ajaxSaveImportData()
+    {
+
+        $file = $this->request->getFile('file_excel');
+        $ext = $file->getClientExtension();
+        // $result = false;
+        if ($ext == 'xls' || $ext == 'xlsx') {
+            if ($ext == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $spreadsheet = $reader->load($file);
+            $jurnal = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($jurnal as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+
+                $check = $this->jurnal->checkJurnal($value[0], $value[1]);
+
+                if ($value[0] == !empty($check['fakultas_id'])) {
+                    continue;
+                }
+
+                $fields = [
+                    'fakultas_id' => $value[0],
+                    'nama_jurnal' => $value[1],
+                    'link' => $value[2],
+                    'kategori' => $value[3],
+                ];
+
+                $this->model->insertData('jurnal', $fields);
+            }
+
+            echo json_encode(['status' => true, 'message' => 'Data berhasil diimport']);
+        } else if ($file == '') {
+            echo json_encode(['status' => false, 'message' => 'File upload harus diisi']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Format file tidak sesuai']);
         }
     }
 }
