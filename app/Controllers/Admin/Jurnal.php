@@ -101,7 +101,7 @@ class Jurnal extends MyController
         $sheet->setCellValue('G2', 'fakultas_id tidak boleh di hapus.');
 
         $writer = new Xlsx($spreadsheet);
-        $file = "Format Data Jurnal.xlsx";
+        $file = "Format Jurnal - " . $fakultas['nama_fakultas'] . ".xlsx";
         header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-disposition: attachment; filename=' . $file);
         header('Cache-Control: max-age=0');
@@ -276,7 +276,7 @@ class Jurnal extends MyController
                 $fields = [
                     'fakultas_id' => $row[0],
                     'nama_jurnal' => $row[1],
-                    'kategori' => $row[2],
+                    'kategori' => strtolower($row[2]),
                     'link' => $row[3],
                 ];
 
@@ -286,7 +286,7 @@ class Jurnal extends MyController
                 }
             }
             echo json_encode(['status' => true, 'message' => $count . ' Data berhasil diimport']);
-        } else if ($file_excel == '') {
+        } else if ($file_excel == null) {
             echo json_encode(['status' => false, 'message' => 'File upload harus diisi']);
         } else {
             echo json_encode(['status' => false, 'message' => 'Format file tidak sesuai']);
