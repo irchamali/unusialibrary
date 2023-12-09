@@ -228,15 +228,27 @@ function build_menu_website($current_module, $arr_menu, $submenu = false)
         if (key_exists('children', $val)) {
             $menu .= '<li class="nav-item dropdown">' . $dropdown_indicator . $val['nama_menu'] . '</a>';
         } else {
+            $subURL = substr($val['url'], 0, 8);
             $dropdown_item = '';
             $nav_item_dropdown = '';
+            $url = 'javascript:void(0);';
+            $target = '';
+            if ($subURL != 'https://') {
+                $url = $val['url'];
+                $target = 'target="_blank"';
+            } else {
+                $url = base_url($val['url']);
+                $target = '';
+            }
+
             if ($val['parent_id']) {
-                $dropdown_item = '<a class="dropdown-item" href="' . base_url($val['url']) . '">';
+                $dropdown_item = '<a class="dropdown-item" href="' . $url . '" ' . $target . '>';
                 $nav_item_dropdown = '';
             } else {
-                $dropdown_item = '<a class="nav-link" href="' . base_url($val['url']) . '" role="button">';
+                $dropdown_item = '<a class="nav-link" href="' . $url . '" role="button">';
                 $nav_item_dropdown = 'class="nav-item dropdown"';
             }
+
             $menu .= '<li ' . $nav_item_dropdown . '>' . $dropdown_item . $val['nama_menu'] . '</a>';
         }
 
