@@ -69,6 +69,7 @@ class Setting_about extends MyController
             'visi_misi' => $_POST['visi_misi'],
             'struktur_organisasi' => $fileStruktur,
             'fasilitas' => $_POST['fasilitas'],
+            'biografi' => $_POST['biografi'],
         ];
 
         $this->model->updateData('setting', $fields, 'id', $this->data['setting']['id']);

@@ -32,7 +32,7 @@
                     <div class="col-sm-10">
                         <input type="file" name="struktur_organisasi" id="struktur_organisasi" class="form-control" value="<?= @$setting['struktur_organisasi']; ?>">
                         <span class="help-block">
-                            <img src="<?= base_url('public/images/') . @$setting['struktur_organisasi'];  ?>" class="thumbnail" style="width:100%">
+                            <img src="<?= base_url('public/images/') . @$setting['struktur_organisasi'];  ?>" class="thumbnail" style="width:50%">
                         </span>
                     </div>
                 </div>
@@ -41,6 +41,14 @@
                     <label for="fasilitas" class="col-sm-2 control-label">Fasilitas</label>
                     <div class="col-sm-10">
                         <textarea name="fasilitas" id="fasilitas"><?= @$setting['fasilitas']; ?></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="biografi" class="col-sm-2 control-label">Biografi</label>
+                    <div class="col-sm-10">
+                        <textarea name="biografi" id="biografi"><?= @$setting['biografi']; ?></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -56,6 +64,7 @@
         CKEDITOR.replace('sejarah');
         CKEDITOR.replace('visi_misi');
         CKEDITOR.replace('fasilitas');
+        CKEDITOR.replace('biografi');
     });
 </script>
 
