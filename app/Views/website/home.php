@@ -91,7 +91,7 @@
 
 
 <!-- KOLEKSI TERBARU -->
-<section class="bg-100 text-center">
+<section class="bg-100">
 
     <div class="container">
         <div class="text-center mb-6">
@@ -99,43 +99,7 @@
             <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
         </div>
 
-        <?php if (count($koleksi_terbaru) > 0) { ?>
-            <div class="row g-4">
-                <?php
-                $index = 0;
-                foreach ($koleksi_terbaru as $key => $value) {
-                    if ($index == 4) {
-                        break;
-                    }
-                    $index++;
-                ?>
-                    <div class="col-md-3 col-lg-3">
-                        <div class="card"><a href="<?= $value['book_url']; ?>" target="_blank"><img class="card-img-top" src="<?= $value['book_cover']; ?>" alt="<?= $value['book_title']; ?>" /></a>
-                            <div class="card-body" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                                <div class="overflow-hidden"><a href="<?= $value['book_url']; ?>" target="_blank">
-                                        <h6 data-zanim-xs='{"delay":0}'><?= $value['book_title']; ?></h6>
-                                    </a></div>
-                                <!-- <div class="overflow-hidden">
-                                    <p class="text-500" data-zanim-xs='{"delay":0.1}'><?= $value['penulis']; ?></p>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-
-            <div class="row">
-                <div class="col-auto mx-auto mt-4">
-                    <a href="<?= base_url('book'); ?>" class="btn btn-warning">
-                        <span class="text-primary fw-semi-bold">
-                            Lihat Semua <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        <?php } else { ?>
-            <div class="col-md-12 rounded-3 py-4 text-center bg-warning"><span class="text-uppercase mb-0">Koleksi terbaru sedang tidak tersedia</span></div>
-        <?php }; ?>
+        <div class="row g-4 result-koleksi-terbaru"></div>
     </div>
 
 </section>
