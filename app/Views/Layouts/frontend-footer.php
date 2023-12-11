@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
-            <iframe src="<?= $setting['google_maps']; ?>" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="<?= $setting['google_maps']; ?>" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <div class="col-lg-5">
@@ -122,6 +122,25 @@
 <script src="<?= base_url('public'); ?>/vendors/gsap/gsap.js"></script>
 <script src="<?= base_url('public'); ?>/vendors/gsap/customEase.js"></script>
 <script src="<?= base_url('public'); ?>/assets/js/theme.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.result-koleksi-terbaru').html('<div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x"></i></div>');
+        setTimeout(function() {
+            getKoleksiTerbaru();
+        }, 1000);
+    });
+
+    function getKoleksiTerbaru() {
+        $.ajax({
+            type: "post",
+            url: "<?= base_url('home/ajaxGetKoleksiTerbaru'); ?>",
+            dataType: "json",
+            success: function(response) {
+                $('.result-koleksi-terbaru').html(response);
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

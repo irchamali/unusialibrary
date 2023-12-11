@@ -97,4 +97,81 @@ class HomeModel extends \App\Models\MyModel
     {
         return $this->db->query('SELECT * FROM partnership')->getResultArray();
     }
+
+
+    // SUBJECT POPULAR
+    public function getHomeSubjectPopular()
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("GET", "https://opac.unusia.ac.id/index.php", [
+            "query" => [
+                "p" => "api/subject/popular"
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true) ?? null;
+        }
+
+        return $result;
+    }
+
+    // SUBJECT LASTEST
+    public function getHomeSubjectLatest()
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("GET", "https://opac.unusia.ac.id/index.php", [
+            "query" => [
+                "p" => "api/subject/latest"
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true) ?? null;
+        }
+
+        return $result;
+    }
+
+    // BIBLIO POPULAR
+    public function getHomeBiblioPopular()
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("GET", "https://opac.unusia.ac.id/index.php", [
+            "query" => [
+                "p" => "api/biblio/popular"
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true) ?? null;
+        }
+
+        return $result;
+    }
+
+    // BIBLIO LASTEST
+    public function getHomeBiblioLatest()
+    {
+        $curl = service('curlrequest');
+
+        $response = $curl->request("GET", "https://opac.unusia.ac.id/index.php", [
+            "query" => [
+                "p" => "api/biblio/latest"
+            ]
+        ]);
+
+        $result = [];
+        if (200 == $response->getStatusCode()) {
+            $result = json_decode($response->getBody(), true) ?? null;
+        }
+
+        return $result;
+    }
 }

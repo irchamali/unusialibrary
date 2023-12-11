@@ -25,6 +25,7 @@ $routes->get('layanan', 'Home::layanan');
 $routes->get('layanan/(:segment)', 'Home::layanan/$1');
 $routes->get('fasilitas', 'Home::fasilitas');
 $routes->get('book', 'Home::book');
+$routes->get('book-print', 'Home::book_print');
 $routes->get('jurnal-nasional', 'Home::jurnal_nasional');
 $routes->get('jurnal-internasional', 'Home::jurnal_internasional');
 
