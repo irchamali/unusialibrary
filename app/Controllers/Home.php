@@ -234,16 +234,22 @@ class Home extends MyController
 
     public function ajaxGetKoleksiTerbaru()
     {
-        $output = '';
+        $output = null;
         $buku = $this->model->getHomeBook();
-        if ($buku == null) {
-            $output = '<div class="col-md-12 rounded-3 py-4 text-center bg-warning"><span class="text-uppercase mb-0">Koleksi terbaru sedang tidak tersedia</span></div>';
-        } else {
+        if ($buku) {
             $index = 0;
+            $output .= '<div class="container">
+                            <div class="text-center mb-6">
+                                <h3 class="fs-2 fs-md-3">Koleksi Terbaru</h3>
+                                <hr class="short" data-zanim-xs="{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}" data-zanim-trigger="scroll" />
+                            </div>
+    
+                            <div class="row g-4">';
             foreach ($buku as $key => $value) {
                 if ($index == 4) {
                     break;
                 }
+                $index++;
                 $output .= '<div class="col-md-4 col-lg-3 card-book">
                                 <div class="card">
                                     <a href="' . $value['book_url'] . '" target="_blank">
@@ -258,18 +264,18 @@ class Home extends MyController
                                     </div>
                                 </div>
                             </div>';
-                $index++;
             }
 
             $output .= '<div class="row">
                             <div class="col-auto mx-auto mt-4">
-                                <a href="" class="btn btn-warning">
+                                <a href="' . base_url('book') . '" class="btn btn-warning">
                                     <span class="text-primary fw-semi-bold">
                                         Lihat Semua <i class="fas fa-arrow-right"></i>
                                     </span>
                                 </a>
                             </div>
                         </div>';
+            $output .= '</div></div>';
         }
 
         echo json_encode($output);

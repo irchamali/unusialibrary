@@ -124,7 +124,6 @@
 <script src="<?= base_url('public'); ?>/assets/js/theme.js"></script>
 <script>
     $(document).ready(function() {
-        $('.result-koleksi-terbaru').html('<div class="text-center"><i class="fas fa-circle-notch fa-spin fa-3x"></i></div>');
         setTimeout(function() {
             getKoleksiTerbaru();
         }, 1000);
@@ -136,7 +135,11 @@
             url: "<?= base_url('home/ajaxGetKoleksiTerbaru'); ?>",
             dataType: "json",
             success: function(response) {
-                $('.result-koleksi-terbaru').html(response);
+                if (response != null) {
+                    $('.result-koleksi-terbaru').html(response).show();
+                } else {
+                    $('.result-koleksi-terbaru').hide();
+                }
             }
         });
     }

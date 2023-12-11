@@ -91,18 +91,7 @@
 
 
 <!-- KOLEKSI TERBARU -->
-<section class="bg-100">
-
-    <div class="container">
-        <div class="text-center mb-6">
-            <h3 class="fs-2 fs-md-3">Koleksi Terbaru</h3>
-            <hr class="short" data-zanim-xs='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}' data-zanim-trigger="scroll" />
-        </div>
-
-        <div class="row g-4 result-koleksi-terbaru"></div>
-    </div>
-
-</section>
+<section class="bg-100 result-koleksi-terbaru" style="display: none;"></section>
 <!-- END KOLEKSI TERBARU -->
 
 <!-- BERITA & AGENDA SERTA PENGUMUMAN -->
