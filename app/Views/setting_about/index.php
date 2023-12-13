@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label for="sejarah" class="col-sm-2 control-label">Sejarah</label>
                     <div class="col-sm-10">
-                        <textarea name="sejarah" id="sejarah"><?= @$setting['sejarah']; ?></textarea>
+                        <textarea name="sejarah" id="sejarah" class="summernote"><?= @$setting['sejarah']; ?></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label for="visi_misi" class="col-sm-2 control-label">Visi Misi</label>
                     <div class="col-sm-10">
-                        <textarea name="visi_misi" id="visi_misi"><?= @$setting['visi_misi']; ?></textarea>
+                        <textarea name="visi_misi" id="visi_misi" class="summernote"><?= @$setting['visi_misi']; ?></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="fasilitas" class="col-sm-2 control-label">Fasilitas</label>
                     <div class="col-sm-10">
-                        <textarea name="fasilitas" id="fasilitas"><?= @$setting['fasilitas']; ?></textarea>
+                        <textarea name="fasilitas" id="fasilitas" class="summernote"><?= @$setting['fasilitas']; ?></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="biografi" class="col-sm-2 control-label">Biografi</label>
                     <div class="col-sm-10">
-                        <textarea name="biografi" id="biografi"><?= @$setting['biografi']; ?></textarea>
+                        <textarea name="biografi" id="biografi" class="summernote"><?= @$setting['biografi']; ?></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -61,10 +61,7 @@
 
 <script>
     $(document).ready(function() {
-        CKEDITOR.replace('sejarah');
-        CKEDITOR.replace('visi_misi');
-        CKEDITOR.replace('fasilitas');
-        CKEDITOR.replace('biografi');
+        $('.summernote').summernote();
     });
 </script>
 

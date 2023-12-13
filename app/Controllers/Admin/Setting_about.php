@@ -13,11 +13,14 @@ class Setting_about extends MyController
         $this->model = new SettingModel;
         $this->addStyle(base_url('public/plugins/datatables.net-bs/css/') . 'dataTables.bootstrap.min.css');
         $this->addStyle(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.css');
+        $this->addStyle(base_url('public/plugins/summernote/') . 'summernote.min.css');
+
         $this->addScript(base_url('public/plugins/datatables.net/js/') . 'jquery.dataTables.min.js');
         $this->addScript(base_url('public/plugins/datatables.net-bs/js/') . 'dataTables.bootstrap.min.js');
         $this->addScript(base_url('public/plugins/bootbox/') . 'bootbox.min.js');
         $this->addScript(base_url('public/plugins/sweetalert2/') . 'sweetalert2.min.js');
-        $this->addScript(base_url('public/plugins/ckeditor/') . 'ckeditor.js');
+        // $this->addScript(base_url('public/plugins/ckeditor/') . 'ckeditor.js');
+        $this->addScript(base_url('public/plugins/summernote/') . 'summernote.min.js');
     }
 
     public function index()
