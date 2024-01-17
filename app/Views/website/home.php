@@ -256,7 +256,7 @@
 </section>
 <!-- END BERITA & AGENDA SERTA PENGUMUMAN -->
 
-<!-- TAUTAN -->
+<!-- LOGO PARTNERSHIP -->
 <?php if (count($partnership) > 0) { ?>
     <div class="bg-200 py-6">
         <div class="container">
@@ -265,7 +265,8 @@
                     <?php foreach ($partnership as $value) {
                         $image_partnership = @$value['logo'] ?  @base_url('public/images/partnership/') . $value['logo'] : base_url('public/images/no_image.png');
                     ?>
-                        <div class="swiper-slide"><img class="w-100" src="<?= $image_partnership; ?>" alt="image" /></div>
+                        <div class="swiper-slide"><a href="<?= $value['link']; ?>"><img class="w-100" src="<?= $image_partnership; ?>" alt="image" /></a>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
